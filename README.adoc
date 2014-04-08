@@ -1,0 +1,60 @@
+== gymy-seminar
+
+image:https://travis-ci.org/oskopek/gymy-seminar.svg?branch=master["Build Status", link="https://travis-ci.org/oskopek/gymy-seminar"]
+image:https://coveralls.io/repos/oskopek/gymy-seminar/badge.png?branch=master["Coverage status", link="https://coveralls.io/r/oskopek/gymy-seminar?branch=master"]
+
+A seminar grouping system.
+
+=== Building
+* *Recommended*: +mvn clean install -DskipTests+
+* To run *unit tests*: +mvn clean install+
+* To *clean*, run: +mvn clean+
+
+=== Getting help
+
+
+=== Contributing
+*Everyone* is encouraged to help improve this project.
+
+Here are some ways *you* can contribute:
+
+* by using alpha, beta, and pre-release versions
+* by reporting bugs
+* by suggesting new features
+* by implementing planned features
+* by translating to a new language
+* by writing or editing documentation
+* by writing specifications
+* by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
+* by refactoring code
+* by closing https://github.com/oskopek/gymy-seminar/issues[issues]
+* by reviewing patches
+
+=== Submitting an Issue
+We use the https://github.com/oskopek/gymy-seminar/issues[GitHub issue tracker] to track bugs and features. Before
+submitting a bug report or feature request, check to make sure it hasn't
+already been submitted. When submitting a bug report, please include a https://gist.github.com/[Gist]
+that includes a stack trace and any details that may be necessary to reproduce
+the bug, including your Java version and operating system.
+
+=== Submitting a Pull Request
+. http://help.github.com/fork-a-repo/[Fork the repository]
+. http://learn.github.com/p/branching.html[Create a topic branch]
+. Implement your feature or bug fix
+. If applicable, add tests for your feature or bug fix
+. Run +mvn clean install+
+. If the tests fail, return to step 3 and 4
+. Add, commit, and push your changes
+. http://help.github.com/send-pull-requests/[Submit a pull request]
+
+
+=== Configuring the project for Eclipse with the m2eclipse plugin
+The m2eclipse plugin is a plugin in Eclipse for Maven.
+
+* Open Eclipse
+* Follow link:http://m2eclipse.sonatype.org/m2eclipse[the installation instructions of m2eclipse].
+** Follow the link *Installing m2eclipse* at the bottom.
+* Click menu *File*, menu item *Import*, tree item *Maven*, tree item *Existing Maven Projects*.
+* Click button *Browse*, select a repository directory. For example: `~/git/gymy-seminar`.
+
+For more information, see http://www.sonatype.com/books/m2eclipse-book/reference/[the m2eclipse book]

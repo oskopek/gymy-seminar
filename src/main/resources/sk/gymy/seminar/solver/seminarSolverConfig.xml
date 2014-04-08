@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2014 Ondrej Skopek
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<solver>
+    <!--<environmentMode>FAST_ASSERT</environmentMode>-->
+    <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
+    <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
+
+    <scoreDirectorFactory>
+        <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+        <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
+        <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
+        <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
+        <scoreDrl>/sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
+        <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+        <!--<assertionScoreDirectorFactory>-->
+        <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
+        <!--</assertionScoreDirectorFactory>-->
+    </scoreDirectorFactory>
+
+    <termination>
+        <bestScoreLimit>0</bestScoreLimit>
+        <secondsSpentLimit>10</secondsSpentLimit>
+    </termination>
+    <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+    </constructionHeuristic>
+    <localSearch>
+        <changeMoveSelector>
+            <selectionOrder>ORIGINAL</selectionOrder>
+        </changeMoveSelector>
+        <acceptor>
+            <entityTabuSize>5</entityTabuSize>
+        </acceptor>
+        <forager>
+            <!-- Real world problems require to use of <acceptedCountLimit> -->
+        </forager>
+    </localSearch>
+    <!-- To scale out, replace <localSearch> with this configuration: -->
+    <!--<localSearch>-->
+    <!--<unionMoveSelector>-->
+    <!--<changeMoveSelector/>-->
+    <!--<swapMoveSelector/>-->
+    <!--</unionMoveSelector>-->
+    <!--<acceptor>-->
+    <!--<entityTabuSize>11</entityTabuSize>-->
+    <!--</acceptor>-->
+    <!--<forager>-->
+    <!--<acceptedCountLimit>2000</acceptedCountLimit>-->
+    <!--<pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>-->
+    <!--</forager>-->
+    <!--</localSearch>-->
+</solver>

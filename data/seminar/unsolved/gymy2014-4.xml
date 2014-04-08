@@ -1,0 +1,491 @@
+<Groups id="1">
+    <id>0</id>
+    <name>Seminar-Gymy2014-4hodinovky</name>
+    <n>4</n>
+    <studentList id="2">
+        <Student id="3">
+            <id>0</id>
+            <index>1</index>
+            <name>Nikola Baranovicova</name>
+        </Student>
+        <Student id="4">
+            <id>1</id>
+            <index>2</index>
+            <name>Simona Brkalova</name>
+        </Student>
+        <Student id="5">
+            <id>2</id>
+            <index>3</index>
+            <name>Radim Buchanec</name>
+        </Student>
+        <Student id="6">
+            <id>3</id>
+            <index>4</index>
+            <name>Adriana Drskova</name>
+        </Student>
+        <Student id="7">
+            <id>4</id>
+            <index>5</index>
+            <name>Daniela Drzkova</name>
+        </Student>
+        <Student id="8">
+            <id>5</id>
+            <index>6</index>
+            <name>Nikola Drzkova</name>
+        </Student>
+        <Student id="9">
+            <id>6</id>
+            <index>7</index>
+            <name>Juraj Durec</name>
+        </Student>
+        <Student id="10">
+            <id>7</id>
+            <index>8</index>
+            <name>Martin Durec</name>
+        </Student>
+        <Student id="11">
+            <id>8</id>
+            <index>9</index>
+            <name>Ema Fajnorova</name>
+        </Student>
+        <Student id="12">
+            <id>9</id>
+            <index>10</index>
+            <name>Lenka Gabrizova</name>
+        </Student>
+        <Student id="13">
+            <id>10</id>
+            <index>11</index>
+            <name>Peter Gerza</name>
+        </Student>
+        <Student id="14">
+            <id>11</id>
+            <index>12</index>
+            <name>Monika Hargasova</name>
+        </Student>
+        <Student id="15">
+            <id>12</id>
+            <index>13</index>
+            <name>Monika Hornackova</name>
+        </Student>
+        <Student id="16">
+            <id>13</id>
+            <index>14</index>
+            <name>Sona Kahunova</name>
+        </Student>
+        <Student id="17">
+            <id>14</id>
+            <index>15</index>
+            <name>Jana Klescinska</name>
+        </Student>
+        <Student id="18">
+            <id>15</id>
+            <index>16</index>
+            <name>Monika Kubicova</name>
+        </Student>
+        <Student id="19">
+            <id>16</id>
+            <index>17</index>
+            <name>Michal Marecek-Kolibisky</name>
+        </Student>
+        <Student id="20">
+            <id>17</id>
+            <index>18</index>
+            <name>Katarina Pagacova</name>
+        </Student>
+        <Student id="21">
+            <id>18</id>
+            <index>19</index>
+            <name>Daniela Parovska</name>
+        </Student>
+        <Student id="22">
+            <id>19</id>
+            <index>20</index>
+            <name>Petra Polakova</name>
+        </Student>
+        <Student id="23">
+            <id>20</id>
+            <index>21</index>
+            <name>Katarina Prazienkova</name>
+        </Student>
+        <Student id="24">
+            <id>21</id>
+            <index>22</index>
+            <name>Katarina Sabotova</name>
+        </Student>
+        <Student id="25">
+            <id>22</id>
+            <index>23</index>
+            <name>Daniel Svatik</name>
+        </Student>
+        <Student id="26">
+            <id>23</id>
+            <index>24</index>
+            <name>Juraj Skandera</name>
+        </Student>
+        <Student id="27">
+            <id>24</id>
+            <index>25</index>
+            <name>Angelika Vavrova</name>
+        </Student>
+        <Student id="28">
+            <id>25</id>
+            <index>26</index>
+            <name>Lucia Vecerova</name>
+        </Student>
+        <Student id="29">
+            <id>26</id>
+            <index>27</index>
+            <name>Jana Vrbova</name>
+        </Student>
+        <Student id="30">
+            <id>27</id>
+            <index>28</index>
+            <name>Katarina Vsetulova</name>
+        </Student>
+        <Student id="31">
+            <id>28</id>
+            <index>29</index>
+            <name>Nikola Zvercova</name>
+        </Student>
+        <Student id="32">
+            <id>29</id>
+            <index>30</index>
+            <name>Jaroslava Zakova</name>
+        </Student>
+        <Student id="33">
+            <id>30</id>
+            <index>31</index>
+            <name>Denis Drzka</name>
+        </Student>
+        <Student id="34">
+            <id>31</id>
+            <index>32</index>
+            <name>Denis Durec</name>
+        </Student>
+        <Student id="35">
+            <id>32</id>
+            <index>33</index>
+            <name>Michal Elias</name>
+        </Student>
+        <Student id="36">
+            <id>33</id>
+            <index>34</index>
+            <name>Radka Galova</name>
+        </Student>
+        <Student id="37">
+            <id>34</id>
+            <index>35</index>
+            <name>Natalia Gasparova</name>
+        </Student>
+        <Student id="38">
+            <id>35</id>
+            <index>36</index>
+            <name>Adam Jagos</name>
+        </Student>
+        <Student id="39">
+            <id>36</id>
+            <index>37</index>
+            <name>Diana Kurtisova</name>
+        </Student>
+        <Student id="40">
+            <id>37</id>
+            <index>38</index>
+            <name>Marika Markova</name>
+        </Student>
+        <Student id="41">
+            <id>38</id>
+            <index>39</index>
+            <name>Ema Mihaljevicova</name>
+        </Student>
+        <Student id="42">
+            <id>39</id>
+            <index>40</index>
+            <name>Monika Michalcova</name>
+        </Student>
+        <Student id="43">
+            <id>40</id>
+            <index>41</index>
+            <name>Barbora Michalickova</name>
+        </Student>
+        <Student id="44">
+            <id>41</id>
+            <index>42</index>
+            <name>Juliana Mikolaskova</name>
+        </Student>
+        <Student id="45">
+            <id>42</id>
+            <index>43</index>
+            <name>Eliska Zuzana Osuska</name>
+        </Student>
+        <Student id="46">
+            <id>43</id>
+            <index>44</index>
+            <name>Daniel Pecka</name>
+        </Student>
+        <Student id="47">
+            <id>44</id>
+            <index>45</index>
+            <name>Jan Petras</name>
+        </Student>
+        <Student id="48">
+            <id>45</id>
+            <index>46</index>
+            <name>Jana Polakova</name>
+        </Student>
+        <Student id="49">
+            <id>46</id>
+            <index>47</index>
+            <name>Matej Sima</name>
+        </Student>
+        <Student id="50">
+            <id>47</id>
+            <index>48</index>
+            <name>Zuzana Zemanova</name>
+        </Student>
+    </studentList>
+    <groupList id="51">
+        <Group id="52">
+            <id>0</id>
+            <index>0</index>
+        </Group>
+        <Group id="53">
+            <id>1</id>
+            <index>1</index>
+        </Group>
+        <Group id="54">
+            <id>2</id>
+            <index>2</index>
+        </Group>
+        <Group id="55">
+            <id>3</id>
+            <index>3</index>
+        </Group>
+    </groupList>
+    <seminarList id="56">
+        <Seminar id="57">
+            <id>0</id>
+            <index>0</index>
+            <name>ANJB2</name>
+            <locked>false</locked>
+            <students id="58">
+                <Student reference="3"/>
+                <Student reference="4"/>
+                <Student reference="5"/>
+                <Student reference="6"/>
+                <Student reference="7"/>
+                <Student reference="8"/>
+                <Student reference="9"/>
+                <Student reference="10"/>
+                <Student reference="11"/>
+                <Student reference="12"/>
+                <Student reference="13"/>
+                <Student reference="14"/>
+                <Student reference="16"/>
+                <Student reference="17"/>
+                <Student reference="18"/>
+                <Student reference="19"/>
+                <Student reference="21"/>
+                <Student reference="22"/>
+                <Student reference="23"/>
+                <Student reference="24"/>
+                <Student reference="25"/>
+                <Student reference="26"/>
+                <Student reference="27"/>
+                <Student reference="28"/>
+                <Student reference="29"/>
+                <Student reference="30"/>
+                <Student reference="31"/>
+                <Student reference="32"/>
+                <Student reference="33"/>
+                <Student reference="34"/>
+                <Student reference="35"/>
+                <Student reference="36"/>
+                <Student reference="38"/>
+                <Student reference="39"/>
+                <Student reference="43"/>
+                <Student reference="44"/>
+                <Student reference="45"/>
+                <Student reference="46"/>
+                <Student reference="47"/>
+                <Student reference="48"/>
+                <Student reference="49"/>
+                <Student reference="50"/>
+            </students>
+        </Seminar>
+        <Seminar id="59">
+            <id>1</id>
+            <index>1</index>
+            <name>NEJB1</name>
+            <locked>false</locked>
+            <students id="60">
+                <Student reference="8"/>
+                <Student reference="15"/>
+                <Student reference="20"/>
+                <Student reference="38"/>
+                <Student reference="39"/>
+            </students>
+        </Seminar>
+        <Seminar id="61">
+            <id>2</id>
+            <index>2</index>
+            <name>NEJB2</name>
+            <locked>false</locked>
+            <students id="62">
+                <Student reference="34"/>
+                <Student reference="37"/>
+                <Student reference="40"/>
+                <Student reference="41"/>
+                <Student reference="42"/>
+                <Student reference="43"/>
+            </students>
+        </Seminar>
+        <Seminar id="63">
+            <id>3</id>
+            <index>3</index>
+            <name>MAT</name>
+            <locked>false</locked>
+            <students id="64">
+                <Student reference="14"/>
+                <Student reference="26"/>
+                <Student reference="28"/>
+                <Student reference="29"/>
+                <Student reference="33"/>
+                <Student reference="34"/>
+                <Student reference="38"/>
+                <Student reference="42"/>
+                <Student reference="43"/>
+                <Student reference="44"/>
+                <Student reference="47"/>
+                <Student reference="49"/>
+            </students>
+        </Seminar>
+        <Seminar id="65">
+            <id>4</id>
+            <index>4</index>
+            <name>CHE</name>
+            <locked>false</locked>
+            <students id="66">
+                <Student reference="13"/>
+                <Student reference="18"/>
+                <Student reference="22"/>
+                <Student reference="23"/>
+                <Student reference="24"/>
+                <Student reference="25"/>
+                <Student reference="27"/>
+                <Student reference="31"/>
+                <Student reference="37"/>
+                <Student reference="46"/>
+                <Student reference="48"/>
+            </students>
+        </Seminar>
+        <Seminar id="67">
+            <id>5</id>
+            <index>5</index>
+            <name>BIO</name>
+            <locked>false</locked>
+            <students id="68">
+                <Student reference="3"/>
+                <Student reference="7"/>
+                <Student reference="9"/>
+                <Student reference="13"/>
+                <Student reference="16"/>
+                <Student reference="18"/>
+                <Student reference="20"/>
+                <Student reference="22"/>
+                <Student reference="23"/>
+                <Student reference="24"/>
+                <Student reference="25"/>
+                <Student reference="27"/>
+                <Student reference="31"/>
+                <Student reference="37"/>
+                <Student reference="44"/>
+                <Student reference="46"/>
+                <Student reference="48"/>
+            </students>
+        </Seminar>
+        <Seminar id="69">
+            <id>6</id>
+            <index>6</index>
+            <name>GEO</name>
+            <locked>false</locked>
+            <students id="70">
+                <Student reference="5"/>
+                <Student reference="11"/>
+                <Student reference="35"/>
+                <Student reference="36"/>
+                <Student reference="41"/>
+                <Student reference="50"/>
+            </students>
+        </Seminar>
+        <Seminar id="71">
+            <id>7</id>
+            <index>7</index>
+            <name>INF</name>
+            <locked>false</locked>
+            <students id="72">
+                <Student reference="26"/>
+                <Student reference="33"/>
+                <Student reference="47"/>
+                <Student reference="49"/>
+            </students>
+        </Seminar>
+        <Seminar id="73">
+            <id>8</id>
+            <index>8</index>
+            <name>DEJ</name>
+            <locked>false</locked>
+            <students id="74">
+                <Student reference="4"/>
+                <Student reference="6"/>
+                <Student reference="10"/>
+                <Student reference="11"/>
+                <Student reference="12"/>
+                <Student reference="15"/>
+                <Student reference="17"/>
+                <Student reference="19"/>
+                <Student reference="21"/>
+                <Student reference="30"/>
+                <Student reference="32"/>
+                <Student reference="40"/>
+                <Student reference="45"/>
+            </students>
+        </Seminar>
+        <Seminar id="75">
+            <id>9</id>
+            <index>9</index>
+            <name>OBN</name>
+            <locked>false</locked>
+            <students id="76">
+                <Student reference="3"/>
+                <Student reference="4"/>
+                <Student reference="5"/>
+                <Student reference="6"/>
+                <Student reference="7"/>
+                <Student reference="8"/>
+                <Student reference="9"/>
+                <Student reference="10"/>
+                <Student reference="12"/>
+                <Student reference="14"/>
+                <Student reference="15"/>
+                <Student reference="16"/>
+                <Student reference="17"/>
+                <Student reference="19"/>
+                <Student reference="20"/>
+                <Student reference="21"/>
+                <Student reference="28"/>
+                <Student reference="29"/>
+                <Student reference="30"/>
+                <Student reference="32"/>
+                <Student reference="35"/>
+                <Student reference="36"/>
+                <Student reference="39"/>
+                <Student reference="40"/>
+                <Student reference="41"/>
+                <Student reference="42"/>
+                <Student reference="45"/>
+                <Student reference="50"/>
+            </students>
+        </Seminar>
+    </seminarList>
+</Groups>
