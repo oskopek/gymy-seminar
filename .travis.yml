@@ -5,9 +5,9 @@ jdk:
   - oraclejdk7
   - oraclejdk8
 
-env:
-  global:
-    - secure:
+#env:
+  #global:
+    #- secure:
 
 cache:
   directories:
@@ -17,7 +17,7 @@ script: "mvn clean verify"
 
 install: /bin/true
 
-after_success: "mvn clean cobertura:cobertura coveralls:cobertura"
+#after_success: "mvn clean cobertura:cobertura coveralls:cobertura"
 
 notifications:
   irc:
