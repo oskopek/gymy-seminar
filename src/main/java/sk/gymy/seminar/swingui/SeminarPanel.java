@@ -25,7 +25,6 @@ import sk.gymy.seminar.domain.Seminar;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SeminarPanel extends SolutionPanel {
@@ -51,14 +50,19 @@ public class SeminarPanel extends SolutionPanel {
         int n = groups.getN();
 
         List<Seminar> seminarList = groups.getSeminarList();
-        setLayout(new GridLayout(n, 1));
+        setLayout(new GridBagLayout());
         setBackground(Color.WHITE);
+        GridBagConstraints constraints;
         for (int row = 0; row < n; row++) {
-            JPanel rowPanel = new JPanel();
+            constraints = new GridBagConstraints();
             JLabel rowLabel = new JLabel("Group " + row);
-            rowLabel.setMinimumSize(new Dimension(20, 20));
-            rowLabel.setMaximumSize(new Dimension(20, 20));
-            rowPanel.add(rowLabel);
+            constraints.gridx = 0;
+            constraints.gridy = row;
+            constraints.fill = GridBagConstraints.VERTICAL;
+            constraints.weightx = 1;
+            constraints.weighty = 1;
+            constraints.anchor = GridBagConstraints.LINE_START;
+            add(rowLabel, constraints);
 
             int counter = 0;
             for (Seminar seminar : seminarList) {
@@ -66,21 +70,24 @@ public class SeminarPanel extends SolutionPanel {
                     continue;
                 }
                 if (seminar.getGroup().getIndex() == row) {
+                    counter++;
+                    constraints = new GridBagConstraints();
+
                     String toolTipText = seminar.toString();
                     JButton button = new JButton(new SeminarAction(seminar));
                     button.setText(seminar.getName());
-                    button.setMinimumSize(new Dimension(20, 20));
-                    button.setPreferredSize(new Dimension(20, 20));
                     button.setToolTipText(toolTipText);
                     if (seminar.isLocked()) {
                         button.setIcon(lockedIcon);
                     }
-                    rowPanel.add(button);
-                    counter++;
+
+                    constraints.gridx = counter;
+                    constraints.gridy = row;
+                    constraints.weightx = 2;
+                    constraints.fill = GridBagConstraints.BOTH;
+                    add(button, constraints);
                 }
             }
-            rowPanel.setLayout(new GridLayout(1, counter));
-            add(rowPanel);
         }
     }
 
