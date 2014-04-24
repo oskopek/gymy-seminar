@@ -10,8 +10,14 @@ A seminar grouping system.
 * To run *unit tests*: +mvn clean install+
 * To *clean*, run: +mvn clean+
 
+=== Running releases
+
+* Download the latest release (jar with dependencies)
+* Run it with `java -jar gymy-seminare-VERSION-jar-with-dependencies.jar`
+
 === Getting help
 
+Don't be afraid to https://github.com/oskopek/gymy-seminar/issues[open an issue].
 
 === Contributing
 *Everyone* is encouraged to help improve this project.
