@@ -35,10 +35,10 @@ public abstract class SolutionImporterTest extends LoggingTest {
 
     protected static Collection<Object[]> getInputFilesAsParameters(AbstractSolutionImporter solutionImporter) {
         File importDir = solutionImporter.getInputDir();
-        List<File> fileList = new ArrayList<File>(
+        List<File> fileList = new ArrayList<>(
                 FileUtils.listFiles(importDir, new String[]{solutionImporter.getInputFileSuffix()}, true));
         Collections.sort(fileList, new ProblemFileComparator());
-        List<Object[]> filesAsParameters = new ArrayList<Object[]>();
+        List<Object[]> filesAsParameters = new ArrayList<>();
         for (File file : fileList) {
             filesAsParameters.add(new Object[]{file});
         }

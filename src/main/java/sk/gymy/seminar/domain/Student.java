@@ -19,8 +19,6 @@ package sk.gymy.seminar.domain;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 
-import java.util.List;
-
 @XStreamAlias("Student")
 public class Student extends AbstractPersistable {
 

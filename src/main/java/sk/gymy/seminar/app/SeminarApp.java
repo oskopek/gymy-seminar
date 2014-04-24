@@ -100,7 +100,7 @@ public class SeminarApp extends CommonApp {
         TerminationConfig terminationConfig = new TerminationConfig();
         terminationConfig.setBestScoreLimit("0");
         solverConfig.setTerminationConfig(terminationConfig);
-        List<SolverPhaseConfig> solverPhaseConfigList = new ArrayList<SolverPhaseConfig>();
+        List<SolverPhaseConfig> solverPhaseConfigList = new ArrayList<>();
         ConstructionHeuristicSolverPhaseConfig constructionHeuristicSolverPhaseConfig
                 = new ConstructionHeuristicSolverPhaseConfig();
         constructionHeuristicSolverPhaseConfig.setConstructionHeuristicType(

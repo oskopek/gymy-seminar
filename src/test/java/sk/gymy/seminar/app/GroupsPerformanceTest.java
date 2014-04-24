@@ -16,7 +16,6 @@
 
 package sk.gymy.seminar.app;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.optaplanner.core.config.solver.EnvironmentMode;
 import org.optaplanner.examples.common.app.SolverPerformanceTest;

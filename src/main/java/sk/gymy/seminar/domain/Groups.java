@@ -102,8 +102,8 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
     // Complex methods
     // ************************************************************************
 
-    public Collection<? extends Object> getProblemFacts() {
-        List<Object> facts = new ArrayList<Object>();
+    public Collection<?> getProblemFacts() {
+        List<Object> facts = new ArrayList<>();
         facts.addAll(studentList);
         facts.addAll(groupList);
         // Do not add the planning entity's (seminarList) because that will be done automatically

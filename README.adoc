@@ -1,7 +1,6 @@
 == gymy-seminar
 
 image:https://travis-ci.org/oskopek/gymy-seminar.svg?branch=master["Build Status", link="https://travis-ci.org/oskopek/gymy-seminar"]
-image:https://coveralls.io/repos/oskopek/gymy-seminar/badge.png?branch=master["Coverage status", link="https://coveralls.io/r/oskopek/gymy-seminar?branch=master"]
 
 A seminar grouping system.
 
@@ -13,7 +12,7 @@ A seminar grouping system.
 === Running releases
 
 * Download the latest release (jar with dependencies)
-* Run it with `java -jar gymy-seminare-VERSION-jar-with-dependencies.jar`
+* Run it with +java -jar gymy-seminare-VERSION-jar-with-dependencies.jar+
 
 === Getting help
 
@@ -52,7 +51,6 @@ the bug, including your Java version and operating system.
 . If the tests fail, return to step 3 and 4
 . Add, commit, and push your changes
 . http://help.github.com/send-pull-requests/[Submit a pull request]
-
 
 === Configuring the project for Eclipse with the m2eclipse plugin
 The m2eclipse plugin is a plugin in Eclipse for Maven.

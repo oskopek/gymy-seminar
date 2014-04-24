@@ -19,7 +19,6 @@ package sk.gymy.seminar.app;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
 
 public class SeminarAppTest {

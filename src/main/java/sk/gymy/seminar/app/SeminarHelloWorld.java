@@ -19,7 +19,6 @@ package sk.gymy.seminar.app;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.solver.XmlSolverFactory;
-import org.optaplanner.core.config.solver.termination.TerminationConfig;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
@@ -46,23 +45,19 @@ public class SeminarHelloWorld {
         Groups solved5Seminars = (Groups) solver.getBestSolution();
 
         // Display the result
-        System.out.println("\nSolved 5 Seminars:\n" + toDisplayString(solved5Seminars));
+        System.out.print("\nSolved 5 Seminars:\n" + toDisplayString(solved5Seminars));
     }
 
     public static String toDisplayString(Groups groups) {
         StringBuilder displayString = new StringBuilder();
-        int n = groups.getN();
         List<Seminar> seminarList = groups.getSeminarList();
         List<Group> groupList = groups.getGroupList();
 
         for (Group group : groupList) {
-            displayString.append("Group " + group.getIndex() + ": ");
+            displayString.append("Group ").append(group.getIndex()).append(": ");
             for (Seminar seminar : seminarList) {
-                if (seminar == null || seminar.getGroup() == null) {
-                    displayString.append(seminar + ", ");
-                    continue;
-                } else if (seminar.getGroup() == group) {
-                    displayString.append(seminar.getName() + ", ");
+                if (seminar != null && seminar.getGroup() != null && seminar.getGroup() == group) {
+                    displayString.append(seminar.getName()).append(", ");
                 }
             }
             displayString.append("\n");
@@ -70,5 +65,4 @@ public class SeminarHelloWorld {
 
         return displayString.toString();
     }
-
 }

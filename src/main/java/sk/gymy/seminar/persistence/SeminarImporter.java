@@ -85,7 +85,7 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         }
 
         private void createGroups(Groups groups, int n) {
-            ArrayList<Group> groupList = new ArrayList<Group>(n);
+            ArrayList<Group> groupList = new ArrayList<>(n);
             for (int i = 0; i < n; i++) {
                 Group group = new Group();
                 group.setIndex(i);
@@ -98,7 +98,7 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         private void readStudentList(Groups groups, int studNum) throws IOException {
             readEmptyLine();
             readConstantLine("STUDENTS:");
-            List<Student> studentList = new ArrayList<Student>();
+            List<Student> studentList = new ArrayList<>();
 
             for (int i = 0; i < studNum; i++) {
                 Student student = new Student();
@@ -115,14 +115,14 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         private void readSeminarList(Groups groups, int semNum) throws IOException {
             readEmptyLine();
             readConstantLine("SEMINARS:");
-            List<Seminar> seminarList = new ArrayList<Seminar>();
+            List<Seminar> seminarList = new ArrayList<>();
 
             for (int i = 0; i < semNum; i++) {
                 Seminar seminar = new Seminar();
                 seminar.setId((long) i);
                 seminar.setIndex(i);
                 seminar.setLocked(false);
-                List<Student> seminarStudents = new ArrayList<Student>();
+                List<Student> seminarStudents = new ArrayList<>();
 
                 String line = bufferedReader.readLine();
                 String[] split = splitBySpace(line);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 JBoss Inc
+ * Copyright 2014 Ondrej Skopek
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,25 +29,11 @@ global SimpleScoreHolder scoreHolder;
 // Hard constraints
 // ############################################################################
 
-//rule "StudentTwiceInGroup"
-//    when
-//        $student : Student()
-//        $studentCount : Number(intValue > 2) from accumulate(
-//            $group : Group()
-//            and exists Seminar(group == $group, students.contains($student)),
-//            count($group)
-//        )
-//    then
-//        scoreHolder.addConstraintMatch(kcontext, -($studentCount.intValue() - 1));
-//end
-
 rule "StudentTwiceInGroup"
     when
         $student : Student()
-        $seminarLeft : Seminar($id : id, $group : group, students.contains($student))
-        $seminarRight : Seminar(id > $id, group == $group, students.contains($student))
+        $seminarLeft : Seminar($leftId : id, $group : group, students.contains($student))
+        $seminarRight : Seminar(id > $leftId, group == $group, students.contains($student))
     then
         scoreHolder.addConstraintMatch(kcontext, -1);
 end
-
-
