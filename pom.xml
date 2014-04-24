@@ -22,7 +22,7 @@
 
     <groupId>sk.gymy.seminar</groupId>
     <artifactId>gymy-seminar</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
