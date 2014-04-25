@@ -51,9 +51,10 @@ public class SeminarGenerator extends LoggingMain {
 
     public void generate() {
         solutionDao = new SeminarDao();
-        writeGroups(3, 20, 18);
-        writeGroups(3, 200, 180);
-        writeGroups(3, 2000, 1800);
+        //writeGroups(3, 20, 18);
+        //writeGroups(3, 200, 180);
+        //writeGroups(3, 2000, 1800);
+        //writeGroups(3, 2000, 100);
     }
 
     private void writeGroups(int N, int studentN, int seminarN) {
