@@ -26,7 +26,6 @@ import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
 
 import java.io.File;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,8 +51,9 @@ public class SeminarGenerator extends LoggingMain {
 
     public void generate() {
         solutionDao = new SeminarDao();
-        //writeGroups(256, 1024*1024, (1024*1024)/256);
-        writeGroups(20, 40*40, (40*40)/20);
+        writeGroups(3, 20, 18);
+        writeGroups(3, 200, 180);
+        writeGroups(3, 2000, 1800);
     }
 
     private void writeGroups(int N, int studentN, int seminarN) {
@@ -70,12 +70,11 @@ public class SeminarGenerator extends LoggingMain {
         groups.setStudentList(createStudentList(groups, studentN));
         groups.setGroupList(createGroupList(groups, groups.getN()));
         groups.setSeminarList(createSeminarList(groups, seminarN));
-        BigInteger possibleSolutionSize = BigInteger.valueOf(2).pow(groups.getSeminarList().size());
         logger.info("Seminar has {} Students, {} Seminars, {} Groups with a search space of {}.",
                 groups.getStudentList().size(),
                 groups.getSeminarList().size(),
                 groups.getGroupList().size(),
-                SeminarImporter.getFlooredPossibleSolutionSize(possibleSolutionSize));
+                SeminarImporter.calculatePossibleSolutionSize(groups));
         return groups;
     }
 

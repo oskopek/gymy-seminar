@@ -16,6 +16,7 @@
 
 package sk.gymy.seminar.persistence;
 
+import com.google.common.math.BigIntegerMath;
 import org.optaplanner.core.impl.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 import sk.gymy.seminar.domain.Group;
@@ -45,6 +46,14 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         return INPUT_FILE_SUFFIX;
     }
 
+    public static String calculatePossibleSolutionSize(Groups groups) {
+        int studentN = groups.getStudentList().size();
+        int seminarN = groups.getSeminarList().size();
+        int N = groups.getN();
+        BigInteger possibleSolutionSize = BigIntegerMath.binomial(studentN, (N*studentN)/seminarN).multiply(BigInteger.valueOf(seminarN));
+        return getFlooredPossibleSolutionSize(possibleSolutionSize);
+    }
+
     public TxtInputBuilder createTxtInputBuilder() {
         return new SeminarInputBuilder();
     }
@@ -64,14 +73,13 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             createGroups(groups, n);
             readStudentList(groups, studNum);
             readSeminarList(groups, semNum);
-            BigInteger possibleSolutionSize = BigInteger.valueOf(2).pow(groups.getSeminarList().size());
             logger.info("Seminar {} - {} - has {} Students, {} Seminars, {} Groups with a search space of {}.",
                     getInputId(),
                     name,
                     groups.getStudentList().size(),
                     groups.getSeminarList().size(),
                     groups.getGroupList().size(),
-                    getFlooredPossibleSolutionSize(possibleSolutionSize));
+                    calculatePossibleSolutionSize(groups));
             return groups;
         }
 
