@@ -34,7 +34,7 @@
 
     <termination>
         <bestScoreLimit>0</bestScoreLimit>
-        <secondsSpentLimit>10</secondsSpentLimit>
+        <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
     </termination>
     <constructionHeuristic>
         <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
