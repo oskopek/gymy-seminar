@@ -2,7 +2,7 @@
 <plannerBenchmark>
     <benchmarkDirectory>local/data/seminar</benchmarkDirectory>
     <parallelBenchmarkCount>AUTO</parallelBenchmarkCount>
-    <warmUpSecondsSpentLimit>10</warmUpSecondsSpentLimit>
+    <warmUpSecondsSpentLimit>30</warmUpSecondsSpentLimit>
 
     <inheritedSolverBenchmark>
         <problemBenchmarks>
@@ -10,6 +10,9 @@
             <inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>
             <inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>
             <inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St20Sem18-seminar.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St200Sem180-seminar.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St2000Sem1800-seminar.xml</inputSolutionFile>
             <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
             <problemStatisticType>BEST_SCORE</problemStatisticType>
         </problemBenchmarks>
@@ -24,7 +27,7 @@
             <termination>
                 <terminationCompositionStyle>OR</terminationCompositionStyle>
                 <bestScoreLimit>0</bestScoreLimit>
-                <secondsSpentLimit>10</secondsSpentLimit>
+                <secondsSpentLimit>60</secondsSpentLimit>
             </termination>
         </solver>
     </inheritedSolverBenchmark>
