@@ -1,0 +1,38 @@
+= Navod na spustenie gymy-seminar
+
+Tento navod predpoklada nainstalovane JDK alebo JRE v adresari `C:\Program Files\Java\jdk1.7`.
+Ak je Java nainstalovana inde, upravte pokyny adekvatne.
+
+== Stiahnutie
+
+Stiahnite najnovsiu verziu gymy-seminar z https://github.com/oskopek/gymy-seminar/releases[].
+https://github.com/oskopek/gymy-seminar/releases/download/0.1.0/gymy-seminar-0.1.0-jar-with-dependencies.jar[Najnovsia verzia k stiahnutiu tu].
+
+== Data
+
+Premiestnite stiahnuty subor do noveho prazdneho adresaru. Spravte v nom nove foldre podla nasledovnej struktury: (kvoli chybe v programe treba tuto strukturu vytvorit manualne)
+
+```
+|-- data
+|   `-- seminar
+|       |-- export
+|       |-- import
+|       |-- solved
+|       `-- unsolved
+```
+
+Do foldra `import` prekopirujte zelane datove subory,
+napr. ich stiahnite odtialto: https://github.com/oskopek/gymy-seminar/tree/master/data/seminar/import[].
+Kliknite na zelany datovy subor, a potom pravym na tlacitko `Raw`, ulozte do `import` foldra.
+
+== Spustenie
+
+Nejsom si isty, ci to pojde aj priamo z Explorera. Ak ano, skuste kliknut pravym a spustit pomocou "java" alebo "jar",
+"jar spustac", alebo podobne. Ak nie, urcite to pojde nasledovne:
+
+. Spustite dialog "spustit" z hlavneho menu.
+. Napiste `cmd` a stlacte enter.
+. Dostante sa do foldra kde je ulozeny stiahnuty jar subor: `cd C:\folder\s\jar\suborom`
+. Spustite ho: `"C:\Program Files\Java\jdk1.7\bin\java.exe" gymy-seminar-0.1.0-jar-with-dependencies.jar`
+
+Vela stastia!
