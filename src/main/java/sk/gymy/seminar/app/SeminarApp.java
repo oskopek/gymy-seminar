@@ -40,6 +40,7 @@ import sk.gymy.seminar.persistence.SeminarExporter;
 import sk.gymy.seminar.persistence.SeminarImporter;
 import sk.gymy.seminar.swingui.SeminarPanel;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,6 +53,7 @@ public class SeminarApp extends CommonApp {
 
     public static void main(String[] args) {
         prepareSwingEnvironment();
+        prepareDataDirStructure();
         new SeminarApp().init();
     }
 
@@ -137,6 +139,22 @@ public class SeminarApp extends CommonApp {
     @Override
     protected AbstractSolutionExporter createSolutionExporter() {
         return new SeminarExporter();
+    }
+
+    private static void prepareDataDirStructure() {
+        String dataDirPath = "data/" + SeminarDao.dataDirName + "/";
+        List<String> dataDirs = Arrays.asList("import", "export", "solved", "unsolved");
+        File dir;
+
+        for(String curDataDir : dataDirs) {
+            dir = new File(dataDirPath + curDataDir);
+            if (!dir.exists()) {
+                logger.info("Data directory {} doesn't exist, creating it.", dir.toString());
+                if (!dir.mkdirs()) {
+                    throw new IllegalStateException("Failed to create dataDir folders: " + dir.toString());
+                }
+            }
+        }
     }
 
 }
