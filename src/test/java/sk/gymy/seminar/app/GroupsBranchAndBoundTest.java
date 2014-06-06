@@ -68,12 +68,12 @@ public class GroupsBranchAndBoundTest extends SolverPerformanceTest {
 
     @Test(timeout = 600000)
     public void solveModel_gymy2014_2() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-19", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-47", EnvironmentMode.REPRODUCIBLE);
     }
 
     @Test(timeout = 600000)
     public void solveModel_gymy2014_4() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-7", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-20", EnvironmentMode.REPRODUCIBLE);
     }
 
 }

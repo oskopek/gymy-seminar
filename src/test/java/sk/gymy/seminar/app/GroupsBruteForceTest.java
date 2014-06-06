@@ -67,12 +67,12 @@ public class GroupsBruteForceTest extends SolverPerformanceTest {
 
     @Test(timeout = 600000)
     public void solveModel_gymy2014_2() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-9", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-32", EnvironmentMode.REPRODUCIBLE);
     }
 
     @Test(timeout = 600000)
     public void solveModel_gymy2014_4() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-2", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-12", EnvironmentMode.REPRODUCIBLE);
     }
 
 }
