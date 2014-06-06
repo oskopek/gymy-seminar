@@ -16,7 +16,7 @@
             <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
             <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
             <scoreDirectorFactory>
-                <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+                <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
                 <scoreDrl>/sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
                 <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
             </scoreDirectorFactory>

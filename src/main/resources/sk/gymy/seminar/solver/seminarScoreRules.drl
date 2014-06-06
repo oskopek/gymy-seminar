@@ -17,14 +17,14 @@
 package sk.gymy.seminar.solver;
     dialect "java"
 
-import org.optaplanner.core.api.score.buildin.simple.SimpleScoreHolder;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
 
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Student;
 import sk.gymy.seminar.domain.Teacher;
 
-global SimpleScoreHolder scoreHolder;
+global HardSoftScoreHolder scoreHolder;
 
 // ############################################################################
 // Hard constraints
@@ -36,7 +36,7 @@ rule "TeacherTwiceInGroup"
         $seminarLeft : Seminar($leftId : id, $group : group, $teacher == teacher)
         $seminarRight : Seminar(id > $leftId, group == $group, $teacher == teacher)
     then
-        scoreHolder.addConstraintMatch(kcontext, -1);
+        scoreHolder.addHardConstraintMatch(kcontext, -1);
 end
 
 // ############################################################################
@@ -49,5 +49,5 @@ rule "StudentTwiceInGroup"
         $seminarLeft : Seminar($leftId : id, $group : group, students.contains($student))
         $seminarRight : Seminar(id > $leftId, group == $group, students.contains($student))
     then
-        scoreHolder.addConstraintMatch(kcontext, -1);
+        scoreHolder.addSoftConstraintMatch(kcontext, -1);
 end

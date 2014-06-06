@@ -43,19 +43,19 @@ public class GroupsPerformanceTest extends SolverPerformanceTest {
     @Test(timeout = 600000)
     public void solveModel_gymy2014_4() {
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"),
-                "-12");
+                "-10hard/-5soft");
     }
 
     @Test(timeout = 600000)
     public void solveModel_gymy2014_2_FastAssert() {
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"),
-                "-32", EnvironmentMode.FAST_ASSERT);
+                "-22hard/-17soft", EnvironmentMode.FAST_ASSERT);
     }
 
     @Test(timeout = 600000)
     public void solveModel_simple5FullAssert() {
         runSpeedTest(new File("data/seminar/unsolved/simple5.xml"),
-                "0", EnvironmentMode.FULL_ASSERT);
+                "0hard/0soft", EnvironmentMode.FULL_ASSERT);
     }
 
 }
