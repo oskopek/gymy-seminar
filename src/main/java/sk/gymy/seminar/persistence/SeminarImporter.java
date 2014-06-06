@@ -23,6 +23,7 @@ import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
+import sk.gymy.seminar.domain.Teacher;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -49,6 +50,7 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
     public static String calculatePossibleSolutionSize(Groups groups) {
         int studentN = groups.getStudentList().size();
         int seminarN = groups.getSeminarList().size();
+        //TODO int teacherN = groups.getTeacherList.size();
         int N = groups.getN();
         BigInteger possibleSolutionSize = BigIntegerMath.binomial(studentN, (N*studentN)/seminarN).multiply(BigInteger.valueOf(seminarN));
         return getFlooredPossibleSolutionSize(possibleSolutionSize);
@@ -69,14 +71,17 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             groups.setN(n);
             int semNum = readIntegerValue("Seminars:");
             int studNum = readIntegerValue("Students:");
+            int teachNum = readIntegerValue("Teachers:");
 
             createGroups(groups, n);
+            readTeacherList(groups, teachNum);
             readStudentList(groups, studNum);
             readSeminarList(groups, semNum);
-            logger.info("Seminar {} - {} - has {} Students, {} Seminars, {} Groups with a search space of {}.",
+            logger.info("Seminar {} - {} - has {} Students, {} Teachers, {} Seminars, {} Groups with a search space of {}.",
                     getInputId(),
                     name,
                     groups.getStudentList().size(),
+                    groups.getTeacherList().size(),
                     groups.getSeminarList().size(),
                     groups.getGroupList().size(),
                     calculatePossibleSolutionSize(groups));
@@ -92,6 +97,16 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             throw new IllegalStateException("No student found with index: " + index);
         }
 
+        private Teacher findTeacher(String name, List<Teacher> teacherList) throws IllegalStateException {
+            for (Teacher teacher : teacherList) {
+                if (teacher.getName().equals(name)) {
+                    return teacher;
+                }
+            }
+            throw new IllegalStateException("No teacher found with name: " + name);
+        }
+
+
         private void createGroups(Groups groups, int n) {
             ArrayList<Group> groupList = new ArrayList<>(n);
             for (int i = 0; i < n; i++) {
@@ -106,7 +121,7 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         private void readStudentList(Groups groups, int studNum) throws IOException {
             readEmptyLine();
             readConstantLine("STUDENTS:");
-            List<Student> studentList = new ArrayList<>();
+            List<Student> studentList = new ArrayList<>(studNum);
 
             for (int i = 0; i < studNum; i++) {
                 Student student = new Student();
@@ -120,10 +135,27 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             groups.setStudentList(studentList);
         }
 
+        private void readTeacherList(Groups groups, int teachNum) throws IOException {
+            readEmptyLine();
+            readConstantLine("TEACHERS:");
+            List<Teacher> teacherList = new ArrayList<>(teachNum);
+
+            for (int i = 0; i < teachNum; i++) {
+                Teacher teacher = new Teacher();
+                teacher.setId((long) i);
+                teacher.setIndex(i + 1);
+                String line = bufferedReader.readLine();
+                teacher.setName(line);
+                teacherList.add(teacher);
+            }
+
+            groups.setTeacherList(teacherList);
+        }
+
         private void readSeminarList(Groups groups, int semNum) throws IOException {
             readEmptyLine();
             readConstantLine("SEMINARS:");
-            List<Seminar> seminarList = new ArrayList<>();
+            List<Seminar> seminarList = new ArrayList<>(semNum);
 
             for (int i = 0; i < semNum; i++) {
                 Seminar seminar = new Seminar();
@@ -135,8 +167,9 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
                 String line = bufferedReader.readLine();
                 String[] split = splitBySpace(line);
                 seminar.setName(split[0]);
+                seminar.setTeacher(findTeacher(split[1], groups.getTeacherList()));
 
-                for (int j = 1; j < split.length; j++) {
+                for (int j = 2; j < split.length; j++) {
                     Student student = findStudent(Integer.parseInt(split[j]), groups.getStudentList());
                     seminarStudents.add(student);
                 }

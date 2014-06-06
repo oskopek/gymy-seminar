@@ -24,6 +24,7 @@ import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
+import sk.gymy.seminar.domain.Teacher;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,24 +52,25 @@ public class SeminarGenerator extends LoggingMain {
 
     public void generate() {
         solutionDao = new SeminarDao();
-        //writeGroups(3, 20, 18);
+        writeGroups(3, 20, 6, 18);
         //writeGroups(3, 200, 180);
         //writeGroups(3, 2000, 1800);
         //writeGroups(3, 2000, 100);
     }
 
-    private void writeGroups(int N, int studentN, int seminarN) {
-        String outputFileName = "G" + N + "St" + studentN + "Sem" + seminarN + "-seminar.xml";
+    private void writeGroups(int N, int studentN, int teacherN, int seminarN) {
+        String outputFileName = "G" + N + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN + "-seminar.xml";
         File outputFile = new File(outputDir, outputFileName);
-        Groups groups = createGroups(N, studentN, seminarN);
+        Groups groups = createGroups(N, studentN, teacherN, seminarN);
         solutionDao.writeSolution(groups, outputFile);
     }
 
-    public Groups createGroups(int N, int studentN, int seminarN) {
+    public Groups createGroups(int N, int studentN, int teacherN, int seminarN) {
         Groups groups = new Groups();
         groups.setId(0L);
         groups.setN(N);
         groups.setStudentList(createStudentList(groups, studentN));
+        groups.setTeacherList(createTeacherList(groups, teacherN));
         groups.setGroupList(createGroupList(groups, groups.getN()));
         groups.setSeminarList(createSeminarList(groups, seminarN));
         logger.info("Seminar has {} Students, {} Seminars, {} Groups with a search space of {}.",
@@ -92,6 +94,19 @@ public class SeminarGenerator extends LoggingMain {
         return studentList;
     }
 
+    private List<Teacher> createTeacherList(Groups groups, int teacherN) {
+        final String base = "T";
+        List<Teacher> teacherList = new ArrayList<>(teacherN);
+        for (int i = 0; i < teacherN; i++) {
+            Teacher teacher = new Teacher();
+            teacher.setId((long) i);
+            teacher.setIndex(i + 1);
+            teacher.setName(base + i);
+            teacherList.add(teacher);
+        }
+        return teacherList;
+    }
+
     private List<Group> createGroupList(Groups groups, int groupN) {
         List<Group> groupList = new ArrayList<>(groupN);
         for (int i = 0; i < groupN; i++) {
@@ -107,15 +122,24 @@ public class SeminarGenerator extends LoggingMain {
         final String base = "Sem";
         List<Seminar> seminarList = new ArrayList<>(seminarN);
         this.studentSeminars.clear();
+        int teacherIndex = 0;
         for (int i = 0; i < seminarN; i++) {
             Seminar seminar = new Seminar();
             seminar.setId((long) i);
             seminar.setIndex(i);
             seminar.setLocked(false);
             seminar.setName(base + i);
+
             int numOfStudents = ((groups.getN()-1) * groups.getStudentList().size())/seminarN;
             List<Student> students = generateStudents(groups.getStudentList(), numOfStudents, groups.getN());
             seminar.setStudents(students);
+
+            if(teacherIndex >= groups.getTeacherList().size()) {
+                teacherIndex = 0;
+            }
+            seminar.setTeacher(groups.getTeacherList().get(teacherIndex));
+            teacherIndex++;
+
             seminarList.add(seminar);
         }
         this.studentSeminars.clear();

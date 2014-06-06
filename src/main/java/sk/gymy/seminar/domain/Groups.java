@@ -41,6 +41,7 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
     // Problem facts
     private List<Student> studentList;
     private List<Group> groupList;
+    private List<Teacher> teacherList;
 
     // Planning entities
     private List<Seminar> seminarList;
@@ -90,6 +91,14 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
         this.groupList = groupList;
     }
 
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
+    }
+
     public SimpleScore getScore() {
         return score;
     }
@@ -106,6 +115,7 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
         List<Object> facts = new ArrayList<>();
         facts.addAll(studentList);
         facts.addAll(groupList);
+        facts.addAll(teacherList);
         // Do not add the planning entity's (seminarList) because that will be done automatically
         return facts;
     }
