@@ -2,6 +2,12 @@ Name: Seminar-unsolvable-5
 Groups: 3
 Seminars: 5
 Students: 20
+Teachers: 3
+
+TEACHERS:
+t01
+t02
+t03
 
 STUDENTS:
 st01
@@ -26,10 +32,10 @@ st19
 st20
 
 SEMINARS:
-s01 1 3 9 10 11 13 17 20
-s02 1 4 6 8 11 12 16 17
-s03 3 5 7 10 14 15 18 20
-s04 2 4 6 8 13 14 18 19
-s05 2 5 7 9 12 15 16 19
+s01 t01 1 3 9 10 11 13 17 20
+s02 t02 1 4 6 8 11 12 16 17
+s03 t03 3 5 7 10 14 15 18 20
+s04 t01 2 4 6 8 13 14 18 19
+s05 t02 2 5 7 9 12 15 16 19
 
 END.

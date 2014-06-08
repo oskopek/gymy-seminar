@@ -21,7 +21,7 @@
     <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
 
     <scoreDirectorFactory>
-        <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+        <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
         <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
         <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
         <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
@@ -33,7 +33,7 @@
     </scoreDirectorFactory>
 
     <termination>
-        <bestScoreLimit>0</bestScoreLimit>
+        <bestScoreLimit>0hard/0soft</bestScoreLimit>
         <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
     </termination>
     <constructionHeuristic>

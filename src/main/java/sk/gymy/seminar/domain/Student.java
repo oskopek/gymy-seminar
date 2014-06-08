@@ -43,7 +43,7 @@ public class Student extends AbstractPersistable {
 
     @Override
     public String toString() {
-        return name;
+        return getName();
     }
 
 }

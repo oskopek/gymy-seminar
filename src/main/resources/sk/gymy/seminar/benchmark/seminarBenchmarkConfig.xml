@@ -20,13 +20,13 @@
             <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
             <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
             <scoreDirectorFactory>
-                <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+                <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
                 <scoreDrl>/sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
                 <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
             </scoreDirectorFactory>
             <termination>
                 <terminationCompositionStyle>OR</terminationCompositionStyle>
-                <bestScoreLimit>0</bestScoreLimit>
+                <bestScoreLimit>0/0</bestScoreLimit>
                 <secondsSpentLimit>60</secondsSpentLimit>
             </termination>
         </solver>

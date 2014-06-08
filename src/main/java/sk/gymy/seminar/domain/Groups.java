@@ -21,7 +21,9 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.api.score.buildin.simple.SimpleScore;
+import org.optaplanner.core.impl.score.buildin.hardsoft.HardSoftScoreDefinition;
 import org.optaplanner.core.impl.score.buildin.simple.SimpleScoreDefinition;
 import org.optaplanner.core.impl.solution.Solution;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
@@ -33,7 +35,7 @@ import java.util.List;
 
 @PlanningSolution
 @XStreamAlias("Groups")
-public class Groups extends AbstractPersistable implements Solution<SimpleScore> {
+public class Groups extends AbstractPersistable implements Solution<HardSoftScore> {
 
     private String name;
     private int n;
@@ -41,12 +43,13 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
     // Problem facts
     private List<Student> studentList;
     private List<Group> groupList;
+    private List<Teacher> teacherList;
 
     // Planning entities
     private List<Seminar> seminarList;
 
-    @XStreamConverter(value = XStreamScoreConverter.class, types = {SimpleScoreDefinition.class})
-    private SimpleScore score;
+    @XStreamConverter(value = XStreamScoreConverter.class, types = {HardSoftScoreDefinition.class})
+    private HardSoftScore score;
 
     public String getName() {
         return name;
@@ -90,11 +93,19 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
         this.groupList = groupList;
     }
 
-    public SimpleScore getScore() {
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
+    }
+
+    public HardSoftScore getScore() {
         return score;
     }
 
-    public void setScore(SimpleScore score) {
+    public void setScore(HardSoftScore score) {
         this.score = score;
     }
 
@@ -106,6 +117,7 @@ public class Groups extends AbstractPersistable implements Solution<SimpleScore>
         List<Object> facts = new ArrayList<>();
         facts.addAll(studentList);
         facts.addAll(groupList);
+        facts.addAll(teacherList);
         // Do not add the planning entity's (seminarList) because that will be done automatically
         return facts;
     }

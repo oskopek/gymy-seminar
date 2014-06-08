@@ -34,6 +34,7 @@ public class Seminar extends AbstractPersistable {
     private int index;
     private String name;
     private boolean locked;
+    private Teacher teacher;
     private List<Student> students;
 
     //planning variable
@@ -70,6 +71,14 @@ public class Seminar extends AbstractPersistable {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public List<Student> getStudents() {
