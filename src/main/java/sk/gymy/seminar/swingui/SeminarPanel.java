@@ -124,22 +124,14 @@ public class SeminarPanel extends SolutionPanel {
                     BorderLayout.CENTER);
             tabbedPane.addTab("Statistics", statsPanel);
 
-            JPanel studentTablePanel = new JPanel(new GridLayout(1, 1));
-            List<Student> students = seminar.getStudents();
-            String[] studentTableHeaders = {
-                    "#",
-                    "ID",
-                    "Name",
-            };
-            String[][] studentTableData = new String[students.size()][studentTableHeaders.length];
-            for (int i = 0; i < students.size(); i++) {
-                studentTableData[i][0] = Integer.toString(i+1);
-                studentTableData[i][1] = Integer.toString(students.get(i).getIndex());
-                studentTableData[i][2] = students.get(i).getName();
+            JPanel studentListPanel = new JPanel(new GridLayout(1, 1));
+            DefaultListModel<String> studentNameListModel = new DefaultListModel<>();
+            for (Student student : seminar.getStudents()) {
+                studentNameListModel.addElement(student.getName());
             }
-            JTable studentTable = new JTable(studentTableData, studentTableHeaders);
-            studentTablePanel.add(new JScrollPane(studentTable), BorderLayout.CENTER);
-            tabbedPane.addTab("Students", studentTablePanel);
+            JList<String> studentList = new JList<>(studentNameListModel);
+            studentListPanel.add(new JScrollPane(studentList), BorderLayout.CENTER);
+            tabbedPane.addTab("Students", studentListPanel);
 
             int result = JOptionPane.showConfirmDialog(SeminarPanel.this.getRootPane(), tabbedPane,
                     "Seminar: " + seminar.getName(), JOptionPane.OK_CANCEL_OPTION);
