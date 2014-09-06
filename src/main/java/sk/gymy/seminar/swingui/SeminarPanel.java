@@ -21,6 +21,7 @@ import org.optaplanner.examples.common.swingui.SolutionPanel;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
+import sk.gymy.seminar.domain.Student;
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,23 +103,44 @@ public class SeminarPanel extends SolutionPanel {
 
         public void actionPerformed(ActionEvent e) {
             List<Group> groupList = getGroups().getGroupList();
-            JPanel messagePanel = new JPanel(new GridLayout(2, 2));
-            messagePanel.add(new JLabel("Move to group: "), BorderLayout.WEST);
+            JTabbedPane tabbedPane = new JTabbedPane();
+
+            JPanel operationsPanel = new JPanel(new GridLayout(2, 2));
+            operationsPanel.add(new JLabel("Move to group: "), BorderLayout.WEST);
             JComboBox groupListField = new JComboBox(groupList.toArray());
             groupListField.setSelectedItem(seminar.getGroup());
-            messagePanel.add(groupListField, BorderLayout.CENTER);
-            messagePanel.add(new JLabel("Locked:"));
+            operationsPanel.add(groupListField, BorderLayout.CENTER);
+            operationsPanel.add(new JLabel("Locked:"));
             JCheckBox lockedField = new JCheckBox("immovable during planning");
             lockedField.setSelected(seminar.isLocked());
-            messagePanel.add(lockedField);
+            operationsPanel.add(lockedField);
+            tabbedPane.addTab("Operations", operationsPanel);
 
-            int result = JOptionPane.showConfirmDialog(SeminarPanel.this.getRootPane(), messagePanel,
-                    "Seminar: " + seminar.getName(),
-                    JOptionPane.OK_CANCEL_OPTION);
+            JPanel statsPanel = new JPanel(new GridLayout(2, 2));
+            statsPanel.add(new JLabel("Students: "), BorderLayout.WEST);
+            statsPanel.add(new JLabel(Integer.toString(seminar.getStudents().size())), BorderLayout.CENTER);
+            statsPanel.add(new JLabel("Teacher: "), BorderLayout.WEST);
+            statsPanel.add(new JLabel(seminar.getTeacher().getName()),
+                    BorderLayout.CENTER);
+            tabbedPane.addTab("Statistics", statsPanel);
+
+            JPanel studentListPanel = new JPanel(new GridLayout(1, 1));
+            DefaultListModel<String> studentNameListModel = new DefaultListModel<>();
+            for (Student student : seminar.getStudents()) {
+                studentNameListModel.addElement(student.getName());
+            }
+            JList<String> studentList = new JList<>(studentNameListModel);
+            studentListPanel.add(new JScrollPane(studentList), BorderLayout.CENTER);
+            tabbedPane.addTab("Students", studentListPanel);
+
+            int result = JOptionPane.showConfirmDialog(SeminarPanel.this.getRootPane(), tabbedPane,
+                    "Seminar: " + seminar.getName(), JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                 Group toGroup = (Group) groupListField.getSelectedItem();
-                solutionBusiness.doChangeMove(seminar, "group", toGroup);
-                solverAndPersistenceFrame.resetScreen();
+                if (!toGroup.equals(seminar.getGroup())) {
+                    solutionBusiness.doChangeMove(seminar, "group", toGroup);
+                    solverAndPersistenceFrame.resetScreen();
+                }
                 boolean toLocked = lockedField.isSelected();
                 if (seminar.isLocked() != toLocked) {
                     if (solutionBusiness.isSolving()) {
