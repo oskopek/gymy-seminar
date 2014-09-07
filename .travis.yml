@@ -5,9 +5,9 @@ jdk:
   - oraclejdk7
   - oraclejdk8
 
-#env:
-  #global:
-    #- secure:
+env:
+  global:
+    - secure: "IIiTNlPGhzT1TriHoOLjm1Ef5yn7WOO7np0Kh+NxgLV+NGrh75Q55u7V5oZGDLq+dbYkYAB3sJrcVe1QoLEt2q+7GJefKFZ5USvQXQ16iCaf7otRLhCZdKPtniQy4nCWcoozmIyRW4NKBuUxSeshVGjIrtvrv8/pGQTyozrZjD0="
 
 cache:
   directories:
@@ -17,13 +17,4 @@ script: "mvn clean verify"
 
 install: /bin/true
 
-#after_success: "mvn clean cobertura:cobertura coveralls:cobertura"
-
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#carcv"
-    on_success: change
-    on_failure: always
-    template:
-      - "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})"
+after_success: "mvn clean cobertura:cobertura coveralls:cobertura"
