@@ -17,7 +17,7 @@
 package sk.gymy.seminar.persistence;
 
 import com.google.common.math.BigIntegerMath;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;

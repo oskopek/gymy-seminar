@@ -18,8 +18,9 @@ package sk.gymy.seminar.app;
 
 import org.junit.Test;
 import org.optaplanner.core.api.solver.SolverFactory;
-import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchSolverPhaseConfig;
-import org.optaplanner.core.config.phase.SolverPhaseConfig;
+import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchPhaseConfig;
+import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchType;
+import org.optaplanner.core.config.phase.PhaseConfig;
 import org.optaplanner.core.config.solver.EnvironmentMode;
 import org.optaplanner.examples.common.app.SolverPerformanceTest;
 import org.optaplanner.examples.common.persistence.SolutionDao;
@@ -32,7 +33,7 @@ public class GroupsBruteForceTest extends SolverPerformanceTest {
 
     @Override
     protected String createSolverConfigResource() {
-        return "/sk/gymy/seminar/solver/seminarSolverConfig.xml";
+        return "sk/gymy/seminar/solver/seminarSolverConfig.xml";
     }
 
     @Override
@@ -43,10 +44,10 @@ public class GroupsBruteForceTest extends SolverPerformanceTest {
     @Override
     protected SolverFactory buildSolverFactory(String bestScoreLimitString, EnvironmentMode environmentMode) {
         SolverFactory solverFactory = super.buildSolverFactory(bestScoreLimitString, environmentMode);
-        ExhaustiveSearchSolverPhaseConfig phaseConfig = new ExhaustiveSearchSolverPhaseConfig();
-        phaseConfig.setExhaustiveSearchType(ExhaustiveSearchSolverPhaseConfig.ExhaustiveSearchType.BRUTE_FORCE);
-        solverFactory.getSolverConfig().setSolverPhaseConfigList(
-                Collections.<SolverPhaseConfig>singletonList(phaseConfig)
+        ExhaustiveSearchPhaseConfig phaseConfig = new ExhaustiveSearchPhaseConfig();
+        phaseConfig.setExhaustiveSearchType(ExhaustiveSearchType.BRUTE_FORCE);
+        solverFactory.getSolverConfig().setPhaseConfigList(
+                Collections.<PhaseConfig>singletonList(phaseConfig)
         );
         return solverFactory;
     }

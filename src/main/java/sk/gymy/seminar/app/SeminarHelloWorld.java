@@ -18,7 +18,6 @@ package sk.gymy.seminar.app;
 
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
-import org.optaplanner.core.config.solver.XmlSolverFactory;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
@@ -31,8 +30,8 @@ public class SeminarHelloWorld {
 
     public static void main(String[] args) {
         // Build the Solver
-        SolverFactory solverFactory = new XmlSolverFactory(
-                "/sk/gymy/seminar/solver/seminarSolverConfig.xml");
+        SolverFactory solverFactory = SolverFactory.createFromXmlResource(
+                "sk/gymy/seminar/solver/seminarSolverConfig.xml");
 
         String unsolved5SeminarPath = "data/seminar/import/simple5.sem";
         Solver solver = solverFactory.buildSolver();

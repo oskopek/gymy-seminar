@@ -20,15 +20,14 @@ import org.apache.commons.lang.ObjectUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.score.director.ScoreDirectorFactoryConfig;
 import org.optaplanner.core.config.solver.EnvironmentMode;
 import org.optaplanner.core.config.solver.SolverConfig;
-import org.optaplanner.core.config.solver.XmlSolverFactory;
 import org.optaplanner.core.config.solver.termination.TerminationConfig;
-import org.optaplanner.core.impl.score.director.simple.SimpleScoreCalculator;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
 import java.io.File;
 
@@ -73,10 +72,10 @@ public abstract class SolveAllTurtleTest extends LoggingTest {
         SolverConfig solverConfig = solverFactory.getSolverConfig();
         solverConfig.getTerminationConfig().setMinutesSpentLimit(maximumMinutesSpent);
         solverConfig.setEnvironmentMode(environmentMode);
-        Class<? extends SimpleScoreCalculator> simpleScoreCalculatorClass = overwritingSimpleScoreCalculatorClass();
-        if (simpleScoreCalculatorClass != null && environmentMode.isAsserted()) {
+        Class<? extends EasyScoreCalculator> easyScoreCalculatorClass = overwritingEasyScoreCalculatorClass();
+        if (easyScoreCalculatorClass != null && environmentMode.isAsserted()) {
             ScoreDirectorFactoryConfig assertionScoreDirectorFactoryConfig = new ScoreDirectorFactoryConfig();
-            assertionScoreDirectorFactoryConfig.setSimpleScoreCalculatorClass(simpleScoreCalculatorClass);
+            assertionScoreDirectorFactoryConfig.setEasyScoreCalculatorClass(easyScoreCalculatorClass);
             solverConfig.getScoreDirectorFactoryConfig().setAssertionScoreDirectorFactory(
                     assertionScoreDirectorFactoryConfig);
         }
@@ -90,12 +89,12 @@ public abstract class SolveAllTurtleTest extends LoggingTest {
         return bestSolution;
     }
 
-    protected Class<? extends SimpleScoreCalculator> overwritingSimpleScoreCalculatorClass() {
+    protected Class<? extends EasyScoreCalculator> overwritingEasyScoreCalculatorClass() {
         return null;
     }
 
     protected SolverFactory buildSolverFactory() {
-        SolverFactory solverFactory = new XmlSolverFactory(createSolverConfigResource());
+        SolverFactory solverFactory = SolverFactory.createFromXmlResource(createSolverConfigResource());
         TerminationConfig terminationConfig = new TerminationConfig();
         // buildAndSolve() fills in minutesSpentLimit
         solverFactory.getSolverConfig().setTerminationConfig(terminationConfig);

@@ -16,7 +16,7 @@
 
 package sk.gymy.seminar.persistence;
 
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
@@ -37,7 +37,7 @@ public class SeminarExporter extends AbstractTxtSolutionExporter {
     }
 
     @Override
-    protected String getOutputFileSuffix() {
+    public String getOutputFileSuffix() {
         return OUTPUT_FILE_SUFFIX;
     }
 

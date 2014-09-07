@@ -6,7 +6,7 @@
 
     <inheritedSolverBenchmark>
         <problemBenchmarks>
-            <xstreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xstreamAnnotatedClass>
+            <xStreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xStreamAnnotatedClass>
             <inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>
             <inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>
             <inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>
@@ -18,10 +18,10 @@
         </problemBenchmarks>
         <solver>
             <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
-            <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
+            <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
             <scoreDirectorFactory>
                 <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
-                <scoreDrl>/sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
+                <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
                 <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
             </scoreDirectorFactory>
             <termination>
@@ -52,7 +52,7 @@
         <name>BEST_FIT</name>
         <solver>
             <constructionHeuristic>
-                <constructionHeuristicType>BEST_FIT</constructionHeuristicType>
+                <constructionHeuristicType>WEAKEST_FIT</constructionHeuristicType>
             </constructionHeuristic>
         </solver>
     </solverBenchmark>
@@ -60,7 +60,7 @@
         <name>BEST_FIT_DECREASING</name>
         <solver>
             <constructionHeuristic>
-                <constructionHeuristicType>BEST_FIT_DECREASING</constructionHeuristicType>
+                <constructionHeuristicType>WEAKEST_FIT_DECREASING</constructionHeuristicType>
             </constructionHeuristic>
         </solver>
     </solverBenchmark>

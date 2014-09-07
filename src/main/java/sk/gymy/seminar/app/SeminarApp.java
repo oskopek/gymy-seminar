@@ -17,16 +17,17 @@
 package sk.gymy.seminar.app;
 
 import org.optaplanner.core.api.solver.Solver;
-import org.optaplanner.core.config.constructionheuristic.ConstructionHeuristicSolverPhaseConfig;
+import org.optaplanner.core.api.solver.SolverFactory;
+import org.optaplanner.core.config.constructionheuristic.ConstructionHeuristicPhaseConfig;
+import org.optaplanner.core.config.constructionheuristic.ConstructionHeuristicType;
 import org.optaplanner.core.config.heuristic.selector.common.SelectionOrder;
-import org.optaplanner.core.config.heuristic.selector.move.MoveSelectorConfig;
 import org.optaplanner.core.config.heuristic.selector.move.generic.ChangeMoveSelectorConfig;
-import org.optaplanner.core.config.localsearch.LocalSearchSolverPhaseConfig;
+import org.optaplanner.core.config.localsearch.LocalSearchPhaseConfig;
 import org.optaplanner.core.config.localsearch.decider.acceptor.AcceptorConfig;
-import org.optaplanner.core.config.phase.SolverPhaseConfig;
+import org.optaplanner.core.config.phase.PhaseConfig;
+import org.optaplanner.core.config.score.definition.ScoreDefinitionType;
 import org.optaplanner.core.config.score.director.ScoreDirectorFactoryConfig;
 import org.optaplanner.core.config.solver.SolverConfig;
-import org.optaplanner.core.config.solver.XmlSolverFactory;
 import org.optaplanner.core.config.solver.termination.TerminationConfig;
 import org.optaplanner.examples.common.app.CommonApp;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
@@ -49,7 +50,7 @@ import java.util.List;
 public class SeminarApp extends CommonApp {
 
     public static final String SOLVER_CONFIG
-            = "/sk/gymy/seminar/solver/seminarSolverConfig.xml";
+            = "sk/gymy/seminar/solver/seminarSolverConfig.xml";
 
     public static void main(String[] args) {
         prepareSwingEnvironment();
@@ -76,7 +77,7 @@ public class SeminarApp extends CommonApp {
      * @return never null
      */
     protected Solver createSolverByXml() {
-        XmlSolverFactory solverFactory = new XmlSolverFactory(SOLVER_CONFIG);
+        SolverFactory solverFactory = SolverFactory.createFromXmlResource(SOLVER_CONFIG);
         return solverFactory.buildSolver();
     }
 
@@ -91,33 +92,32 @@ public class SeminarApp extends CommonApp {
         SolverConfig solverConfig = new SolverConfig();
 
         solverConfig.setSolutionClass(Groups.class);
-        solverConfig.setPlanningEntityClassList(Collections.<Class<?>>singletonList(Seminar.class));
+        solverConfig.setEntityClassList(Collections.<Class<?>>singletonList(Seminar.class));
 
         ScoreDirectorFactoryConfig scoreDirectorFactoryConfig = new ScoreDirectorFactoryConfig();
-        scoreDirectorFactoryConfig.setScoreDefinitionType(ScoreDirectorFactoryConfig.ScoreDefinitionType.SIMPLE);
+        scoreDirectorFactoryConfig.setScoreDefinitionType(ScoreDefinitionType.SIMPLE);
         scoreDirectorFactoryConfig.setScoreDrlList(
-                Arrays.asList("/sk/gymy/seminar/solver/seminarScoreRules.drl"));
+                Arrays.asList("sk/gymy/seminar/solver/seminarScoreRules.drl"));
         solverConfig.setScoreDirectorFactoryConfig(scoreDirectorFactoryConfig);
 
         TerminationConfig terminationConfig = new TerminationConfig();
         terminationConfig.setBestScoreLimit("0");
         solverConfig.setTerminationConfig(terminationConfig);
-        List<SolverPhaseConfig> solverPhaseConfigList = new ArrayList<>();
-        ConstructionHeuristicSolverPhaseConfig constructionHeuristicSolverPhaseConfig
-                = new ConstructionHeuristicSolverPhaseConfig();
+        List<PhaseConfig> phaseConfigList = new ArrayList<>();
+        ConstructionHeuristicPhaseConfig constructionHeuristicSolverPhaseConfig
+                = new ConstructionHeuristicPhaseConfig();
         constructionHeuristicSolverPhaseConfig.setConstructionHeuristicType(
-                ConstructionHeuristicSolverPhaseConfig.ConstructionHeuristicType.FIRST_FIT);
-        solverPhaseConfigList.add(constructionHeuristicSolverPhaseConfig);
-        LocalSearchSolverPhaseConfig localSearchSolverPhaseConfig = new LocalSearchSolverPhaseConfig();
+                ConstructionHeuristicType.FIRST_FIT);
+        phaseConfigList.add(constructionHeuristicSolverPhaseConfig);
+        LocalSearchPhaseConfig localSearchPhaseConfig = new LocalSearchPhaseConfig();
         ChangeMoveSelectorConfig changeMoveSelectorConfig = new ChangeMoveSelectorConfig();
         changeMoveSelectorConfig.setSelectionOrder(SelectionOrder.ORIGINAL);
-        localSearchSolverPhaseConfig.setMoveSelectorConfigList(
-                Arrays.<MoveSelectorConfig>asList(changeMoveSelectorConfig));
+        localSearchPhaseConfig.setMoveSelectorConfig(changeMoveSelectorConfig);
         AcceptorConfig acceptorConfig = new AcceptorConfig();
         acceptorConfig.setEntityTabuSize(5);
-        localSearchSolverPhaseConfig.setAcceptorConfig(acceptorConfig);
-        solverPhaseConfigList.add(localSearchSolverPhaseConfig);
-        solverConfig.setSolverPhaseConfigList(solverPhaseConfigList);
+        localSearchPhaseConfig.setAcceptorConfig(acceptorConfig);
+        phaseConfigList.add(localSearchPhaseConfig);
+        solverConfig.setPhaseConfigList(phaseConfigList);
         return solverConfig.buildSolver();
     }
 

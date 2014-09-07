@@ -25,7 +25,7 @@ public class GroupsBenchmarkTest extends PlannerBenchmarkTest {
 
     @Override
     protected String createBenchmarkConfigResource() {
-        return "/sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml";
+        return "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml";
     }
 
     // ************************************************************************

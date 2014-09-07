@@ -28,7 +28,7 @@ public class GroupsPerformanceTest extends SolverPerformanceTest {
 
     @Override
     protected String createSolverConfigResource() {
-        return "/sk/gymy/seminar/solver/seminarSolverConfig.xml";
+        return "sk/gymy/seminar/solver/seminarSolverConfig.xml";
     }
 
     @Override

@@ -18,14 +18,14 @@
 <solver>
     <!--<environmentMode>FAST_ASSERT</environmentMode>-->
     <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
-    <planningEntityClass>sk.gymy.seminar.domain.Seminar</planningEntityClass>
+    <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
 
     <scoreDirectorFactory>
         <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
         <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
         <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
         <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
-        <scoreDrl>/sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
+        <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
         <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
         <!--<assertionScoreDirectorFactory>-->
         <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->

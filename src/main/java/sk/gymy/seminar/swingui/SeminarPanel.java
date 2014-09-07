@@ -16,7 +16,7 @@
 
 package sk.gymy.seminar.swingui;
 
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
@@ -102,12 +102,13 @@ public class SeminarPanel extends SolutionPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            List<Group> groupList = getGroups().getGroupList();
+            final List<Group> groupList = getGroups().getGroupList();
             JTabbedPane tabbedPane = new JTabbedPane();
 
             JPanel operationsPanel = new JPanel(new GridLayout(2, 2));
             operationsPanel.add(new JLabel("Move to group: "), BorderLayout.WEST);
-            JComboBox groupListField = new JComboBox(groupList.toArray());
+            Group[] groupArray = new Group[groupList.size()];
+            JComboBox<Group> groupListField = new JComboBox<>(groupList.toArray(groupArray));
             groupListField.setSelectedItem(seminar.getGroup());
             operationsPanel.add(groupListField, BorderLayout.CENTER);
             operationsPanel.add(new JLabel("Locked:"));

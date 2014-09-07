@@ -18,7 +18,7 @@ package org.optaplanner.examples.common.app;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.business.ProblemFileComparator;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
 
