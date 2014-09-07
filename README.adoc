@@ -1,6 +1,8 @@
 == gymy-seminar
 
 image:https://travis-ci.org/oskopek/gymy-seminar.svg?branch=master["Build Status", link="https://travis-ci.org/oskopek/gymy-seminar"]
+image:https://coveralls.io/repos/oskopek/gymy-seminar/badge.png?branch=master["Coverage Status", link="https://coveralls.io/r/oskopek/gymy-seminar?branch=master"]
+image:https://www.ohloh.net/p/gymy-seminar/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.ohloh.net/p/gymy-seminar"]
 
 A seminar grouping system.
 
