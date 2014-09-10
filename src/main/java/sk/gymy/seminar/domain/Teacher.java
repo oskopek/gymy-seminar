@@ -17,51 +17,8 @@
 package sk.gymy.seminar.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.optaplanner.examples.common.domain.AbstractPersistable;
 
 @XStreamAlias("Teacher")
-public class Teacher extends AbstractPersistable {
-
-    private int index;
-    private String name;
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return getName();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Teacher teacher = (Teacher) o;
-        return new EqualsBuilder()
-                .append(name, teacher.name)
-                .append(index, teacher.index)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(name).append(index).toHashCode();
-    }
+public class Teacher extends Person {
+    // intentionally empty
 }
