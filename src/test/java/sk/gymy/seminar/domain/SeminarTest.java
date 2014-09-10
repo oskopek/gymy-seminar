@@ -35,7 +35,7 @@ public class SeminarTest {
         assertFalse(s1 == s2);
         assertEquals(s1.hashCode(), s2.hashCode());
 
-        Teacher teacher = new Teacher(1, "Anna Harbour");
+        Teacher teacher = new Teacher();
         Group group = new Group(1);
         s1 = new Seminar(1, "ANJ", true, teacher, null, group);
         s2 = new Seminar(1, "ANJ", true, teacher, null, group);
@@ -43,9 +43,18 @@ public class SeminarTest {
         assertFalse(s1 == s2);
         assertEquals(s1.hashCode(), s2.hashCode());
 
+        s1.setTeacher(new Teacher(1, "Joan King"));
+        s2.setTeacher(new Teacher(1, "Joan King"));
+        s1.setLocked(false);
+        s2.setLocked(false);
+        assertEquals(s1, s2);
+        assertFalse(s1 == s2);
+        assertEquals(s1.hashCode(), s2.hashCode());
+
         List<Student> studentList1 = new ArrayList<>();
         studentList1.add(new Student(1, "Johan"));
         studentList1.add(new Student(2, "John"));
+        studentList1.add(new Student());
         s1.setStudents(studentList1);
         List<Student> studentList2 = new ArrayList<>();
         studentList2.add(new Student(1, "Johan"));
@@ -57,6 +66,7 @@ public class SeminarTest {
         assertNotEquals(s1.hashCode(), s2.hashCode());
 
         s2.getStudents().remove(2);
+        s1.getStudents().remove(2);
         assertEquals(s1, s2);
         assertFalse(s1 == s2);
         assertEquals(s1.hashCode(), s2.hashCode());
