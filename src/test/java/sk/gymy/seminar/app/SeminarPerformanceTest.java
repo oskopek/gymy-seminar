@@ -24,7 +24,7 @@ import sk.gymy.seminar.persistence.SeminarDao;
 
 import java.io.File;
 
-public class GroupsPerformanceTest extends SolverPerformanceTest {
+public class SeminarPerformanceTest extends SolverPerformanceTest {
 
     @Override
     protected String createSolverConfigResource() {

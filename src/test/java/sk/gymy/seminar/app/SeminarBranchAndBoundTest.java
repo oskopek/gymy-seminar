@@ -29,7 +29,7 @@ import sk.gymy.seminar.persistence.SeminarDao;
 import java.io.File;
 import java.util.Collections;
 
-public class GroupsBranchAndBoundTest extends SolverPerformanceTest {
+public class SeminarBranchAndBoundTest extends SolverPerformanceTest {
 
     @Override
     protected String createSolverConfigResource() {

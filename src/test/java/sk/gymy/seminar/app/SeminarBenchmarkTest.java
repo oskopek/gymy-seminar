@@ -21,7 +21,7 @@ import org.optaplanner.examples.common.app.PlannerBenchmarkTest;
 
 import java.io.File;
 
-public class GroupsBenchmarkTest extends PlannerBenchmarkTest {
+public class SeminarBenchmarkTest extends PlannerBenchmarkTest {
 
     @Override
     protected String createBenchmarkConfigResource() {

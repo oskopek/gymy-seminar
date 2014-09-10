@@ -24,14 +24,14 @@ import sk.gymy.seminar.persistence.SeminarDao;
 import java.io.File;
 import java.util.Collection;
 
-public class GroupsSolveAllTurtleTest extends UnsolvedDirSolveAllTurtleTest {
+public class SeminarSolveAllTurtleTest extends UnsolvedDirSolveAllTurtleTest {
 
     @Parameterized.Parameters(name = "{index}: {0}")
     public static Collection<Object[]> getSolutionFilesAsParameters() {
         return getUnsolvedDirFilesAsParameters(new SeminarDao());
     }
 
-    public GroupsSolveAllTurtleTest(File unsolvedDataFile) {
+    public SeminarSolveAllTurtleTest(File unsolvedDataFile) {
         super(unsolvedDataFile);
     }
 
