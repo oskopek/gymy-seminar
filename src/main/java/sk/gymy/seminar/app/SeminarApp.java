@@ -49,8 +49,7 @@ import java.util.List;
 
 public class SeminarApp extends CommonApp {
 
-    public static final String SOLVER_CONFIG
-            = "sk/gymy/seminar/solver/seminarSolverConfig.xml";
+    public static final String SOLVER_CONFIG = "sk/gymy/seminar/solver/seminarSolverConfig.xml";
 
     public static void main(String[] args) {
         prepareSwingEnvironment();
@@ -141,7 +140,7 @@ public class SeminarApp extends CommonApp {
         return new SeminarExporter();
     }
 
-    private static void prepareDataDirStructure() {
+    protected static void prepareDataDirStructure() {
         String dataDirPath = "data/" + SeminarDao.dataDirName + "/";
         List<String> dataDirs = Arrays.asList("import", "export", "solved", "unsolved");
         File dir;

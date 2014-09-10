@@ -19,15 +19,35 @@ package sk.gymy.seminar.app;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 
+import javax.swing.*;
+
 import static org.junit.Assert.assertNotNull;
 
 public class SeminarAppTest {
 
     @Test
-    public void createSolverByApi() {
+    public void testCreateSolverByApi() {
         SeminarApp seminarApp = new SeminarApp();
         Solver solver = seminarApp.createSolverByApi();
         assertNotNull(solver);
+    }
+
+    @Test
+    public void testCreateSolver() {
+        SeminarApp seminarApp = new SeminarApp();
+        Solver solver = seminarApp.createSolver();
+        assertNotNull(solver);
+    }
+
+    @Test
+    public void testSwingUI() {
+        SeminarApp.prepareSwingEnvironment();
+        SeminarApp.prepareDataDirStructure();
+        SeminarApp app = new SeminarApp();
+        JWindow window = new JWindow();
+        app.init(window, true);
+        assertNotNull(app);
+        window.dispose();
     }
 
 }
