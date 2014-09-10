@@ -16,9 +16,13 @@
 
 package sk.gymy.seminar.persistence;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.examples.common.persistence.SolutionDao;
 import sk.gymy.seminar.domain.Groups;
+
+import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -26,16 +30,23 @@ import static org.junit.Assert.assertNull;
 
 public class SeminarGeneratorTest {
 
+    /**
+     * Shouldn't actually write anything to the filesystem
+     */
     @Test
-    @Ignore("Test pollutes the data/seminar/unsolved directory (outputDir)")
-    public void testSeminarGeneratorMain() {
-        SeminarGenerator.main(new String[0]);
+    public void testGenerate() {
+        SolutionDao daoMock = Mockito.mock(SeminarDao.class);
+        Mockito.when(daoMock.getDataDir()).thenReturn(new File("/tmp/generateTestDir"));
+        SeminarGenerator generator = new SeminarGenerator(daoMock);
+        generator.generate();
+        Mockito.verify(daoMock).writeSolution(Mockito.any(Groups.class),
+                Mockito.eq(new File("/tmp/generateTestDir/unsolved/G3St20Tea6Sem18-seminar.xml")));
     }
 
     @Test
     public void testCreateGroups() {
-        SeminarGenerator sg = new SeminarGenerator();
-        Groups groups = sg.createGroups(3, 20, 6, 18);
+        SeminarGenerator generator = new SeminarGenerator();
+        Groups groups = generator.createGroups(3, 20, 6, 18);
         assertNotNull(groups);
         assertEquals("G3St20Tea6Sem18", groups.getName());
         assertEquals(3, groups.getN());

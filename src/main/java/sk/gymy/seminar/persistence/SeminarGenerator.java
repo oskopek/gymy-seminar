@@ -33,17 +33,22 @@ import java.util.Random;
 
 public class SeminarGenerator extends LoggingMain {
 
-    private static final File outputDir = new File("data/seminar/unsolved/");
-
-    protected SolutionDao solutionDao;
+    private SolutionDao solutionDao;
 
     private Multiset<Integer> studentSeminars;
 
     private Random random;
 
     public SeminarGenerator() {
-        random = new Random();
-        studentSeminars = HashMultiset.create();
+        this.random = new Random();
+        this.studentSeminars = HashMultiset.create();
+        this.solutionDao = new SeminarDao();
+    }
+
+    public SeminarGenerator(SolutionDao solutionDao) {
+        this.random = new Random();
+        this.studentSeminars = HashMultiset.create();
+        this.solutionDao = solutionDao;
     }
 
     public static void main(String[] args) {
@@ -51,7 +56,6 @@ public class SeminarGenerator extends LoggingMain {
     }
 
     public void generate() {
-        solutionDao = new SeminarDao();
         writeGroups(3, 20, 6, 18);
         //writeGroups(3, 200, 60, 180);
         //writeGroups(3, 2000, 600, 1800);
@@ -60,9 +64,8 @@ public class SeminarGenerator extends LoggingMain {
 
     private void writeGroups(int N, int studentN, int teacherN, int seminarN) {
         String outputFileName = "G" + N + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN + "-seminar.xml";
-        File outputFile = new File(outputDir, outputFileName);
         Groups groups = createGroups(N, studentN, teacherN, seminarN);
-        solutionDao.writeSolution(groups, outputFile);
+        solutionDao.writeSolution(groups, new File(solutionDao.getDataDir().getPath() + "/unsolved/" + outputFileName));
     }
 
     public Groups createGroups(int N, int studentN, int teacherN, int seminarN) {
