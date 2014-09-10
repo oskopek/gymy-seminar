@@ -34,7 +34,7 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
     private static int countSeminars(Group group, List<Seminar> seminarList) {
         int counter = 0;
         for (Seminar seminar : seminarList) {
-            if (seminar.getGroup() == group) {
+            if (seminar.getGroup().equals(group)) {
                 counter++;
             }
         }
