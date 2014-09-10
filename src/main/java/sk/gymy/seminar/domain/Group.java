@@ -24,6 +24,15 @@ public class Group extends AbstractPersistable {
 
     private int index;
 
+    public Group() {
+        super();
+    }
+
+    public Group(int index) {
+        super();
+        this.index = index;
+    }
+
     public int getIndex() {
         return index;
     }

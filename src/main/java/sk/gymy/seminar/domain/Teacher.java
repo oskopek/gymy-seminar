@@ -20,5 +20,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("Teacher")
 public class Teacher extends Person {
-    // intentionally empty
+
+    public Teacher() {
+        super();
+    }
+
+    public Teacher(int index, String name) {
+        super(index, name);
+    }
 }

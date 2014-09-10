@@ -25,6 +25,16 @@ public class Person extends AbstractPersistable {
     private int index;
     private String name;
 
+    public Person() {
+        super();
+    }
+
+    public Person(int index, String name) {
+        super();
+        this.index = index;
+        this.name = name;
+    }
+
     public int getIndex() {
         return index;
     }
