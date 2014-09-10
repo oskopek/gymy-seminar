@@ -52,7 +52,7 @@ public class SeminarGenerator extends LoggingMain {
 
     public void generate() {
         solutionDao = new SeminarDao();
-        //writeGroups(3, 20, 6, 18);
+        writeGroups(3, 20, 6, 18);
         //writeGroups(3, 200, 60, 180);
         //writeGroups(3, 2000, 600, 1800);
         //writeGroups(3, 2000, 600, 100);
@@ -69,6 +69,7 @@ public class SeminarGenerator extends LoggingMain {
         Groups groups = new Groups();
         groups.setId(0L);
         groups.setN(N);
+        groups.setName("G" + N + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN);
         groups.setStudentList(createStudentList(groups, studentN));
         groups.setTeacherList(createTeacherList(groups, teacherN));
         groups.setGroupList(createGroupList(groups, groups.getN()));
