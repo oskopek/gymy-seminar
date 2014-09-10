@@ -16,6 +16,7 @@
 
 package sk.gymy.seminar.app;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 
@@ -40,6 +41,7 @@ public class SeminarAppTest {
     }
 
     @Test
+    @Ignore("No X11 DISPLAY variable was set, but this program performed an operation which requires it.")
     public void testSwingUI() {
         SeminarApp.prepareSwingEnvironment();
         SeminarApp.prepareDataDirStructure();
