@@ -42,6 +42,9 @@ import sk.gymy.seminar.persistence.SeminarImporter;
 import sk.gymy.seminar.swingui.SeminarPanel;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,9 +54,11 @@ public class SeminarApp extends CommonApp {
 
     public static final String SOLVER_CONFIG = "sk/gymy/seminar/solver/seminarSolverConfig.xml";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         prepareSwingEnvironment();
-        prepareDataDirStructure();
+        Path dataDir = Paths.get("").toAbsolutePath();
+        logger.info("Data dir is: {}", dataDir);
+        prepareDataDirStructure(dataDir.toFile());
         new SeminarApp().init();
     }
 
@@ -140,17 +145,27 @@ public class SeminarApp extends CommonApp {
         return new SeminarExporter();
     }
 
-    protected static void prepareDataDirStructure() {
-        String dataDirPath = "data/" + SeminarDao.dataDirName + "/";
+    /**
+     * Constructs a tree of data directories inside the base directory.
+     *
+     * SeminarApp makes no assumptions about deleting them afterwards.
+     *
+     * @param baseDir must be a directory and must exists
+     */
+    protected static void prepareDataDirStructure(File baseDir) throws IOException {
+        if (!baseDir.exists() || !baseDir.isDirectory()) {
+            logger.error("BaseDir doesn't exist or isn't a directory!");
+            throw new IllegalArgumentException("BaseDir doesn't exist or isn't a directory");
+        }
+        String dataDirPath = baseDir.getPath() + "/data/" + SeminarDao.dataDirName + "/";
         List<String> dataDirs = Arrays.asList("import", "export", "solved", "unsolved");
         File dir;
-
         for(String curDataDir : dataDirs) {
             dir = new File(dataDirPath + curDataDir);
             if (!dir.exists()) {
                 logger.info("Data directory {} doesn't exist, creating it.", dir.toString());
                 if (!dir.mkdirs()) {
-                    throw new IllegalStateException("Failed to create dataDir folders: " + dir.toString());
+                    throw new IOException("Failed to recursively create data directory: " + dir.toString());
                 }
             }
         }

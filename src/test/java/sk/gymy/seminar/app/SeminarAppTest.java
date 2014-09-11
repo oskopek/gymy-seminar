@@ -16,40 +16,113 @@
 
 package sk.gymy.seminar.app;
 
+import com.google.common.io.Files;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.optaplanner.core.api.solver.Solver;
 
 import javax.swing.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class SeminarAppTest {
 
-    @Test
-    public void testCreateSolverByApi() {
-        SeminarApp seminarApp = new SeminarApp();
-        Solver solver = seminarApp.createSolverByApi();
-        assertNotNull(solver);
-    }
+    private SeminarApp seminarApp;
 
-    @Test
-    public void testCreateSolver() {
-        SeminarApp seminarApp = new SeminarApp();
-        Solver solver = seminarApp.createSolver();
-        assertNotNull(solver);
+    @Before
+    public void setUp() {
+        seminarApp = new SeminarApp();
     }
 
     @Test
     @Ignore("No X11 DISPLAY variable was set, but this program performed an operation which requires it.")
-    public void testSwingUI() {
+    public void testSwingUI() throws IOException {
         SeminarApp.prepareSwingEnvironment();
-        SeminarApp.prepareDataDirStructure();
-        SeminarApp app = new SeminarApp();
+        SeminarApp.prepareDataDirStructure(Files.createTempDir());
         JWindow window = new JWindow();
-        app.init(window, true);
-        assertNotNull(app);
+        seminarApp.init(window, true);
+        assertNotNull(seminarApp);
         window.dispose();
+    }
+
+    @Test
+    public void testCreateMethods() {
+        assertNotNull(seminarApp.createSolutionDao());
+        assertNotNull(seminarApp.createSolutionImporter());
+        assertNotNull(seminarApp.createSolutionExporter());
+        assertNotNull(seminarApp.createSolutionPanel());
+        assertNotNull(seminarApp.createSolver());
+        assertNotNull(seminarApp.createSolverByApi());
+        assertNotNull(seminarApp.createSolverByXml());
+        assertNotNull(seminarApp.createSolutionBusiness());
+    }
+
+    @Test
+    public void testPrepareDataDirStructure() throws IOException {
+        File baseDir = Files.createTempDir();
+        assertTrue(baseDir.exists());
+        assertTrue(baseDir.isDirectory());
+        SeminarApp.prepareDataDirStructure(baseDir);
+        File dataDir = new File(baseDir.getPath() + "/data/seminar");
+        assertTrue(dataDir.exists());
+        assertTrue(dataDir.isDirectory());
+        String[] dirNames = {"export", "import", "solved", "unsolved"};
+        String[] dataDirList = dataDir.list();
+        Arrays.sort(dataDirList);
+        assertArrayEquals(dirNames, dataDirList);
+        for (String dirName : dirNames) {
+            File dir = new File(dataDir.getPath() + "/" + dirName);
+            assertTrue(dir.exists());
+            assertTrue(dir.isDirectory());
+            assertEquals(0, dir.listFiles().length);
+            assertTrue(dir.delete());
+            assertFalse(dir.exists());
+        }
+        assertTrue(dataDir.delete());
+        assertFalse(dataDir.exists());
+        assertTrue(dataDir.getParentFile().delete());
+        assertFalse(dataDir.getParentFile().exists());
+        assertTrue(baseDir.delete());
+        assertFalse(baseDir.exists());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPrepareDataDirStructureBaseDirNotDir() throws IOException {
+        File baseDir = File.createTempFile("dataDir", "");
+        assertTrue(baseDir.exists());
+        assertFalse(baseDir.isDirectory());
+        try {
+            SeminarApp.prepareDataDirStructure(baseDir);
+        } catch (IllegalArgumentException iae) {
+            assertTrue(baseDir.delete());
+            assertFalse(baseDir.exists());
+            throw iae;
+        }
+    }
+
+    @Test(expected = IOException.class)
+    public void testPrepareDataDirStructureBaseDirIllegal() throws IOException {
+        File baseDir = Files.createTempDir();
+        assertTrue(baseDir.setReadOnly());
+        assertTrue(baseDir.exists());
+        assertTrue(baseDir.isDirectory());
+        try {
+            SeminarApp.prepareDataDirStructure(baseDir);
+        } catch (IOException ioe) {
+            assertTrue(baseDir.delete());
+            assertFalse(baseDir.exists());
+            throw ioe;
+        }
     }
 
 }
