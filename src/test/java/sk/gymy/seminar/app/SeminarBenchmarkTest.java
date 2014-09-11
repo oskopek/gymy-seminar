@@ -16,20 +16,25 @@
 
 package sk.gymy.seminar.app;
 
-import org.optaplanner.examples.common.app.CommonBenchmarkApp;
+import org.junit.Test;
+import org.optaplanner.examples.common.app.PlannerBenchmarkTest;
 
-public class SeminarBenchmarkApp extends CommonBenchmarkApp {
+import java.io.File;
 
-    public static void main(String[] args) {
-        new SeminarBenchmarkApp().buildAndBenchmark(args);
+public class SeminarBenchmarkTest extends PlannerBenchmarkTest {
+
+    @Override
+    protected String createBenchmarkConfigResource() {
+        return "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml";
     }
 
-    public SeminarBenchmarkApp() {
-        super(
-                new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml"),
-                new ArgOption("stepLimit", "sk/gymy/seminar/benchmark/seminarStepLimitBenchmarkConfig.xml"),
-                new ArgOption("scoreDirector", "sk/gymy/seminar/benchmark/seminarScoreDirectorBenchmarkConfig.xml")
-        );
+    // ************************************************************************
+    // Tests
+    // ************************************************************************
+
+    @Test(timeout = 600000)
+    public void benchmarkSimple5() {
+        runBenchmarkTest(new File("data/seminar/unsolved/simple5.xml"));
     }
 
 }

@@ -18,6 +18,8 @@ package sk.gymy.seminar.domain.solver;
 
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionSorterWeightFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
@@ -26,15 +28,21 @@ import java.util.List;
 
 public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<Groups, Group> {
 
+    final private static Logger LOGGER = LoggerFactory.getLogger(GroupStrengthWeightFactory.class);
+
     public Comparable createSorterWeight(Groups groups, Group group) {
         int seminarCount = countSeminars(group, groups.getSeminarList());
         return new GroupStrengthWeight(group, seminarCount);
     }
 
     private static int countSeminars(Group group, List<Seminar> seminarList) {
+        if (group == null) {
+            LOGGER.error("Group to count seminars is null, returning 0 seminar count");
+            return 0;
+        }
         int counter = 0;
         for (Seminar seminar : seminarList) {
-            if (seminar.getGroup() == group) {
+            if (seminar.getGroup() != null && seminar.getGroup().equals(group)) {
                 counter++;
             }
         }
@@ -51,11 +59,19 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
             this.seminarCount = seminarCount;
         }
 
+        public Group getGroup() {
+            return group;
+        }
+
+        public int getSeminarCount() {
+            return seminarCount;
+        }
+
         public int compareTo(GroupStrengthWeight other) {
             return new CompareToBuilder()
-                    // The stronger rows are on the side, so they have a higher distance to the middle
+                    // The stronger groups are those with more seminars
                     .append(seminarCount, other.seminarCount)
-                    .append(group.getIndex(), other.group.getIndex())
+                    .append(group.getIndex(), other.group.getIndex()) // Tie-breaker
                     .toComparison();
         }
 

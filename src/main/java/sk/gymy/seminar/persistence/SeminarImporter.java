@@ -48,11 +48,11 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
     }
 
     public static String calculatePossibleSolutionSize(Groups groups) {
-        int studentN = groups.getStudentList().size();
         int seminarN = groups.getSeminarList().size();
-        //TODO int teacherN = groups.getTeacherList.size();
-        int N = groups.getN();
-        BigInteger possibleSolutionSize = BigIntegerMath.binomial(studentN, (N*studentN)/seminarN).multiply(BigInteger.valueOf(seminarN));
+        int groupsN = groups.getN();
+        int n = groupsN*seminarN;
+        int k = seminarN;
+        BigInteger possibleSolutionSize = BigIntegerMath.binomial(n, k);
         return getFlooredPossibleSolutionSize(possibleSolutionSize);
     }
 

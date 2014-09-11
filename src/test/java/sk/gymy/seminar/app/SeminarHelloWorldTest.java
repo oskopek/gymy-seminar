@@ -16,20 +16,25 @@
 
 package sk.gymy.seminar.app;
 
-import org.optaplanner.examples.common.app.CommonBenchmarkApp;
+import org.junit.Test;
 
-public class SeminarBenchmarkApp extends CommonBenchmarkApp {
+import static org.junit.Assert.assertEquals;
 
-    public static void main(String[] args) {
-        new SeminarBenchmarkApp().buildAndBenchmark(args);
+public class SeminarHelloWorldTest {
+
+    @Test
+    public void testHelloWorldMain() {
+        SeminarHelloWorld.main(new String[0]);
     }
 
-    public SeminarBenchmarkApp() {
-        super(
-                new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml"),
-                new ArgOption("stepLimit", "sk/gymy/seminar/benchmark/seminarStepLimitBenchmarkConfig.xml"),
-                new ArgOption("scoreDirector", "sk/gymy/seminar/benchmark/seminarScoreDirectorBenchmarkConfig.xml")
-        );
+    @Test
+    public void testHelloWorld() {
+        final String expected = "\nSolved 5 Seminars:\n" +
+                "Group 0: s02, s03, \n" +
+                "Group 1: s04, \n" +
+                "Group 2: s01, s05, \n";
+        String result = SeminarHelloWorld.solveHelloWorld();
+        assertEquals(expected, result);
     }
-
 }
+

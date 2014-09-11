@@ -41,7 +41,7 @@ public class SeminarPanel extends SolutionPanel {
     }
 
     private Groups getGroups() {
-        return (Groups) solutionBusiness.getSolution();
+        return (Groups) getSolutionBusiness().getSolution();
     }
 
     public void resetPanel(Solution solution) {
