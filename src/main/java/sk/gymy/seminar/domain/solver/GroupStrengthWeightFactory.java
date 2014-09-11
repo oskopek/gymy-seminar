@@ -37,7 +37,7 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
 
     private static int countSeminars(Group group, List<Seminar> seminarList) {
         if (group == null) {
-            LOGGER.error("Group to count seminars is null, returning 0");
+            LOGGER.error("Group to count seminars is null, returning 0 seminar count");
             return 0;
         }
         int counter = 0;
@@ -59,11 +59,19 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
             this.seminarCount = seminarCount;
         }
 
+        public Group getGroup() {
+            return group;
+        }
+
+        public int getSeminarCount() {
+            return seminarCount;
+        }
+
         public int compareTo(GroupStrengthWeight other) {
             return new CompareToBuilder()
-                    // The stronger rows are on the side, so they have a higher distance to the middle
+                    // The stronger groups are those with more seminars
                     .append(seminarCount, other.seminarCount)
-                    .append(group.getIndex(), other.group.getIndex())
+                    .append(group.getIndex(), other.group.getIndex()) // Tie-breaker
                     .toComparison();
         }
 
