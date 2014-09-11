@@ -37,6 +37,7 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
 
     private String name;
     private int n;
+    private int chooseSeminars;
 
     // Problem facts
     private List<Student> studentList;
@@ -63,6 +64,14 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
 
     public void setN(int n) {
         this.n = n;
+    }
+
+    public int getChooseSeminars() {
+        return chooseSeminars;
+    }
+
+    public void setChooseSeminars(int chooseSeminars) {
+        this.chooseSeminars = chooseSeminars;
     }
 
     public List<Student> getStudentList() {
@@ -121,6 +130,7 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
         facts.addAll(studentList);
         facts.addAll(groupList);
         facts.addAll(teacherList);
+        facts.add(new Integer(chooseSeminars));
         // Do not add the planning entity's (seminarList) because that will be done automatically
         return facts;
     }

@@ -72,8 +72,10 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             int semNum = readIntegerValue("Seminars:");
             int studNum = readIntegerValue("Students:");
             int teachNum = readIntegerValue("Teachers:");
+            int chooseSeminars = readIntegerValue("ChooseSeminars:");
+            groups.setChooseSeminars(chooseSeminars);
 
-            createGroups(groups, n);
+            createGroups(groups);
             readTeacherList(groups, teachNum);
             readStudentList(groups, studNum);
             readSeminarList(groups, semNum);
@@ -104,7 +106,8 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         }
 
 
-        private void createGroups(Groups groups, int n) {
+        private void createGroups(Groups groups) {
+            int n = groups.getN();
             ArrayList<Group> groupList = new ArrayList<>(n);
             for (int i = 0; i < n; i++) {
                 Group group = new Group();
