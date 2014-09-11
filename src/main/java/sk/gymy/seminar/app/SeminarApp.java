@@ -43,7 +43,6 @@ import sk.gymy.seminar.swingui.SeminarPanel;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,9 +55,7 @@ public class SeminarApp extends CommonApp {
 
     public static void main(String[] args) throws IOException {
         prepareSwingEnvironment();
-        Path dataDir = Paths.get("").toAbsolutePath();
-        logger.info("Data dir is: {}", dataDir);
-        prepareDataDirStructure(dataDir.toFile());
+        prepareDataDirStructure(Paths.get("").toAbsolutePath().toFile());
         new SeminarApp().init();
     }
 
@@ -153,6 +150,7 @@ public class SeminarApp extends CommonApp {
      * @param baseDir must be a directory and must exists
      */
     protected static void prepareDataDirStructure(File baseDir) throws IOException {
+        logger.info("BaseDir is: {}", baseDir);
         if (!baseDir.exists() || !baseDir.isDirectory()) {
             logger.error("BaseDir doesn't exist or isn't a directory!");
             throw new IllegalArgumentException("BaseDir doesn't exist or isn't a directory");
