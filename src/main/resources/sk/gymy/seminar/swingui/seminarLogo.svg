@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2717"
+   viewBox="0 0 530 530"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="100%"
+   height="100%"
+   sodipodi:docname="seminarLogo.svg"
+   inkscape:export-filename="/home/oskopek/git/gymy-seminar/src/main/resources/sk/gymy/seminar/swingui/seminarLogo.png"
+   inkscape:export-xdpi="10.867924"
+   inkscape:export-ydpi="10.867924">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1004"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.44509826"
+     inkscape:cx="366.625"
+     inkscape:cy="265.11"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2717" />
+  <path
+     id="path2735"
+     d="m 196.60031,0.01077071 0,261.10630929 -15.4536,18.89777 c 0,0.4688 -4.39799,-15.49325 -4.39799,-15.49325 C 171.37338,245.52987 153.78138,226.85 127.39338,226.85 l -49.844012,0 c -23.456002,0 -41.933469,21.02285 -45.750933,34.20411 l -23.9143722,89.18017 31.9470762,0 19.332632,-71.81273 7.849162,0 0.641375,71.81273 73.910842,0 -0.70246,-71.81273 8.24625,0 10.81126,35.20367 c 5.11049,14.87152 17.98881,18.29803 27.88431,5.62255 l 39.15393,-48.35395 c 1.32907,-1.76703 2.23721,-3.53266 2.80983,-5.2789 l 300.22796,2.24572 -0.01,-265.604352 z m 8.94866,8.83995099 315.49391,2.2457173 0,247.922051 -291.24626,-2.24572 c -1.27357,-3.81614 -4.15133,-6.94227 -7.727,-8.715 l 87.96001,-94.45887 3.51234,3.436 -85.63884,91.95996 284.55153,2.24572 0,-232.368827 -298.33193,-2.245717 0,229.899894 c -2.94314,0.2807 -5.91571,1.50985 -8.58216,3.93579 z M 103.26125,144.08184 c -20.077359,0 -36.375371,16.63876 -36.375371,37.17181 0,20.53306 16.298012,37.17182 36.375371,37.17182 20.07443,0 36.34508,-16.63876 36.34508,-37.17182 0,-20.53305 -16.27065,-37.17181 -36.34508,-37.17181 z M -0.0038,358.76836 l 0,16.9926 195.98468,0 0,-16.9926 z m 0,20.27217 0,9.62082 164.68068,0 0,130.82303 -164.68068,0 0,10.52642 174.48334,0 0,-150.96427 z m 0,10.96423 0,127.82434 162.1494,0 0,-127.82434 z"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccssccccccccccccccccccccccccccccccsssssccccccccccccccccccc" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Teaching (male)</dc:title>
+        <dc:date>2013-10-19T21:04:51</dc:date>
+        <dc:description>teaching, teacher male pictogram</dc:description>
+        <dc:source>https://openclipart.org/detail/185205/teaching-male-by-ousia-185205</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>ousia</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>male</rdf:li>
+            <rdf:li>teacher</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot2985"
+     style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     transform="translate(-29.207034,51.673983)"><flowRegion
+       id="flowRegion2987"><rect
+         id="rect2989"
+         width="345.99106"
+         height="116.82809"
+         x="222.42279"
+         y="325.55075" /></flowRegion><flowPara
+       id="flowPara2991"
+       style="font-size:100px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:msbm10;-inkscape-font-specification:msbm10 Bold Italic">GYMY</flowPara></flowRoot></svg>
