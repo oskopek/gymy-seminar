@@ -107,6 +107,11 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
         this.score = score;
     }
 
+    @Override
+    public String toString() {
+        return "Groups{name=" + name + ", score=" + score + ", seminarList=" + seminarList + "}";
+    }
+
     // ************************************************************************
     // Complex methods
     // ************************************************************************
