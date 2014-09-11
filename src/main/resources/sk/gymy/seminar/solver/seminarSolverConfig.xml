@@ -22,14 +22,8 @@
 
     <scoreDirectorFactory>
         <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
-        <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
-        <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
-        <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
         <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
         <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
-        <!--<assertionScoreDirectorFactory>-->
-        <!--<simpleScoreCalculatorClass>org.optaplanner.examples.seminar.solver.score.NQueensSimpleScoreCalculator</simpleScoreCalculatorClass>-->
-        <!--</assertionScoreDirectorFactory>-->
     </scoreDirectorFactory>
 
     <termination>
@@ -50,18 +44,4 @@
             <!-- Real world problems require to use of <acceptedCountLimit> -->
         </forager>
     </localSearch>
-    <!-- To scale out, replace <localSearch> with this configuration: -->
-    <!--<localSearch>-->
-    <!--<unionMoveSelector>-->
-    <!--<changeMoveSelector/>-->
-    <!--<swapMoveSelector/>-->
-    <!--</unionMoveSelector>-->
-    <!--<acceptor>-->
-    <!--<entityTabuSize>11</entityTabuSize>-->
-    <!--</acceptor>-->
-    <!--<forager>-->
-    <!--<acceptedCountLimit>2000</acceptedCountLimit>-->
-    <!--<pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>-->
-    <!--</forager>-->
-    <!--</localSearch>-->
 </solver>

@@ -38,11 +38,10 @@ public class SeminarDifficultyWeightFactory implements SelectionSorterWeightFact
         }
 
         public int compareTo(SeminarDifficultyWeight other) {
-            return new CompareToBuilder()
+            return new CompareToBuilder() // Decreasing order
                     // The more difficult seminars have a higher number of students
-                    .append(other.studentsCount, studentsCount) // Decreasing
-                            // Tie breaker
-                    .append(seminar.getIndex(), other.seminar.getIndex())
+                    .append(other.studentsCount, studentsCount)
+                    .append(other.seminar.getIndex(), seminar.getIndex()) // Tie-breaker
                     .toComparison();
         }
 

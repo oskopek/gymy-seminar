@@ -16,21 +16,23 @@
 
 package sk.gymy.seminar.domain;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 
-@XStreamAlias("Group")
-public class Group extends AbstractPersistable {
+public class Person extends AbstractPersistable {
 
     private int index;
+    private String name;
 
-    public Group() {
+    public Person() {
         super();
     }
 
-    public Group(int index) {
+    public Person(int index, String name) {
         super();
         this.index = index;
+        this.name = name;
     }
 
     public int getIndex() {
@@ -41,21 +43,33 @@ public class Group extends AbstractPersistable {
         this.index = index;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "G" + index;
+        return getName();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return index == group.index;
+
+        Person person = (Person) o;
+        return new EqualsBuilder()
+                .append(getName(), person.getName())
+                .append(getIndex(), person.getIndex())
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return index;
+        return new HashCodeBuilder().append(name).append(index).toHashCode();
     }
 }

@@ -6,11 +6,11 @@
         <problemBenchmarks>
             <xStreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xStreamAnnotatedClass>
             <inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>
-            <inputSolutionFile>data/seminar/unsolved/gymy-2014-4.xml</inputSolutionFile>
-            <inputSolutionFile>data/seminar/unsolved/gyny-2014-2.xml</inputSolutionFile>
-            <inputSolutionFile>data/seminar/unsolved/G3St20Sem18-seminar.xml</inputSolutionFile>
-            <inputSolutionFile>data/seminar/unsolved/G3St200Sem180-seminar.xml</inputSolutionFile>
-            <inputSolutionFile>data/seminar/unsolved/G3St2000Sem1800-seminar.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St20Tea6Sem18-seminar.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St200Tea60Sem180-seminar.xml</inputSolutionFile>
+            <inputSolutionFile>data/seminar/unsolved/G3St2000Tea600Sem1800-seminar.xml</inputSolutionFile>
         </problemBenchmarks>
         <solver>
             <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>

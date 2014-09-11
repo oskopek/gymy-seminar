@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class SeminarExporter extends AbstractTxtSolutionExporter {
 
-    private static final String OUTPUT_FILE_SUFFIX = ".sem.txt";
+    private static final String OUTPUT_FILE_SUFFIX = "sem.txt";
 
     public static void main(String[] args) {
         new SeminarExporter().convertAll();

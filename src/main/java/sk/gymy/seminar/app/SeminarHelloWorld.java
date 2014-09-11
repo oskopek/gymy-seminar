@@ -29,6 +29,10 @@ import java.util.List;
 public class SeminarHelloWorld {
 
     public static void main(String[] args) {
+        System.out.println(solveHelloWorld());
+    }
+
+    public static String solveHelloWorld() {
         // Build the Solver
         SolverFactory solverFactory = SolverFactory.createFromXmlResource(
                 "sk/gymy/seminar/solver/seminarSolverConfig.xml");
@@ -44,7 +48,7 @@ public class SeminarHelloWorld {
         Groups solved5Seminars = (Groups) solver.getBestSolution();
 
         // Display the result
-        System.out.print("\nSolved 5 Seminars:\n" + toDisplayString(solved5Seminars));
+        return "\nSolved 5 Seminars:\n" + toDisplayString(solved5Seminars);
     }
 
     public static String toDisplayString(Groups groups) {
