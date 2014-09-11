@@ -30,8 +30,8 @@ public class SeminarHelloWorldTest {
     @Test
     public void testHelloWorld() {
         final String expected = "\nSolved 5 Seminars:\n" +
-                "Group 0: s04, \n" +
-                "Group 1: s02, s03, \n" +
+                "Group 0: s02, s03, \n" +
+                "Group 1: s04, \n" +
                 "Group 2: s01, s05, \n";
         String result = SeminarHelloWorld.solveHelloWorld();
         assertEquals(expected, result);

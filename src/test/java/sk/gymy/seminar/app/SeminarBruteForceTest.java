@@ -16,6 +16,7 @@
 
 package sk.gymy.seminar.app;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchPhaseConfig;
@@ -56,24 +57,26 @@ public class SeminarBruteForceTest extends SolverPerformanceTest {
     // Tests
     // ************************************************************************
 
-    @Test(timeout = 600000)
+    @Test(timeout = 60000)
     public void solveModel_simple5() {
         runSpeedTest(new File("data/seminar/unsolved/simple5.xml"), "0hard/0soft", EnvironmentMode.REPRODUCIBLE);
     }
 
-    @Test(timeout = 600000)
+    @Test(timeout = 60000)
     public void solveModel_unsolvable5() {
         runSpeedTest(new File("data/seminar/unsolved/unsolvable5.xml"), "0hard/-1soft", EnvironmentMode.REPRODUCIBLE);
     }
 
-    @Test(timeout = 600000)
+    @Test(timeout = 60000)
+    @Ignore("Test takes too long.")
     public void solveModel_gymy2014_2() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-22hard/-17soft", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-22hard/-10soft", EnvironmentMode.REPRODUCIBLE);
     }
 
-    @Test(timeout = 600000)
+    @Test(timeout = 60000)
+    @Ignore("Test takes too long.")
     public void solveModel_gymy2014_4() {
-        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-8hard/-4soft", EnvironmentMode.REPRODUCIBLE);
+        runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-8hard/-3soft", EnvironmentMode.REPRODUCIBLE);
     }
 
 }
