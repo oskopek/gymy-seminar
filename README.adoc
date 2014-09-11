@@ -18,7 +18,7 @@ Seminars are assigned into groups (or blocks) which are taught at the same time.
 The respective hard constraints that have to be met are:
 
 * Students have to pick a selected number of Seminars.
-* ~Teachers cannot teach two seminars in one Group.~
+* pass:[<strike>Teachers cannot teach two seminars in one Group.</strike>]
 
 The soft constraints that should be optimized:
 
