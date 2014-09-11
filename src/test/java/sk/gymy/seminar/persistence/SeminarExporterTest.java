@@ -21,8 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 import sk.gymy.seminar.domain.Groups;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,16 +32,27 @@ import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class SeminarExporterTest {
 
     private Path outputPath;
+    private Groups groups;
 
     @Before
     public void setUp() throws IOException {
         outputPath = Files.createTempFile("seminarExportTest", "." + new SeminarExporter().getOutputFileSuffix());
+
+        this.groups = (Groups) new SeminarImporter().readSolution(new File("data/seminar/import/simple5.sem"));
+        assertNotNull(groups);
+        assertEquals("Seminar-simple-5", groups.getName());
+        assertEquals(3, groups.getN());
+        assertEquals(20, groups.getStudentList().size());
+        assertEquals(3, groups.getTeacherList().size());
+        assertEquals(5, groups.getSeminarList().size());
+        assertNull(groups.getScore());
     }
 
     @After
@@ -54,15 +67,6 @@ public class SeminarExporterTest {
 
     @Test
     public void testWriteSolution() throws IOException {
-        Groups groups = (Groups) new SeminarImporter().readSolution(new File("data/seminar/import/simple5.sem"));
-        assertNotNull(groups);
-        assertEquals("Seminar-simple-5", groups.getName());
-        assertEquals(3, groups.getN());
-        assertEquals(20, groups.getStudentList().size());
-        assertEquals(3, groups.getTeacherList().size());
-        assertEquals(5, groups.getSeminarList().size());
-        assertNull(groups.getScore());
-
         SeminarExporter seminarExporter = new SeminarExporter();
         seminarExporter.writeSolution(groups, outputPath.toFile());
         final String expected = "Name: Seminar-simple-5\n" +
@@ -74,6 +78,21 @@ public class SeminarExporterTest {
         List<String> result = Files.readAllLines(outputPath, Charset.defaultCharset());
         String[] resultArr = new String[result.size()];
         assertArrayEquals(expected.split("\n"), result.toArray(resultArr));
+    }
+
+    @Test
+    public void testOutputBuilder() throws IOException {
+        SeminarExporter.SeminarOutputBuilder sob = new SeminarExporter.SeminarOutputBuilder();
+        assertNotNull(sob);
+        sob.setSolution(groups);
+        StringWriter sw = new StringWriter();
+        BufferedWriter bw = new BufferedWriter(sw);
+        sob.setBufferedWriter(bw);
+        sob.writeSolution();
+        bw.close();
+        assertNotEquals("Empty StringWriter", "", sw.toString());
+        assertEquals(sw.getBuffer().substring(0), sw.toString());
+        assertEquals("Name: Seminar-simple-5\nGroups: 3\n\nGroup 0: \nGroup 1: \nGroup 2: \n", sw.toString());
     }
 
 }
