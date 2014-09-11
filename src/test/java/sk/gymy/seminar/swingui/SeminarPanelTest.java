@@ -101,6 +101,8 @@ public class SeminarPanelTest {
             }
         }
         assertEquals(2, buttonsWithLockIcons); // Two locked seminars
+        solvedGroups.getSeminarList().get(0).setLocked(false);
+        solvedGroups.getSeminarList().get(2).setLocked(false);
     }
 
 }
