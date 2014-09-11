@@ -32,7 +32,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 public class SeminarExporterTest {
 
@@ -40,7 +39,7 @@ public class SeminarExporterTest {
 
     @Before
     public void setUp() throws IOException {
-        outputPath = Files.createTempFile("seminarExportTest", ".sem.txt");
+        outputPath = Files.createTempFile("seminarExportTest", "." + new SeminarExporter().getOutputFileSuffix());
     }
 
     @After

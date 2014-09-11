@@ -23,6 +23,11 @@ import static org.junit.Assert.assertEquals;
 public class SeminarHelloWorldTest {
 
     @Test
+    public void testHelloWorldMain() {
+        SeminarHelloWorld.main(new String[0]);
+    }
+
+    @Test
     public void testHelloWorld() {
         final String expected = "\nSolved 5 Seminars:\n" +
                 "Group 0: s04, \n" +
