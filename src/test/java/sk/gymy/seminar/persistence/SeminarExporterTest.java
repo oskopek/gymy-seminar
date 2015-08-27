@@ -71,6 +71,7 @@ public class SeminarExporterTest extends AbstractTest {
         seminarExporter.writeSolution(groups, outputPath.toFile());
         final String expected = "Name: Seminar-simple-5\n"
                 + "Groups: 3\n"
+                + "ChooseSeminars: 2\n"
                 + "\n"
                 + "Group 0: \n"
                 + "Group 1: \n"
@@ -92,7 +93,7 @@ public class SeminarExporterTest extends AbstractTest {
         bw.close();
         assertNotEquals("Empty StringWriter", "", sw.toString());
         assertEquals(sw.getBuffer().substring(0), sw.toString());
-        assertEquals("Name: Seminar-simple-5\nGroups: 3\n\nGroup 0: \nGroup 1: \nGroup 2: \n", sw.toString());
+        assertEquals("Name: Seminar-simple-5\nGroups: 3\nChooseSeminars: 2\n\nGroup 0: \nGroup 1: \nGroup 2: \n", sw.toString());
     }
 
 }

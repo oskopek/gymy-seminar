@@ -40,7 +40,7 @@ public class SeminarGeneratorTest extends AbstractTest {
         SeminarGenerator generator = new SeminarGenerator(daoMock);
         generator.generate();
         Mockito.verify(daoMock).writeSolution(Mockito.any(Groups.class),
-                Mockito.eq(new File("/tmp/generateTestDir/unsolved/G3St20Tea6Sem18-seminar.xml")));
+                Mockito.eq(new File("/tmp/generateTestDir/unsolved/G3Ch2St20Tea6Sem15-seminar.xml")));
     }
 
     @Test

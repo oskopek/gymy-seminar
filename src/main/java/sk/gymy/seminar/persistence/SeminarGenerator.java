@@ -55,7 +55,7 @@ public class SeminarGenerator extends LoggingMain {
     }
 
     public void generate() {
-//        writeGroups(3, 2, 20, 6, 15);
+        writeGroups(3, 2, 20, 6, 15);
 //        writeGroups(3, 2, 200, 60, 150);
 //        writeGroups(3, 2, 2000, 600, 1500);
 //        writeGroups(3, 5, 2000, 60, 125);
