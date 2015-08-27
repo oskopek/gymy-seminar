@@ -23,7 +23,8 @@ The respective hard constraints that have to be met are:
 The soft constraints that should be optimized:
 
 * Students cannot attend two seminars that are planned into one Group.
-* Students can be assigned any of the Subseminars of a Seminar they chose, such that it minimizes collisions with other constraints.
+
+Goal: Assign students into Subseminars of a Seminar they chose, such that it minimizes collisions with other constraints.
 
 === Building
 * *Recommended*: `mvn clean install -DskipTests`
