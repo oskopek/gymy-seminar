@@ -46,10 +46,11 @@ public class SeminarGeneratorTest extends AbstractTest {
     @Test
     public void testCreateGroups() {
         SeminarGenerator generator = new SeminarGenerator();
-        Groups groups = generator.createGroups(3, 20, 6, 18);
+        Groups groups = generator.createGroups(3, 3, 20, 6, 18);
         assertNotNull(groups);
-        assertEquals("G3St20Tea6Sem18", groups.getName());
+        assertEquals("G3Ch3St20Tea6Sem18", groups.getName());
         assertEquals(3, groups.getN());
+        assertEquals(3, groups.getChooseSeminars());
         assertEquals(20, groups.getStudentList().size());
         assertEquals(6, groups.getTeacherList().size());
         assertEquals(18, groups.getSeminarList().size());

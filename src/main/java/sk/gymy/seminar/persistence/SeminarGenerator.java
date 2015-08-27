@@ -16,8 +16,6 @@
 
 package sk.gymy.seminar.persistence;
 
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Multiset;
 import org.optaplanner.examples.common.app.LoggingMain;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import sk.gymy.seminar.domain.Group;
@@ -28,26 +26,27 @@ import sk.gymy.seminar.domain.Teacher;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+/**
+ * Best effort dataset generator. Doesn't guarantee validity or solvability (as that is itself NP-hard).
+ */
 public class SeminarGenerator extends LoggingMain {
 
     private SolutionDao solutionDao;
-
-    private Multiset<Integer> studentSeminars;
 
     private Random random;
 
     public SeminarGenerator() {
         this.random = new Random();
-        this.studentSeminars = HashMultiset.create();
         this.solutionDao = new SeminarDao();
     }
 
     public SeminarGenerator(SolutionDao solutionDao) {
         this.random = new Random();
-        this.studentSeminars = HashMultiset.create();
         this.solutionDao = solutionDao;
     }
 
@@ -56,27 +55,29 @@ public class SeminarGenerator extends LoggingMain {
     }
 
     public void generate() {
-        writeGroups(3, 20, 6, 18);
-        //writeGroups(3, 200, 60, 180);
-        //writeGroups(3, 2000, 600, 1800);
-        //writeGroups(3, 2000, 600, 100);
+//        writeGroups(3, 2, 20, 6, 15);
+//        writeGroups(3, 2, 200, 60, 150);
+//        writeGroups(3, 2, 2000, 600, 1500);
+//        writeGroups(3, 5, 2000, 60, 125);
+//        writeGroups(5, 3, 2000, 60, 125);
     }
 
-    private void writeGroups(int N, int studentN, int teacherN, int seminarN) {
-        String outputFileName = "G" + N + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN + "-seminar.xml";
-        Groups groups = createGroups(N, studentN, teacherN, seminarN);
+    private void writeGroups(int N, int chooseSeminars, int studentN, int teacherN, int seminarN) {
+        String outputFileName = "G" + N + "Ch" + chooseSeminars + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN + "-seminar.xml";
+        Groups groups = createGroups(N, chooseSeminars, studentN, teacherN, seminarN);
         solutionDao.writeSolution(groups, new File(solutionDao.getDataDir().getPath() + "/unsolved/" + outputFileName));
     }
 
-    public Groups createGroups(int N, int studentN, int teacherN, int seminarN) {
+    public Groups createGroups(int N, int chooseSeminars, int studentN, int teacherN, int seminarN) {
         Groups groups = new Groups();
         groups.setId(0L);
         groups.setN(N);
-        groups.setName("G" + N + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN);
+        groups.setChooseSeminars(chooseSeminars);
+        groups.setName("G" + N + "Ch" + chooseSeminars + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN);
         groups.setStudentList(createStudentList(groups, studentN));
         groups.setTeacherList(createTeacherList(groups, teacherN));
         groups.setGroupList(createGroupList(groups, groups.getN()));
-        groups.setSeminarList(createSeminarList(groups, seminarN));
+        groups.setSeminarList(createSeminarList(groups, chooseSeminars, seminarN));
         logger.info("Seminar has {} Students, {} Seminars, {} Groups with a search space of {}.",
                 groups.getStudentList().size(), groups.getSeminarList().size(), groups.getGroupList().size(),
                 SeminarImporter.calculatePossibleSolutionSize(groups));
@@ -120,45 +121,59 @@ public class SeminarGenerator extends LoggingMain {
         return groupList;
     }
 
-    private List<Seminar> createSeminarList(Groups groups, int seminarN) {
+    private List<Seminar> createSeminarList(Groups groups, int chooseSeminars, int seminarN) {
         final String base = "Sem";
         List<Seminar> seminarList = new ArrayList<>(seminarN);
-        this.studentSeminars.clear();
         int teacherIndex = 0;
+        Map<Student, Integer> availableStudentMap = new HashMap<>(groups.getStudentList().size());
+        for (Student student : groups.getStudentList()) {
+            availableStudentMap.put(student, chooseSeminars);
+        }
+        // Distribute the students as evenly as possible
+        int maxStudentsInSeminar = ((groups.getChooseSeminars() * groups.getStudentList().size()) + 2 * seminarN) / seminarN;
         for (int i = 0; i < seminarN; i++) {
             Seminar seminar = new Seminar();
             seminar.setId((long) i);
             seminar.setIndex(i);
             seminar.setLocked(false);
             seminar.setName(base + i);
-
-            int numOfStudents = ((groups.getN() - 1) * groups.getStudentList().size()) / seminarN;
-            List<Student> students = generateStudents(groups.getStudentList(), numOfStudents, groups.getN());
+            List<Student> students = generateStudents(availableStudentMap, maxStudentsInSeminar, groups.getN());
             seminar.setStudents(students);
-
             if (teacherIndex >= groups.getTeacherList().size()) {
                 teacherIndex = 0;
             }
             seminar.setTeacher(groups.getTeacherList().get(teacherIndex));
             teacherIndex++;
-
             seminarList.add(seminar);
         }
-        this.studentSeminars.clear();
         return seminarList;
     }
 
-    private List<Student> generateStudents(List<Student> studentList, int n, int groupN) {
-        List<Student> students = new ArrayList<>(n);
-        for (int i = 0; i < n; i++) {
-            int id = random.nextInt(studentList.size());
-            if (studentSeminars.count(id) >= groupN) {
+    private List<Student> generateStudents(Map<Student, Integer> availableStudentMap, int maxStudentsInSeminar, int groupN) {
+        List<Student> students = new ArrayList<>(maxStudentsInSeminar);
+        List<Student> totalStudentList = new ArrayList<>(availableStudentMap.keySet());
+        for (int i = 0; i < maxStudentsInSeminar; i++) {
+            if (availableStudentMap.isEmpty()) {
+                break;
+            }
+            int index = random.nextInt(totalStudentList.size());
+            Student student = totalStudentList.get(index);
+            if (students.contains(student) || !availableStudentMap.containsKey(student)) {
+                if (students.size() >= availableStudentMap.size()) {
+                    // TODO Good heuristic to go to the next seminar (can get stuck in a forever loop)
+                    break;
+                }
                 i--;
                 continue;
             }
-
-            students.add(studentList.get(id));
-            studentSeminars.add(id);
+            Integer left = availableStudentMap.get(student) - 1;
+            if (left == 0) {
+                availableStudentMap.remove(student);
+                totalStudentList.remove(index);
+            } else {
+                availableStudentMap.put(student, left);
+            }
+            students.add(student);
         }
         return students;
     }

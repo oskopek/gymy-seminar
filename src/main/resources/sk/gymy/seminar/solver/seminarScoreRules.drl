@@ -46,7 +46,7 @@ rule "studentsPickedEnforcedSeminarCount" // TODO: Probably can eliminate this r
         $seminarCount : Number (intValue != $enforcedSeminarCount)
                         from accumulate(Seminar(students.contains($student)), count(1))
     then
-        scoreHolder.addHardConstraintMatch(kcontext, -1);
+        scoreHolder.addHardConstraintMatch(kcontext, -Math.abs($enforcedSeminarCount-$seminarCount.intValue()));
 end
 
 // ############################################################################
