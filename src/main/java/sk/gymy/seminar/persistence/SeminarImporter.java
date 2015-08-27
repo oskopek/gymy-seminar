@@ -20,7 +20,7 @@ import com.google.common.math.BigIntegerMath;
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
 import sk.gymy.seminar.domain.Teacher;
@@ -47,9 +47,9 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         return INPUT_FILE_SUFFIX;
     }
 
-    public static String calculatePossibleSolutionSize(Groups groups) {
-        int seminarN = groups.getSeminarList().size();
-        int groupsN = groups.getN();
+    public static String calculatePossibleSolutionSize(GroupSolution groupSolution) {
+        int seminarN = groupSolution.getSeminarList().size();
+        int groupsN = groupSolution.getN();
         BigInteger possibleSolutionSize = BigIntegerMath.binomial(seminarN - 1, groupsN);
         return getFlooredPossibleSolutionSize(possibleSolutionSize);
     }
@@ -61,28 +61,28 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
     public static class SeminarInputBuilder extends TxtInputBuilder {
 
         public Solution readSolution() throws IOException {
-            Groups groups = new Groups();
-            groups.setId(0L);
+            GroupSolution groupSolution = new GroupSolution();
+            groupSolution.setId(0L);
             String name = readStringValue("Name:");
-            groups.setName(name);
+            groupSolution.setName(name);
             int n = readIntegerValue("Groups:");
-            groups.setN(n);
+            groupSolution.setN(n);
             int semNum = readIntegerValue("Seminars:");
             int studNum = readIntegerValue("Students:");
             int teachNum = readIntegerValue("Teachers:");
             int chooseSeminars = readIntegerValue("ChooseSeminars:");
-            groups.setChooseSeminars(chooseSeminars);
+            groupSolution.setChooseSeminars(chooseSeminars);
 
-            createGroups(groups);
-            readTeacherList(groups, teachNum);
-            readStudentList(groups, studNum);
-            readSeminarList(groups, semNum);
+            createGroups(groupSolution);
+            readTeacherList(groupSolution, teachNum);
+            readStudentList(groupSolution, studNum);
+            readSeminarList(groupSolution, semNum);
             logger.info(
                     "Seminar {} - {} - has {} Students, {} Teachers, {} Seminars, {} Groups with a search space of {}.",
-                    getInputId(), name, groups.getStudentList().size(), groups.getTeacherList().size(),
-                    groups.getSeminarList().size(), groups.getGroupList().size(),
-                    calculatePossibleSolutionSize(groups));
-            return groups;
+                    getInputId(), name, groupSolution.getStudentList().size(), groupSolution.getTeacherList().size(),
+                    groupSolution.getSeminarList().size(), groupSolution.getGroupList().size(),
+                    calculatePossibleSolutionSize(groupSolution));
+            return groupSolution;
         }
 
         private Student findStudent(Integer index, List<Student> studentList) throws IllegalStateException {
@@ -104,8 +104,8 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
         }
 
 
-        private void createGroups(Groups groups) {
-            int n = groups.getN();
+        private void createGroups(GroupSolution groupSolution) {
+            int n = groupSolution.getN();
             ArrayList<Group> groupList = new ArrayList<>(n);
             for (int i = 0; i < n; i++) {
                 Group group = new Group();
@@ -113,10 +113,10 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
                 group.setId((long) i);
                 groupList.add(group);
             }
-            groups.setGroupList(groupList);
+            groupSolution.setGroupList(groupList);
         }
 
-        private void readStudentList(Groups groups, int studNum) throws IOException {
+        private void readStudentList(GroupSolution groupSolution, int studNum) throws IOException {
             readEmptyLine();
             readConstantLine("STUDENTS:");
             List<Student> studentList = new ArrayList<>(studNum);
@@ -130,10 +130,10 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
                 studentList.add(student);
             }
 
-            groups.setStudentList(studentList);
+            groupSolution.setStudentList(studentList);
         }
 
-        private void readTeacherList(Groups groups, int teachNum) throws IOException {
+        private void readTeacherList(GroupSolution groupSolution, int teachNum) throws IOException {
             readEmptyLine();
             readConstantLine("TEACHERS:");
             List<Teacher> teacherList = new ArrayList<>(teachNum);
@@ -147,10 +147,10 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
                 teacherList.add(teacher);
             }
 
-            groups.setTeacherList(teacherList);
+            groupSolution.setTeacherList(teacherList);
         }
 
-        private void readSeminarList(Groups groups, int semNum) throws IOException {
+        private void readSeminarList(GroupSolution groupSolution, int semNum) throws IOException {
             readEmptyLine();
             readConstantLine("SEMINARS:");
             List<Seminar> seminarList = new ArrayList<>(semNum);
@@ -165,16 +165,16 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
                 String line = bufferedReader.readLine();
                 String[] split = splitBySpace(line);
                 seminar.setName(split[0]);
-                seminar.setTeacher(findTeacher(split[1], groups.getTeacherList()));
+                seminar.setTeacher(findTeacher(split[1], groupSolution.getTeacherList()));
 
                 for (int j = 2; j < split.length; j++) {
-                    Student student = findStudent(Integer.parseInt(split[j]), groups.getStudentList());
+                    Student student = findStudent(Integer.parseInt(split[j]), groupSolution.getStudentList());
                     seminarStudents.add(student);
                 }
                 seminar.setStudents(seminarStudents);
                 seminarList.add(seminar);
             }
-            groups.setSeminarList(seminarList);
+            groupSolution.setSeminarList(seminarList);
         }
 
     }

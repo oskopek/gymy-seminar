@@ -19,7 +19,7 @@ package sk.gymy.seminar.persistence;
 import org.optaplanner.examples.common.app.LoggingMain;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
 import sk.gymy.seminar.domain.Teacher;
@@ -64,27 +64,27 @@ public class SeminarGenerator extends LoggingMain {
 
     private void writeGroups(int N, int chooseSeminars, int studentN, int teacherN, int seminarN) {
         String outputFileName = "G" + N + "Ch" + chooseSeminars + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN + "-seminar.xml";
-        Groups groups = createGroups(N, chooseSeminars, studentN, teacherN, seminarN);
-        solutionDao.writeSolution(groups, new File(solutionDao.getDataDir().getPath() + "/unsolved/" + outputFileName));
+        GroupSolution groupSolution = createGroups(N, chooseSeminars, studentN, teacherN, seminarN);
+        solutionDao.writeSolution(groupSolution, new File(solutionDao.getDataDir().getPath() + "/unsolved/" + outputFileName));
     }
 
-    public Groups createGroups(int N, int chooseSeminars, int studentN, int teacherN, int seminarN) {
-        Groups groups = new Groups();
-        groups.setId(0L);
-        groups.setN(N);
-        groups.setChooseSeminars(chooseSeminars);
-        groups.setName("G" + N + "Ch" + chooseSeminars + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN);
-        groups.setStudentList(createStudentList(groups, studentN));
-        groups.setTeacherList(createTeacherList(groups, teacherN));
-        groups.setGroupList(createGroupList(groups, groups.getN()));
-        groups.setSeminarList(createSeminarList(groups, chooseSeminars, seminarN));
+    public GroupSolution createGroups(int N, int chooseSeminars, int studentN, int teacherN, int seminarN) {
+        GroupSolution groupSolution = new GroupSolution();
+        groupSolution.setId(0L);
+        groupSolution.setN(N);
+        groupSolution.setChooseSeminars(chooseSeminars);
+        groupSolution.setName("G" + N + "Ch" + chooseSeminars + "St" + studentN + "Tea" + teacherN + "Sem" + seminarN);
+        groupSolution.setStudentList(createStudentList(groupSolution, studentN));
+        groupSolution.setTeacherList(createTeacherList(groupSolution, teacherN));
+        groupSolution.setGroupList(createGroupList(groupSolution, groupSolution.getN()));
+        groupSolution.setSeminarList(createSeminarList(groupSolution, chooseSeminars, seminarN));
         logger.info("Seminar has {} Students, {} Seminars, {} Groups with a search space of {}.",
-                groups.getStudentList().size(), groups.getSeminarList().size(), groups.getGroupList().size(),
-                SeminarImporter.calculatePossibleSolutionSize(groups));
-        return groups;
+                groupSolution.getStudentList().size(), groupSolution.getSeminarList().size(), groupSolution.getGroupList().size(),
+                SeminarImporter.calculatePossibleSolutionSize(groupSolution));
+        return groupSolution;
     }
 
-    private List<Student> createStudentList(Groups groups, int studentN) {
+    private List<Student> createStudentList(GroupSolution groupSolution, int studentN) {
         final String base = "Stud";
         List<Student> studentList = new ArrayList<>(studentN);
         for (int i = 0; i < studentN; i++) {
@@ -97,7 +97,7 @@ public class SeminarGenerator extends LoggingMain {
         return studentList;
     }
 
-    private List<Teacher> createTeacherList(Groups groups, int teacherN) {
+    private List<Teacher> createTeacherList(GroupSolution groupSolution, int teacherN) {
         final String base = "T";
         List<Teacher> teacherList = new ArrayList<>(teacherN);
         for (int i = 0; i < teacherN; i++) {
@@ -110,7 +110,7 @@ public class SeminarGenerator extends LoggingMain {
         return teacherList;
     }
 
-    private List<Group> createGroupList(Groups groups, int groupN) {
+    private List<Group> createGroupList(GroupSolution groupSolution, int groupN) {
         List<Group> groupList = new ArrayList<>(groupN);
         for (int i = 0; i < groupN; i++) {
             Group group = new Group();
@@ -121,28 +121,28 @@ public class SeminarGenerator extends LoggingMain {
         return groupList;
     }
 
-    private List<Seminar> createSeminarList(Groups groups, int chooseSeminars, int seminarN) {
+    private List<Seminar> createSeminarList(GroupSolution groupSolution, int chooseSeminars, int seminarN) {
         final String base = "Sem";
         List<Seminar> seminarList = new ArrayList<>(seminarN);
         int teacherIndex = 0;
-        Map<Student, Integer> availableStudentMap = new HashMap<>(groups.getStudentList().size());
-        for (Student student : groups.getStudentList()) {
+        Map<Student, Integer> availableStudentMap = new HashMap<>(groupSolution.getStudentList().size());
+        for (Student student : groupSolution.getStudentList()) {
             availableStudentMap.put(student, chooseSeminars);
         }
         // Distribute the students as evenly as possible
-        int maxStudentsInSeminar = ((groups.getChooseSeminars() * groups.getStudentList().size()) + 2 * seminarN) / seminarN;
+        int maxStudentsInSeminar = ((groupSolution.getChooseSeminars() * groupSolution.getStudentList().size()) + 2 * seminarN) / seminarN;
         for (int i = 0; i < seminarN; i++) {
             Seminar seminar = new Seminar();
             seminar.setId((long) i);
             seminar.setIndex(i);
             seminar.setLocked(false);
             seminar.setName(base + i);
-            List<Student> students = generateStudents(availableStudentMap, maxStudentsInSeminar, groups.getN());
+            List<Student> students = generateStudents(availableStudentMap, maxStudentsInSeminar, groupSolution.getN());
             seminar.setStudents(students);
-            if (teacherIndex >= groups.getTeacherList().size()) {
+            if (teacherIndex >= groupSolution.getTeacherList().size()) {
                 teacherIndex = 0;
             }
-            seminar.setTeacher(groups.getTeacherList().get(teacherIndex));
+            seminar.setTeacher(groupSolution.getTeacherList().get(teacherIndex));
             teacherIndex++;
             seminarList.add(seminar);
         }

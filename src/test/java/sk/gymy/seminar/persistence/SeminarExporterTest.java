@@ -20,7 +20,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import sk.gymy.seminar.common.AbstractTest;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -40,19 +40,19 @@ import static org.junit.Assert.assertNull;
 public class SeminarExporterTest extends AbstractTest {
 
     private Path outputPath;
-    private Groups groups;
+    private GroupSolution groupSolution;
 
     @Before
     public void setUp() throws IOException {
         outputPath = Files.createTempFile("seminarExportTest", "." + new SeminarExporter().getOutputFileSuffix());
-        this.groups = (Groups) new SeminarImporter().readSolution(new File("data/seminar/import/simple5.sem"));
-        assertNotNull(groups);
-        assertEquals("Seminar-simple-5", groups.getName());
-        assertEquals(3, groups.getN());
-        assertEquals(20, groups.getStudentList().size());
-        assertEquals(3, groups.getTeacherList().size());
-        assertEquals(5, groups.getSeminarList().size());
-        assertNull(groups.getScore());
+        this.groupSolution = (GroupSolution) new SeminarImporter().readSolution(new File("data/seminar/import/simple5.sem"));
+        assertNotNull(groupSolution);
+        assertEquals("Seminar-simple-5", groupSolution.getName());
+        assertEquals(3, groupSolution.getN());
+        assertEquals(20, groupSolution.getStudentList().size());
+        assertEquals(3, groupSolution.getTeacherList().size());
+        assertEquals(5, groupSolution.getSeminarList().size());
+        assertNull(groupSolution.getScore());
     }
 
     @After
@@ -68,7 +68,7 @@ public class SeminarExporterTest extends AbstractTest {
     @Test
     public void testWriteSolution() throws IOException {
         SeminarExporter seminarExporter = new SeminarExporter();
-        seminarExporter.writeSolution(groups, outputPath.toFile());
+        seminarExporter.writeSolution(groupSolution, outputPath.toFile());
         final String expected = "Name: Seminar-simple-5\n"
                 + "Groups: 3\n"
                 + "ChooseSeminars: 2\n"
@@ -85,7 +85,7 @@ public class SeminarExporterTest extends AbstractTest {
     public void testOutputBuilder() throws IOException {
         SeminarExporter.SeminarOutputBuilder sob = new SeminarExporter.SeminarOutputBuilder();
         assertNotNull(sob);
-        sob.setSolution(groups);
+        sob.setSolution(groupSolution);
         StringWriter sw = new StringWriter();
         BufferedWriter bw = new BufferedWriter(sw);
         sob.setBufferedWriter(bw);

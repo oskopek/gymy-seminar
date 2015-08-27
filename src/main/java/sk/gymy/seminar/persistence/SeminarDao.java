@@ -17,14 +17,14 @@
 package sk.gymy.seminar.persistence;
 
 import org.optaplanner.examples.common.persistence.XStreamSolutionDao;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 
 public class SeminarDao extends XStreamSolutionDao {
 
     public static final String dataDirName = "seminar";
 
     public SeminarDao() {
-        super(dataDirName, Groups.class);
+        super(dataDirName, GroupSolution.class);
     }
 
 }

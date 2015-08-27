@@ -17,7 +17,7 @@
 
 <solver>
   <!--<environmentMode>FAST_ASSERT</environmentMode>-->
-  <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
+  <solutionClass>sk.gymy.seminar.domain.GroupSolution</solutionClass>
   <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
 
   <scoreDirectorFactory>

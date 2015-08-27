@@ -19,7 +19,7 @@ package sk.gymy.seminar.persistence;
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 
 import java.io.IOException;
@@ -47,20 +47,20 @@ public class SeminarExporter extends AbstractTxtSolutionExporter {
 
     public static class SeminarOutputBuilder extends TxtOutputBuilder {
 
-        private Groups groups;
+        private GroupSolution groupSolution;
 
         public void setSolution(Solution solution) {
-            groups = (Groups) solution;
+            groupSolution = (GroupSolution) solution;
         }
 
         public void writeSolution() throws IOException {
-            bufferedWriter.write("Name: " + groups.getName() + "\n");
-            bufferedWriter.write("Groups: " + groups.getN() + "\n");
-            bufferedWriter.write("ChooseSeminars: " + groups.getChooseSeminars() + "\n");
+            bufferedWriter.write("Name: " + groupSolution.getName() + "\n");
+            bufferedWriter.write("Groups: " + groupSolution.getN() + "\n");
+            bufferedWriter.write("ChooseSeminars: " + groupSolution.getChooseSeminars() + "\n");
             bufferedWriter.newLine();
-            for (Group group : groups.getGroupList()) {
+            for (Group group : groupSolution.getGroupList()) {
                 bufferedWriter.write("Group " + group.getIndex() + ": ");
-                for (Seminar seminar : groups.getSeminarList()) {
+                for (Seminar seminar : groupSolution.getSeminarList()) {
                     if (seminar.getGroup() == group) {
                         bufferedWriter.write(seminar.getName() + ", ");
                     }

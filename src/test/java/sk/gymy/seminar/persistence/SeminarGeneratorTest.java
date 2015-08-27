@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import sk.gymy.seminar.common.AbstractTest;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 
 import java.io.File;
 
@@ -39,21 +39,21 @@ public class SeminarGeneratorTest extends AbstractTest {
         Mockito.when(daoMock.getDataDir()).thenReturn(new File("/tmp/generateTestDir"));
         SeminarGenerator generator = new SeminarGenerator(daoMock);
         generator.generate();
-        Mockito.verify(daoMock).writeSolution(Mockito.any(Groups.class),
+        Mockito.verify(daoMock).writeSolution(Mockito.any(GroupSolution.class),
                 Mockito.eq(new File("/tmp/generateTestDir/unsolved/G3Ch2St20Tea6Sem15-seminar.xml")));
     }
 
     @Test
     public void testCreateGroups() {
         SeminarGenerator generator = new SeminarGenerator();
-        Groups groups = generator.createGroups(3, 3, 20, 6, 18);
-        assertNotNull(groups);
-        assertEquals("G3Ch3St20Tea6Sem18", groups.getName());
-        assertEquals(3, groups.getN());
-        assertEquals(3, groups.getChooseSeminars());
-        assertEquals(20, groups.getStudentList().size());
-        assertEquals(6, groups.getTeacherList().size());
-        assertEquals(18, groups.getSeminarList().size());
-        assertNull(groups.getScore());
+        GroupSolution groupSolution = generator.createGroups(3, 3, 20, 6, 18);
+        assertNotNull(groupSolution);
+        assertEquals("G3Ch3St20Tea6Sem18", groupSolution.getName());
+        assertEquals(3, groupSolution.getN());
+        assertEquals(3, groupSolution.getChooseSeminars());
+        assertEquals(20, groupSolution.getStudentList().size());
+        assertEquals(6, groupSolution.getTeacherList().size());
+        assertEquals(18, groupSolution.getSeminarList().size());
+        assertNull(groupSolution.getScore());
     }
 }

@@ -18,12 +18,12 @@ package sk.gymy.seminar.domain.solver;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionSorterWeightFactory;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 
-public class SeminarDifficultyWeightFactory implements SelectionSorterWeightFactory<Groups, Seminar> {
+public class SeminarDifficultyWeightFactory implements SelectionSorterWeightFactory<GroupSolution, Seminar> {
 
-    public Comparable createSorterWeight(Groups groups, Seminar seminar) {
+    public Comparable createSorterWeight(GroupSolution groupSolution, Seminar seminar) {
         return new SeminarDifficultyWeight(seminar, seminar.getStudents().size());
     }
 

@@ -32,8 +32,8 @@ import java.util.Collection;
 import java.util.List;
 
 @PlanningSolution
-@XStreamAlias("Groups")
-public class Groups extends AbstractPersistable implements Solution<HardSoftScore> {
+@XStreamAlias("GroupSolution")
+public class GroupSolution extends AbstractPersistable implements Solution<HardSoftScore> {
 
     private String name;
     private int n;
@@ -43,9 +43,10 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
     private List<Student> studentList;
     private List<Group> groupList;
     private List<Teacher> teacherList;
+    private List<Seminar> seminarList;
 
     // Planning entities
-    private List<Seminar> seminarList;
+    private List<SeminarAssignment> seminarAssignmentList;
 
     @XStreamConverter(value = XStreamScoreConverter.class, types = {HardSoftScoreDefinition.class})
     private HardSoftScore score;
@@ -82,7 +83,6 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
         this.studentList = studentList;
     }
 
-    @PlanningEntityCollectionProperty
     public List<Seminar> getSeminarList() {
         return seminarList;
     }
@@ -108,6 +108,15 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
         this.teacherList = teacherList;
     }
 
+    @PlanningEntityCollectionProperty
+    public List<SeminarAssignment> getSeminarAssignmentList() {
+        return seminarAssignmentList;
+    }
+
+    public void setSeminarAssignmentList(List<SeminarAssignment> seminarAssignmentList) {
+        this.seminarAssignmentList = seminarAssignmentList;
+    }
+
     public HardSoftScore getScore() {
         return score;
     }
@@ -118,7 +127,7 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
 
     @Override
     public String toString() {
-        return "Groups{name=" + name + ", score=" + score + ", seminarList=" + seminarList + "}";
+        return "GroupSolution{name=" + name + ", score=" + score + "}";
     }
 
     // ************************************************************************
@@ -130,8 +139,9 @@ public class Groups extends AbstractPersistable implements Solution<HardSoftScor
         facts.addAll(studentList);
         facts.addAll(groupList);
         facts.addAll(teacherList);
+        facts.addAll(seminarList);
         facts.add(new Integer(chooseSeminars));
-        // Do not add the planning entity's (seminarList) because that will be done automatically
+        // Do not add the planning entity's (seminarAssignmentList) because that will be done automatically
         return facts;
     }
 

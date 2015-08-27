@@ -19,7 +19,7 @@ package sk.gymy.seminar.app;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.persistence.SeminarImporter;
 
@@ -45,20 +45,20 @@ public final class SeminarHelloWorld {
         Solver solver = solverFactory.buildSolver();
 
         // Load a problem with 5 seminars
-        Groups unsolved5Seminars = (Groups) new SeminarImporter().readSolution(new File(unsolved5SeminarPath));
+        GroupSolution unsolved5Seminars = (GroupSolution) new SeminarImporter().readSolution(new File(unsolved5SeminarPath));
 
         // Solve the problem
         solver.solve(unsolved5Seminars);
-        Groups solved5Seminars = (Groups) solver.getBestSolution();
+        GroupSolution solved5Seminars = (GroupSolution) solver.getBestSolution();
 
         // Display the result
         return "\nSolved 5 Seminars:\n" + toDisplayString(solved5Seminars);
     }
 
-    public static String toDisplayString(Groups groups) {
+    public static String toDisplayString(GroupSolution groupSolution) {
         StringBuilder displayString = new StringBuilder();
-        List<Seminar> seminarList = groups.getSeminarList();
-        List<Group> groupList = groups.getGroupList();
+        List<Seminar> seminarList = groupSolution.getSeminarList();
+        List<Group> groupList = groupSolution.getGroupList();
 
         for (Group group : groupList) {
             displayString.append("Group ").append(group.getIndex()).append(": ");

@@ -34,7 +34,7 @@ import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.persistence.SeminarDao;
 import sk.gymy.seminar.persistence.SeminarExporter;
@@ -89,7 +89,7 @@ public class SeminarApp extends CommonApp {
     protected Solver createSolverByApi() {
         SolverConfig solverConfig = new SolverConfig();
 
-        solverConfig.setSolutionClass(Groups.class);
+        solverConfig.setSolutionClass(GroupSolution.class);
         solverConfig.setEntityClassList(Collections.<Class<?>>singletonList(Seminar.class));
 
         ScoreDirectorFactoryConfig scoreDirectorFactoryConfig = new ScoreDirectorFactoryConfig();

@@ -21,17 +21,17 @@ import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionSo
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 
 import java.util.List;
 
-public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<Groups, Group> {
+public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<GroupSolution, Group> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupStrengthWeightFactory.class);
 
-    public Comparable createSorterWeight(Groups groups, Group group) {
-        int seminarCount = countSeminars(group, groups.getSeminarList());
+    public Comparable createSorterWeight(GroupSolution groupSolution, Group group) {
+        int seminarCount = countSeminars(group, groupSolution.getSeminarList());
         return new GroupStrengthWeight(group, seminarCount);
     }
 
@@ -70,8 +70,8 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
         public int compareTo(GroupStrengthWeight other) { // TODO: non null
             return new CompareToBuilder()
                     // The stronger groups are those with more seminars
-                    .append(seminarCount, other.seminarCount).append(group.getIndex(),
-                            other.group.getIndex()) // Tie-breaker
+                    .append(seminarCount, other.seminarCount).append(group.getIndex(), other.group.getIndex()) //
+                    // Tie-breaker
                     .toComparison();
         }
 

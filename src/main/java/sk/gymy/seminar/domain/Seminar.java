@@ -28,43 +28,24 @@ import sk.gymy.seminar.domain.solver.SeminarDifficultyWeightFactory;
 
 import java.util.List;
 
-@PlanningEntity(difficultyWeightFactoryClass = SeminarDifficultyWeightFactory.class,
-        movableEntitySelectionFilter = MovableSeminarSelectionFilter.class)
 @XStreamAlias("Seminar")
 public class Seminar extends AbstractPersistable {
 
     private int index;
     private String name;
-    private boolean locked;
     private Teacher teacher;
-    private List<Student> students;
-
-    //planning variable
-    private Group group;
 
     public Seminar() {
         super();
     }
 
-    public Seminar(int index, String name, boolean locked, Teacher teacher, List<Student> students, Group group) {
+    public Seminar(int index, String name, Teacher teacher) {
         super();
         this.index = index;
         this.name = name;
-        this.locked = locked;
         this.teacher = teacher;
-        this.students = students;
-        this.group = group;
     }
 
-    @PlanningVariable(valueRangeProviderRefs = {"groupRange"},
-            strengthWeightFactoryClass = GroupStrengthWeightFactory.class)
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 
     public int getIndex() {
         return index;
@@ -82,14 +63,6 @@ public class Seminar extends AbstractPersistable {
         this.name = name;
     }
 
-    public boolean isLocked() {
-        return locked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
     public Teacher getTeacher() {
         return teacher;
     }
@@ -98,17 +71,9 @@ public class Seminar extends AbstractPersistable {
         this.teacher = teacher;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
     @Override
     public String toString() {
-        return name + ": " + group;
+        return name + "/" + teacher;
     }
 
     @Override

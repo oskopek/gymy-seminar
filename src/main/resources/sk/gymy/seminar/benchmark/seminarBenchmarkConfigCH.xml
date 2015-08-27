@@ -6,7 +6,7 @@
 
   <inheritedSolverBenchmark>
     <problemBenchmarks>
-      <xStreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xStreamAnnotatedClass>
+      <xStreamAnnotatedClass>sk.gymy.seminar.domain.GroupSolution</xStreamAnnotatedClass>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St20Tea6Sem15-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St200Tea60Sem150-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St2000Tea600Sem1500-seminar.xml</inputSolutionFile>
@@ -20,7 +20,7 @@
       <problemStatisticType>BEST_SCORE</problemStatisticType>
     </problemBenchmarks>
     <solver>
-      <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
+      <solutionClass>sk.gymy.seminar.domain.GroupSolution</solutionClass>
       <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
       <scoreDirectorFactory>
         <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>

@@ -20,7 +20,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import sk.gymy.seminar.common.AbstractTest;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -65,14 +65,14 @@ public class SeminarImporterTest extends AbstractTest {
     @Test
     public void testReadSolution() {
         SeminarImporter seminarImporter = new SeminarImporter();
-        Groups groups = (Groups) seminarImporter.readSolution(new File("data/seminar/import/simple5.sem"));
-        assertNotNull(groups);
-        assertEquals("Seminar-simple-5", groups.getName());
-        assertEquals(3, groups.getN());
-        assertEquals(20, groups.getStudentList().size());
-        assertEquals(3, groups.getTeacherList().size());
-        assertEquals(5, groups.getSeminarList().size());
-        assertNull(groups.getScore());
+        GroupSolution groupSolution = (GroupSolution) seminarImporter.readSolution(new File("data/seminar/import/simple5.sem"));
+        assertNotNull(groupSolution);
+        assertEquals("Seminar-simple-5", groupSolution.getName());
+        assertEquals(3, groupSolution.getN());
+        assertEquals(20, groupSolution.getStudentList().size());
+        assertEquals(3, groupSolution.getTeacherList().size());
+        assertEquals(5, groupSolution.getSeminarList().size());
+        assertNull(groupSolution.getScore());
     }
 
     @Test(expected = IllegalStateException.class)

@@ -19,7 +19,7 @@ package sk.gymy.seminar.swingui;
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 import sk.gymy.seminar.domain.Group;
-import sk.gymy.seminar.domain.Groups;
+import sk.gymy.seminar.domain.GroupSolution;
 import sk.gymy.seminar.domain.Seminar;
 import sk.gymy.seminar.domain.Student;
 
@@ -40,17 +40,17 @@ public class SeminarPanel extends SolutionPanel {
         lockedIcon = new ImageIcon(getClass().getResource("locked.png"));
     }
 
-    private Groups getGroups() {
-        return (Groups) getSolutionBusiness().getSolution();
+    private GroupSolution getGroups() {
+        return (GroupSolution) getSolutionBusiness().getSolution();
     }
 
     public void resetPanel(Solution solution) {
         removeAll();
         repaint(); // When GridLayout doesn't fill up all the space
-        Groups groups = (Groups) solution;
-        int n = groups.getN();
+        GroupSolution groupSolution = (GroupSolution) solution;
+        int n = groupSolution.getN();
 
-        List<Seminar> seminarList = groups.getSeminarList();
+        List<Seminar> seminarList = groupSolution.getSeminarList();
         setLayout(new GridBagLayout());
         setBackground(Color.WHITE);
         GridBagConstraints constraints;
