@@ -21,7 +21,7 @@ import sk.gymy.seminar.domain.Groups;
 
 public class SeminarDao extends XStreamSolutionDao {
 
-    final public static String dataDirName = "seminar";
+    public static final String dataDirName = "seminar";
 
     public SeminarDao() {
         super(dataDirName, Groups.class);

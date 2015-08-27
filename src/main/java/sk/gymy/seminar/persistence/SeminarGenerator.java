@@ -78,9 +78,7 @@ public class SeminarGenerator extends LoggingMain {
         groups.setGroupList(createGroupList(groups, groups.getN()));
         groups.setSeminarList(createSeminarList(groups, seminarN));
         logger.info("Seminar has {} Students, {} Seminars, {} Groups with a search space of {}.",
-                groups.getStudentList().size(),
-                groups.getSeminarList().size(),
-                groups.getGroupList().size(),
+                groups.getStudentList().size(), groups.getSeminarList().size(), groups.getGroupList().size(),
                 SeminarImporter.calculatePossibleSolutionSize(groups));
         return groups;
     }
@@ -134,11 +132,11 @@ public class SeminarGenerator extends LoggingMain {
             seminar.setLocked(false);
             seminar.setName(base + i);
 
-            int numOfStudents = ((groups.getN()-1) * groups.getStudentList().size())/seminarN;
+            int numOfStudents = ((groups.getN() - 1) * groups.getStudentList().size()) / seminarN;
             List<Student> students = generateStudents(groups.getStudentList(), numOfStudents, groups.getN());
             seminar.setStudents(students);
 
-            if(teacherIndex >= groups.getTeacherList().size()) {
+            if (teacherIndex >= groups.getTeacherList().size()) {
                 teacherIndex = 0;
             }
             seminar.setTeacher(groups.getTeacherList().get(teacherIndex));
@@ -154,7 +152,7 @@ public class SeminarGenerator extends LoggingMain {
         List<Student> students = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
             int id = random.nextInt(studentList.size());
-            if(studentSeminars.count(id) >= groupN) {
+            if (studentSeminars.count(id) >= groupN) {
                 i--;
                 continue;
             }

@@ -50,7 +50,7 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
     public static String calculatePossibleSolutionSize(Groups groups) {
         int seminarN = groups.getSeminarList().size();
         int groupsN = groups.getN();
-        int n = groupsN*seminarN;
+        int n = groupsN * seminarN;
         int k = seminarN;
         BigInteger possibleSolutionSize = BigIntegerMath.binomial(n, k);
         return getFlooredPossibleSolutionSize(possibleSolutionSize);
@@ -77,13 +77,10 @@ public class SeminarImporter extends AbstractTxtSolutionImporter {
             readTeacherList(groups, teachNum);
             readStudentList(groups, studNum);
             readSeminarList(groups, semNum);
-            logger.info("Seminar {} - {} - has {} Students, {} Teachers, {} Seminars, {} Groups with a search space of {}.",
-                    getInputId(),
-                    name,
-                    groups.getStudentList().size(),
-                    groups.getTeacherList().size(),
-                    groups.getSeminarList().size(),
-                    groups.getGroupList().size(),
+            logger.info(
+                    "Seminar {} - {} - has {} Students, {} Teachers, {} Seminars, {} Groups with a search space of {}.",
+                    getInputId(), name, groups.getStudentList().size(), groups.getTeacherList().size(),
+                    groups.getSeminarList().size(), groups.getGroupList().size(),
                     calculatePossibleSolutionSize(groups));
             return groups;
         }

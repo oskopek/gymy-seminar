@@ -58,8 +58,12 @@ public class SeminarPanelTest {
         solver.solve(solvedGroups);
         solvedGroups = (Groups) solver.getBestSolution();
         assertNotEquals(solvedGroups, groups); // Asserts, that the groups stays uninitialized
-        assertEquals("Groups{name=Seminar-simple-5, score=-2hard/-20soft, seminarList=[s01: null, s02: null, s03: null, s04: null, s05: null]}", groups.toString());
-        assertEquals("Groups{name=Seminar-simple-5, score=0hard/0soft, seminarList=[s01: G2, s02: G0, s03: G0, s04: G1, s05: G2]}", solvedGroups.toString());
+        assertEquals(
+                "Groups{name=Seminar-simple-5, score=-2hard/-20soft, seminarList=[s01: null, s02: null, s03: null, "
+                        + "s04: null, s05: null]}", groups.toString());
+        assertEquals(
+                "Groups{name=Seminar-simple-5, score=0hard/0soft, seminarList=[s01: G2, s02: G0, s03: G0, s04: G1, "
+                        + "s05: G2]}", solvedGroups.toString());
     }
 
     @Before

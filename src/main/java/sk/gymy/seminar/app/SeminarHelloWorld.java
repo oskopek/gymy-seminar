@@ -26,7 +26,11 @@ import sk.gymy.seminar.persistence.SeminarImporter;
 import java.io.File;
 import java.util.List;
 
-public class SeminarHelloWorld {
+public final class SeminarHelloWorld {
+
+    private SeminarHelloWorld() {
+        // intentionally empty
+    }
 
     public static void main(String[] args) {
         System.out.println(solveHelloWorld());
@@ -34,8 +38,8 @@ public class SeminarHelloWorld {
 
     public static String solveHelloWorld() {
         // Build the Solver
-        SolverFactory solverFactory = SolverFactory.createFromXmlResource(
-                "sk/gymy/seminar/solver/seminarSolverConfig.xml");
+        SolverFactory solverFactory =
+                SolverFactory.createFromXmlResource("sk/gymy/seminar/solver/seminarSolverConfig.xml");
 
         String unsolved5SeminarPath = "data/seminar/import/simple5.sem";
         Solver solver = solverFactory.buildSolver();

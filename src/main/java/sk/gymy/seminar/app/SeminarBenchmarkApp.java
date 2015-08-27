@@ -25,11 +25,9 @@ public class SeminarBenchmarkApp extends CommonBenchmarkApp {
     }
 
     public SeminarBenchmarkApp() {
-        super(
-                new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml"),
+        super(new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml"),
                 new ArgOption("stepLimit", "sk/gymy/seminar/benchmark/seminarStepLimitBenchmarkConfig.xml"),
-                new ArgOption("scoreDirector", "sk/gymy/seminar/benchmark/seminarScoreDirectorBenchmarkConfig.xml")
-        );
+                new ArgOption("scoreDirector", "sk/gymy/seminar/benchmark/seminarScoreDirectorBenchmarkConfig.xml"));
     }
 
 }

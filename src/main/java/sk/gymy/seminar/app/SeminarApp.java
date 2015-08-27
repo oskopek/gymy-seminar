@@ -60,11 +60,8 @@ public class SeminarApp extends CommonApp {
     }
 
     public SeminarApp() {
-        super("Seminar",
-                "Place seminars into groups.\n\n" +
-                        "No 2 Students must have two seminars in one group.",
-                SeminarPanel.LOGO_PATH
-        );
+        super("Seminar", "Place seminars into groups.\n\n" + "No 2 Students must have two seminars in one group.",
+                SeminarPanel.LOGO_PATH);
     }
 
     @Override
@@ -96,19 +93,18 @@ public class SeminarApp extends CommonApp {
         solverConfig.setEntityClassList(Collections.<Class<?>>singletonList(Seminar.class));
 
         ScoreDirectorFactoryConfig scoreDirectorFactoryConfig = new ScoreDirectorFactoryConfig();
-        scoreDirectorFactoryConfig.setScoreDefinitionType(ScoreDefinitionType.SIMPLE);
-        scoreDirectorFactoryConfig.setScoreDrlList(
-                Arrays.asList("sk/gymy/seminar/solver/seminarScoreRules.drl"));
+        scoreDirectorFactoryConfig.setScoreDefinitionType(ScoreDefinitionType.HARD_SOFT);
+        scoreDirectorFactoryConfig
+                .setScoreDrlList(Collections.singletonList("sk/gymy/seminar/solver/seminarScoreRules.drl"));
         solverConfig.setScoreDirectorFactoryConfig(scoreDirectorFactoryConfig);
 
         TerminationConfig terminationConfig = new TerminationConfig();
-        terminationConfig.setBestScoreLimit("0");
+        terminationConfig.setBestScoreLimit("0hard/0soft");
         solverConfig.setTerminationConfig(terminationConfig);
         List<PhaseConfig> phaseConfigList = new ArrayList<>();
-        ConstructionHeuristicPhaseConfig constructionHeuristicSolverPhaseConfig
-                = new ConstructionHeuristicPhaseConfig();
-        constructionHeuristicSolverPhaseConfig.setConstructionHeuristicType(
-                ConstructionHeuristicType.FIRST_FIT);
+        ConstructionHeuristicPhaseConfig constructionHeuristicSolverPhaseConfig =
+                new ConstructionHeuristicPhaseConfig();
+        constructionHeuristicSolverPhaseConfig.setConstructionHeuristicType(ConstructionHeuristicType.FIRST_FIT);
         phaseConfigList.add(constructionHeuristicSolverPhaseConfig);
         LocalSearchPhaseConfig localSearchPhaseConfig = new LocalSearchPhaseConfig();
         ChangeMoveSelectorConfig changeMoveSelectorConfig = new ChangeMoveSelectorConfig();
@@ -133,8 +129,8 @@ public class SeminarApp extends CommonApp {
     }
 
     @Override
-    protected AbstractSolutionImporter createSolutionImporter() {
-        return new SeminarImporter();
+    protected AbstractSolutionImporter[] createSolutionImporters() {
+        return new SeminarImporter[]{new SeminarImporter()};
     }
 
     @Override
@@ -148,6 +144,7 @@ public class SeminarApp extends CommonApp {
      * SeminarApp makes no assumptions about deleting them afterwards.
      *
      * @param baseDir must be a directory and must exists
+     * @throws IOException if failed to create the directory structure
      */
     protected static void prepareDataDirStructure(File baseDir) throws IOException {
         logger.info("BaseDir is: {}", baseDir);
@@ -158,7 +155,7 @@ public class SeminarApp extends CommonApp {
         String dataDirPath = baseDir.getPath() + "/data/" + SeminarDao.dataDirName + "/";
         List<String> dataDirs = Arrays.asList("import", "export", "solved", "unsolved");
         File dir;
-        for(String curDataDir : dataDirs) {
+        for (String curDataDir : dataDirs) {
             dir = new File(dataDirPath + curDataDir);
             if (!dir.exists()) {
                 logger.info("Data directory {} doesn't exist, creating it.", dir.toString());

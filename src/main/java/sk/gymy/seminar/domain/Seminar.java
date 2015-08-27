@@ -17,8 +17,8 @@
 package sk.gymy.seminar.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
@@ -56,7 +56,8 @@ public class Seminar extends AbstractPersistable {
         this.group = group;
     }
 
-    @PlanningVariable(valueRangeProviderRefs = {"groupRange"}, strengthWeightFactoryClass = GroupStrengthWeightFactory.class)
+    @PlanningVariable(valueRangeProviderRefs = {"groupRange"},
+            strengthWeightFactoryClass = GroupStrengthWeightFactory.class)
     public Group getGroup() {
         return group;
     }
@@ -112,18 +113,19 @@ public class Seminar extends AbstractPersistable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Seminar seminar = (Seminar) o;
 
         return new EqualsBuilder() // do not append Group!
-                .append(getIndex(), seminar.getIndex())
-                .append(getName(), seminar.getName())
-                .append(getStudents(), seminar.getStudents())
-                .append(getTeacher(), seminar.getTeacher())
-                .append(isLocked(), seminar.isLocked())
-                .isEquals();
+                .append(getIndex(), seminar.getIndex()).append(getName(), seminar.getName())
+                .append(getStudents(), seminar.getStudents()).append(getTeacher(), seminar.getTeacher())
+                .append(isLocked(), seminar.isLocked()).isEquals();
     }
 
     @Override

@@ -69,12 +69,12 @@ public class SeminarExporterTest {
     public void testWriteSolution() throws IOException {
         SeminarExporter seminarExporter = new SeminarExporter();
         seminarExporter.writeSolution(groups, outputPath.toFile());
-        final String expected = "Name: Seminar-simple-5\n" +
-                                "Groups: 3\n" +
-                                "\n" +
-                                "Group 0: \n" +
-                                "Group 1: \n" +
-                                "Group 2: ";
+        final String expected = "Name: Seminar-simple-5\n"
+                + "Groups: 3\n"
+                + "\n"
+                + "Group 0: \n"
+                + "Group 1: \n"
+                + "Group 2: ";
         List<String> result = Files.readAllLines(outputPath, Charset.defaultCharset());
         String[] resultArr = new String[result.size()];
         assertArrayEquals(expected.split("\n"), result.toArray(resultArr));

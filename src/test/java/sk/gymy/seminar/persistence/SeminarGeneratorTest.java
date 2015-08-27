@@ -31,7 +31,7 @@ import static org.junit.Assert.assertNull;
 public class SeminarGeneratorTest {
 
     /**
-     * Shouldn't actually write anything to the filesystem
+     * Shouldn't actually write anything to the filesystem.
      */
     @Test
     public void testGenerate() {

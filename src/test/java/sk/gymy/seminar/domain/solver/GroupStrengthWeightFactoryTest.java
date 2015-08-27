@@ -54,8 +54,12 @@ public class GroupStrengthWeightFactoryTest {
         solver.solve(solvedGroups);
         solvedGroups = (Groups) solver.getBestSolution();
         assertNotEquals(solvedGroups, groups); // Asserts, that the groups stays uninitialized
-        assertEquals("Groups{name=Seminar-simple-5, score=-2hard/-20soft, seminarList=[s01: null, s02: null, s03: null, s04: null, s05: null]}", groups.toString());
-        assertEquals("Groups{name=Seminar-simple-5, score=0hard/0soft, seminarList=[s01: G2, s02: G0, s03: G0, s04: G1, s05: G2]}", solvedGroups.toString());
+        assertEquals(
+                "Groups{name=Seminar-simple-5, score=-2hard/-20soft, seminarList=[s01: null, s02: null, s03: null, "
+                        + "s04: null, s05: null]}", groups.toString());
+        assertEquals(
+                "Groups{name=Seminar-simple-5, score=0hard/0soft, seminarList=[s01: G2, s02: G0, s03: G0, s04: G1, "
+                        + "s05: G2]}", solvedGroups.toString());
     }
 
     @Test
@@ -65,8 +69,8 @@ public class GroupStrengthWeightFactoryTest {
         for (Group group : groups.getGroupList()) {
             assertNotNull(group);
             GroupStrengthWeightFactory.GroupStrengthWeight groupStrengthWeight =
-                    (GroupStrengthWeightFactory.GroupStrengthWeight)
-                            groupStrengthWeightFactory.createSorterWeight(groups, group);
+                    (GroupStrengthWeightFactory.GroupStrengthWeight) groupStrengthWeightFactory
+                            .createSorterWeight(groups, group);
             assertNotNull(groupStrengthWeight);
             assertEquals(group, groupStrengthWeight.getGroup());
             assertEquals(0, groupStrengthWeight.getSeminarCount()); // This is an uninitialized solution
@@ -77,12 +81,12 @@ public class GroupStrengthWeightFactoryTest {
     public void testNullGroup() {
         GroupStrengthWeightFactory groupStrengthWeightFactory = new GroupStrengthWeightFactory();
         assertNotNull(groupStrengthWeightFactory);
-            GroupStrengthWeightFactory.GroupStrengthWeight groupStrengthWeight =
-                    (GroupStrengthWeightFactory.GroupStrengthWeight)
-                            groupStrengthWeightFactory.createSorterWeight(groups, null);
-            assertNotNull(groupStrengthWeight);
-            assertEquals(null, groupStrengthWeight.getGroup());
-            assertEquals(0, groupStrengthWeight.getSeminarCount()); // This is an uninitialized solution
+        GroupStrengthWeightFactory.GroupStrengthWeight groupStrengthWeight =
+                (GroupStrengthWeightFactory.GroupStrengthWeight) groupStrengthWeightFactory
+                        .createSorterWeight(groups, null);
+        assertNotNull(groupStrengthWeight);
+        assertEquals(null, groupStrengthWeight.getGroup());
+        assertEquals(0, groupStrengthWeight.getSeminarCount()); // This is an uninitialized solution
     }
 
     @Test
@@ -92,8 +96,8 @@ public class GroupStrengthWeightFactoryTest {
         for (Group group : solvedGroups.getGroupList()) {
             assertNotNull(group);
             GroupStrengthWeightFactory.GroupStrengthWeight groupStrengthWeight =
-                    (GroupStrengthWeightFactory.GroupStrengthWeight)
-                            groupStrengthWeightFactory.createSorterWeight(solvedGroups, group);
+                    (GroupStrengthWeightFactory.GroupStrengthWeight) groupStrengthWeightFactory
+                            .createSorterWeight(solvedGroups, group);
             assertNotNull(groupStrengthWeight);
             assertEquals(group, groupStrengthWeight.getGroup());
             assertNotEquals(0, groupStrengthWeight.getSeminarCount()); // This is a solved solution

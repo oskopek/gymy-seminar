@@ -26,7 +26,7 @@
   <logger name="sk.gymy.seminar" level="debug"/>
 
   <root level="info"> <!-- Should be debug, but TravisCI complains -->
-    <appender-ref ref="consoleAppender" />
+    <appender-ref ref="consoleAppender"/>
   </root>
 
 </configuration>

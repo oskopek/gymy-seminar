@@ -121,8 +121,7 @@ public class SeminarPanel extends SolutionPanel {
             statsPanel.add(new JLabel("Students: "), BorderLayout.WEST);
             statsPanel.add(new JLabel(Integer.toString(seminar.getStudents().size())), BorderLayout.CENTER);
             statsPanel.add(new JLabel("Teacher: "), BorderLayout.WEST);
-            statsPanel.add(new JLabel(seminar.getTeacher().getName()),
-                    BorderLayout.CENTER);
+            statsPanel.add(new JLabel(seminar.getTeacher().getName()), BorderLayout.CENTER);
             tabbedPane.addTab("Statistics", statsPanel);
 
             JPanel studentListPanel = new JPanel(new GridLayout(1, 1));
@@ -134,8 +133,9 @@ public class SeminarPanel extends SolutionPanel {
             studentListPanel.add(new JScrollPane(studentList), BorderLayout.CENTER);
             tabbedPane.addTab("Students", studentListPanel);
 
-            int result = JOptionPane.showConfirmDialog(SeminarPanel.this.getRootPane(), tabbedPane,
-                    "Seminar: " + seminar.getName(), JOptionPane.OK_CANCEL_OPTION);
+            int result = JOptionPane
+                    .showConfirmDialog(SeminarPanel.this.getRootPane(), tabbedPane, "Seminar: " + seminar.getName(),
+                            JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                 Group toGroup = (Group) groupListField.getSelectedItem();
                 if (!toGroup.equals(seminar.getGroup())) {

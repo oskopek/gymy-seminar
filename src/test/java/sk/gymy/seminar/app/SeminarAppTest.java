@@ -56,7 +56,7 @@ public class SeminarAppTest {
     @Test
     public void testCreateMethods() {
         assertNotNull(seminarApp.createSolutionDao());
-        assertNotNull(seminarApp.createSolutionImporter());
+        assertNotNull(seminarApp.createSolutionImporters()[0]);
         assertNotNull(seminarApp.createSolutionExporter());
         assertNotNull(seminarApp.createSolutionPanel());
         assertNotNull(seminarApp.createSolver());
@@ -82,6 +82,7 @@ public class SeminarAppTest {
             File dir = new File(dataDir.getPath() + "/" + dirName);
             assertTrue(dir.exists());
             assertTrue(dir.isDirectory());
+            assertNotNull(dir.listFiles());
             assertEquals(0, dir.listFiles().length);
             assertTrue(dir.delete());
             assertFalse(dir.exists());

@@ -16,32 +16,32 @@
   -->
 
 <solver>
-    <!--<environmentMode>FAST_ASSERT</environmentMode>-->
-    <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
-    <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
+  <!--<environmentMode>FAST_ASSERT</environmentMode>-->
+  <solutionClass>sk.gymy.seminar.domain.Groups</solutionClass>
+  <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
 
-    <scoreDirectorFactory>
-        <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
-        <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
-        <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
-    </scoreDirectorFactory>
+  <scoreDirectorFactory>
+    <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
+    <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>
+    <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+  </scoreDirectorFactory>
 
-    <termination>
-        <bestScoreLimit>0hard/0soft</bestScoreLimit>
-        <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
-    </termination>
-    <constructionHeuristic>
-        <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
-    </constructionHeuristic>
-    <localSearch>
-        <changeMoveSelector>
-            <selectionOrder>ORIGINAL</selectionOrder>
-        </changeMoveSelector>
-        <acceptor>
-            <entityTabuSize>5</entityTabuSize>
-        </acceptor>
-        <forager>
-            <!-- Real world problems require to use of <acceptedCountLimit> -->
-        </forager>
-    </localSearch>
+  <termination>
+    <bestScoreLimit>0hard/0soft</bestScoreLimit>
+    <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
+  </termination>
+  <constructionHeuristic>
+    <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+  </constructionHeuristic>
+  <localSearch>
+    <changeMoveSelector>
+      <selectionOrder>ORIGINAL</selectionOrder>
+    </changeMoveSelector>
+    <acceptor>
+      <entityTabuSize>5</entityTabuSize>
+    </acceptor>
+    <forager>
+      <!-- Real world problems require to use of <acceptedCountLimit> -->
+    </forager>
+  </localSearch>
 </solver>

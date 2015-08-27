@@ -47,9 +47,7 @@ public class SeminarBruteForceTest extends SolverPerformanceTest {
         SolverFactory solverFactory = super.buildSolverFactory(bestScoreLimitString, environmentMode);
         ExhaustiveSearchPhaseConfig phaseConfig = new ExhaustiveSearchPhaseConfig();
         phaseConfig.setExhaustiveSearchType(ExhaustiveSearchType.BRUTE_FORCE);
-        solverFactory.getSolverConfig().setPhaseConfigList(
-                Collections.<PhaseConfig>singletonList(phaseConfig)
-        );
+        solverFactory.getSolverConfig().setPhaseConfigList(Collections.<PhaseConfig>singletonList(phaseConfig));
         return solverFactory;
     }
 

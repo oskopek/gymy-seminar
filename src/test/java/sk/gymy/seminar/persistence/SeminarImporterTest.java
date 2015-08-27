@@ -81,7 +81,8 @@ public class SeminarImporterTest {
         String buffer;
         while ((buffer = br.readLine()) != null) {
             if (buffer.contains("s05 t02")) {
-                assertEquals("s05 t04 2 5 7 8 12 15 16 19", buffer = buffer.replace("t02", "t04"));
+                buffer = buffer.replace("t02", "t04");
+                assertEquals("s05 t04 2 5 7 8 12 15 16 19", buffer);
             }
             bw.write(buffer);
             bw.newLine();
@@ -100,7 +101,8 @@ public class SeminarImporterTest {
         String buffer;
         while ((buffer = br.readLine()) != null) {
             if (buffer.contains("s05 t02")) {
-                assertEquals("s05 t02 2 5 7 8 12 15 16 21", buffer = buffer.replace("19", "21"));
+                buffer = buffer.replace("19", "21");
+                assertEquals("s05 t02 2 5 7 8 12 15 16 21", buffer);
             }
             bw.write(buffer);
             bw.newLine();

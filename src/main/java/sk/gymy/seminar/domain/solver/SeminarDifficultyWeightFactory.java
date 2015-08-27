@@ -16,7 +16,7 @@
 
 package sk.gymy.seminar.domain.solver;
 
-import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionSorterWeightFactory;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.domain.Seminar;
@@ -37,11 +37,11 @@ public class SeminarDifficultyWeightFactory implements SelectionSorterWeightFact
             this.studentsCount = studentsCount;
         }
 
-        public int compareTo(SeminarDifficultyWeight other) {
+        public int compareTo(SeminarDifficultyWeight other) { // TODO: non null
             return new CompareToBuilder() // Decreasing order
                     // The more difficult seminars have a higher number of students
-                    .append(other.studentsCount, studentsCount)
-                    .append(other.seminar.getIndex(), seminar.getIndex()) // Tie-breaker
+                    .append(other.studentsCount, studentsCount).append(other.seminar.getIndex(),
+                            seminar.getIndex()) // Tie-breaker
                     .toComparison();
         }
 

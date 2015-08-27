@@ -45,11 +45,8 @@ public class SeminarBranchAndBoundTest extends SolverPerformanceTest {
     protected SolverFactory buildSolverFactory(String bestScoreLimitString, EnvironmentMode environmentMode) {
         SolverFactory solverFactory = super.buildSolverFactory(bestScoreLimitString, environmentMode);
         ExhaustiveSearchPhaseConfig phaseConfig = new ExhaustiveSearchPhaseConfig();
-        phaseConfig.setExhaustiveSearchType(
-                ExhaustiveSearchType.BRANCH_AND_BOUND);
-        solverFactory.getSolverConfig().setPhaseConfigList(
-                Collections.<PhaseConfig>singletonList(phaseConfig)
-        );
+        phaseConfig.setExhaustiveSearchType(ExhaustiveSearchType.BRANCH_AND_BOUND);
+        solverFactory.getSolverConfig().setPhaseConfigList(Collections.<PhaseConfig>singletonList(phaseConfig));
         return solverFactory;
     }
 
@@ -68,7 +65,8 @@ public class SeminarBranchAndBoundTest extends SolverPerformanceTest {
     }
 
     @Test(timeout = 60000)
-    public void solveModel_gymy2014_2() { // TODO BranchAndBound can't solve to the best score, which is "-22hard/-10soft"
+    public void solveModel_gymy2014_2() {
+        // TODO BranchAndBound can't solve to the best score, which is "-22hard/-10soft"
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-22hard/-18soft", EnvironmentMode.PRODUCTION);
     }
 

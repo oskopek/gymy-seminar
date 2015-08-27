@@ -16,8 +16,8 @@
 
 package sk.gymy.seminar.domain;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 
 public class Person extends AbstractPersistable {
@@ -58,14 +58,15 @@ public class Person extends AbstractPersistable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Person person = (Person) o;
-        return new EqualsBuilder()
-                .append(getName(), person.getName())
-                .append(getIndex(), person.getIndex())
-                .isEquals();
+        return new EqualsBuilder().append(getName(), person.getName()).append(getIndex(), person.getIndex()).isEquals();
     }
 
     @Override
