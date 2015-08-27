@@ -11,7 +11,7 @@
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St200Tea60Sem150-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St2000Tea600Sem1500-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch5St2000Tea60Sem125-seminar.xml</inputSolutionFile>
-      <inputSolutionFile>data/seminar/unsolved/G5Ch2St2000Tea60Sem125-seminar.xml</inputSolutionFile>
+      <inputSolutionFile>data/seminar/unsolved/G5Ch3St2000Tea60Sem125-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>
@@ -30,7 +30,7 @@
       <termination>
         <terminationCompositionStyle>OR</terminationCompositionStyle>
         <bestScoreLimit>0hard/0soft</bestScoreLimit>
-        <minutesSpentLimit>5</minutesSpentLimit>
+        <minutesSpentLimit>1</minutesSpentLimit>
       </termination>
     </solver>
   </inheritedSolverBenchmark>
