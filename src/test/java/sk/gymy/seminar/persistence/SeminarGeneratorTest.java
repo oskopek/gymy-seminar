@@ -16,7 +16,6 @@
 
 package sk.gymy.seminar.persistence;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.optaplanner.examples.common.persistence.SolutionDao;
@@ -56,11 +55,4 @@ public class SeminarGeneratorTest extends AbstractTest {
         assertEquals(18, groups.getSeminarList().size());
         assertNull(groups.getScore());
     }
-
-    @Test
-    @Ignore("Test pollutes the data/seminar/unsolved directory")
-    public void testSeminarGeneratorMain() {
-        SeminarGenerator.main(new String[0]);
-    }
-
 }
