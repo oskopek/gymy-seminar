@@ -16,14 +16,24 @@
 
 package sk.gymy.seminar.persistence;
 
+import org.junit.Rule;
 import org.junit.runners.Parameterized;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import org.optaplanner.examples.common.persistence.SolutionDaoTest;
+import sk.gymy.seminar.common.DisplayTestRule;
+import sk.gymy.seminar.common.TurtleTestRule;
 
 import java.io.File;
 import java.util.Collection;
 
 public class SeminarDaoTest extends SolutionDaoTest {
+
+    // TODO figure out how to inherit from AbstractTest
+    @Rule
+    public final TurtleTestRule turtleTestRule = new TurtleTestRule();
+
+    @Rule
+    public final DisplayTestRule displayTestRule = new DisplayTestRule();
 
     @Override
     protected SolutionDao createSolutionDao() {

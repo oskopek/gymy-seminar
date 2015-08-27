@@ -16,23 +16,33 @@
 
 package sk.gymy.seminar.app;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.optaplanner.examples.common.app.PlannerBenchmarkTest;
+import sk.gymy.seminar.common.DisplayTestRule;
+import sk.gymy.seminar.common.TurtleTestRule;
 
 import java.io.File;
 
 public class SeminarBenchmarkTest extends PlannerBenchmarkTest {
 
+    // TODO figure out how to inherit from AbstractTest
+    @Rule
+    public final TurtleTestRule turtleTestRule = new TurtleTestRule();
+
+    @Rule
+    public final DisplayTestRule displayTestRule = new DisplayTestRule();
+
     @Override
     protected String createBenchmarkConfigResource() {
-        return "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml";
+        return SeminarBenchmarkApp.SOLVER_BENCHMARK_CONFIG;
     }
 
     // ************************************************************************
     // Tests
     // ************************************************************************
 
-    @Test(timeout = 600000)
+    @Test(timeout = 60000)
     public void benchmarkSimple5() {
         runBenchmarkTest(new File("data/seminar/unsolved/simple5.xml"));
     }

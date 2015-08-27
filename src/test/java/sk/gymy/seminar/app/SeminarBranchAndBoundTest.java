@@ -16,6 +16,7 @@
 
 package sk.gymy.seminar.app;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchPhaseConfig;
@@ -24,6 +25,8 @@ import org.optaplanner.core.config.phase.PhaseConfig;
 import org.optaplanner.core.config.solver.EnvironmentMode;
 import org.optaplanner.examples.common.app.SolverPerformanceTest;
 import org.optaplanner.examples.common.persistence.SolutionDao;
+import sk.gymy.seminar.common.DisplayTestRule;
+import sk.gymy.seminar.common.TurtleTestRule;
 import sk.gymy.seminar.persistence.SeminarDao;
 
 import java.io.File;
@@ -31,9 +34,16 @@ import java.util.Collections;
 
 public class SeminarBranchAndBoundTest extends SolverPerformanceTest {
 
+    // TODO figure out how to inherit from AbstractTest
+    @Rule
+    public final TurtleTestRule turtleTestRule = new TurtleTestRule();
+
+    @Rule
+    public final DisplayTestRule displayTestRule = new DisplayTestRule();
+
     @Override
     protected String createSolverConfigResource() {
-        return "sk/gymy/seminar/solver/seminarSolverConfig.xml";
+        return SeminarApp.SOLVER_CONFIG;
     }
 
     @Override
@@ -71,7 +81,8 @@ public class SeminarBranchAndBoundTest extends SolverPerformanceTest {
     }
 
     @Test(timeout = 60000)
-    public void solveModel_gymy2014_4() { // TODO BranchAndBound can't solve to the best score, which is "-8hard/-3soft"
+    public void solveModel_gymy2014_4() {
+        // TODO BranchAndBound can't solve to the best score, which is "-8hard/-3soft"
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-8hard/-4soft", EnvironmentMode.PRODUCTION);
     }
 

@@ -32,8 +32,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import sk.gymy.seminar.common.AbstractTest;
+import sk.gymy.seminar.common.DisplayTest;
 
-public class SeminarAppTest {
+public class SeminarAppTest extends AbstractTest {
 
     private SeminarApp seminarApp;
 
@@ -43,7 +45,8 @@ public class SeminarAppTest {
     }
 
     @Test
-    @Ignore("No X11 DISPLAY variable was set, but this program performed an operation which requires it.")
+    @DisplayTest
+    @Ignore("Unreliable test and pollutes UI")
     public void testSwingUI() throws IOException {
         SeminarApp.prepareSwingEnvironment();
         SeminarApp.prepareDataDirStructure(Files.createTempDir());

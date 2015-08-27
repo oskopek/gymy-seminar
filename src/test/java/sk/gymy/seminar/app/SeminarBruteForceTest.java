@@ -16,7 +16,7 @@
 
 package sk.gymy.seminar.app;
 
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.exhaustivesearch.ExhaustiveSearchPhaseConfig;
@@ -25,6 +25,9 @@ import org.optaplanner.core.config.phase.PhaseConfig;
 import org.optaplanner.core.config.solver.EnvironmentMode;
 import org.optaplanner.examples.common.app.SolverPerformanceTest;
 import org.optaplanner.examples.common.persistence.SolutionDao;
+import sk.gymy.seminar.common.DisplayTestRule;
+import sk.gymy.seminar.common.TurtleTest;
+import sk.gymy.seminar.common.TurtleTestRule;
 import sk.gymy.seminar.persistence.SeminarDao;
 
 import java.io.File;
@@ -32,9 +35,16 @@ import java.util.Collections;
 
 public class SeminarBruteForceTest extends SolverPerformanceTest {
 
+    // TODO figure out how to inherit from AbstractTest
+    @Rule
+    public final TurtleTestRule turtleTestRule = new TurtleTestRule();
+
+    @Rule
+    public final DisplayTestRule displayTestRule = new DisplayTestRule();
+
     @Override
     protected String createSolverConfigResource() {
-        return "sk/gymy/seminar/solver/seminarSolverConfig.xml";
+        return SeminarApp.SOLVER_CONFIG;
     }
 
     @Override
@@ -65,14 +75,14 @@ public class SeminarBruteForceTest extends SolverPerformanceTest {
         runSpeedTest(new File("data/seminar/unsolved/unsolvable5.xml"), "0hard/-1soft", EnvironmentMode.REPRODUCIBLE);
     }
 
-    @Test(timeout = 60000)
-    @Ignore("Test takes too long.")
+    @Test(timeout = 600000)
+    @TurtleTest
     public void solveModel_gymy2014_2() {
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-2.xml"), "-22hard/-10soft", EnvironmentMode.REPRODUCIBLE);
     }
 
-    @Test(timeout = 60000)
-    @Ignore("Test takes too long.")
+    @Test(timeout = 600000)
+    @TurtleTest
     public void solveModel_gymy2014_4() {
         runSpeedTest(new File("data/seminar/unsolved/gymy2014-4.xml"), "-8hard/-3soft", EnvironmentMode.REPRODUCIBLE);
     }

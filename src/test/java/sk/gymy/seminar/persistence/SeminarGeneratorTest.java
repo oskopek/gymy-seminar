@@ -20,6 +20,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.optaplanner.examples.common.persistence.SolutionDao;
+import sk.gymy.seminar.common.AbstractTest;
 import sk.gymy.seminar.domain.Groups;
 
 import java.io.File;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class SeminarGeneratorTest {
+public class SeminarGeneratorTest extends AbstractTest {
 
     /**
      * Shouldn't actually write anything to the filesystem.

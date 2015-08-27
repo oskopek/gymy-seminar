@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import sk.gymy.seminar.app.SeminarApp;
+import sk.gymy.seminar.common.AbstractTest;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.persistence.SeminarImporter;
 
@@ -34,7 +35,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class SeminarPanelTest {
+public class SeminarPanelTest extends AbstractTest {
 
     private SeminarPanel panel;
 

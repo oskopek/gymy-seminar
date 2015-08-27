@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import sk.gymy.seminar.app.SeminarApp;
+import sk.gymy.seminar.common.AbstractTest;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.Groups;
 import sk.gymy.seminar.persistence.SeminarImporter;
@@ -32,7 +33,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class GroupStrengthWeightFactoryTest {
+public class GroupStrengthWeightFactoryTest extends AbstractTest {
 
     private static Groups groups;
     private static Groups solvedGroups;

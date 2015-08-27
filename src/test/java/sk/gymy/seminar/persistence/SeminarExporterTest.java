@@ -19,6 +19,7 @@ package sk.gymy.seminar.persistence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sk.gymy.seminar.common.AbstractTest;
 import sk.gymy.seminar.domain.Groups;
 
 import java.io.BufferedWriter;
@@ -36,7 +37,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class SeminarExporterTest {
+public class SeminarExporterTest extends AbstractTest {
 
     private Path outputPath;
     private Groups groups;
@@ -44,7 +45,6 @@ public class SeminarExporterTest {
     @Before
     public void setUp() throws IOException {
         outputPath = Files.createTempFile("seminarExportTest", "." + new SeminarExporter().getOutputFileSuffix());
-
         this.groups = (Groups) new SeminarImporter().readSolution(new File("data/seminar/import/simple5.sem"));
         assertNotNull(groups);
         assertEquals("Seminar-simple-5", groups.getName());

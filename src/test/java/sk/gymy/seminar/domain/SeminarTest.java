@@ -24,8 +24,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import sk.gymy.seminar.common.AbstractTest;
 
-public class SeminarTest {
+public class SeminarTest extends AbstractTest {
 
     @Test
     public void equalsAndHashCodeTest() {

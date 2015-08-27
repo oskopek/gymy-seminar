@@ -20,18 +20,20 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import sk.gymy.seminar.common.AbstractTest;
+import sk.gymy.seminar.common.TurtleTest;
 
-public class SeminarBenchmarkAppTest {
+public class SeminarBenchmarkAppTest extends AbstractTest {
 
     @Test
     public void testSeminarBenchmarkApp() {
         SeminarBenchmarkApp sba = new SeminarBenchmarkApp();
         assertNotNull(sba);
-        //sba.buildAndBenchmark(new String[0]);
     }
 
     @Test
-    @Ignore
+    @TurtleTest
+    @Ignore("Ign")
     public void testBuildAndBenchmark() {
         SeminarBenchmarkApp sba = new SeminarBenchmarkApp();
         assertNotNull(sba);

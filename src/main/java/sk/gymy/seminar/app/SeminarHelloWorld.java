@@ -39,7 +39,7 @@ public final class SeminarHelloWorld {
     public static String solveHelloWorld() {
         // Build the Solver
         SolverFactory solverFactory =
-                SolverFactory.createFromXmlResource("sk/gymy/seminar/solver/seminarSolverConfig.xml");
+                SolverFactory.createFromXmlResource(SeminarApp.SOLVER_CONFIG);
 
         String unsolved5SeminarPath = "data/seminar/import/simple5.sem";
         Solver solver = solverFactory.buildSolver();

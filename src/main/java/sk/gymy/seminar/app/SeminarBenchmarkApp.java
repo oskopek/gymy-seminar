@@ -20,14 +20,14 @@ import org.optaplanner.examples.common.app.CommonBenchmarkApp;
 
 public class SeminarBenchmarkApp extends CommonBenchmarkApp {
 
+    public static final String SOLVER_BENCHMARK_CONFIG = "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml";
+
     public static void main(String[] args) {
         new SeminarBenchmarkApp().buildAndBenchmark(args);
     }
 
     public SeminarBenchmarkApp() {
-        super(new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfig.xml"),
-                new ArgOption("stepLimit", "sk/gymy/seminar/benchmark/seminarStepLimitBenchmarkConfig.xml"),
-                new ArgOption("scoreDirector", "sk/gymy/seminar/benchmark/seminarScoreDirectorBenchmarkConfig.xml"));
+        super(new ArgOption("default", SeminarBenchmarkApp.SOLVER_BENCHMARK_CONFIG));
     }
 
 }

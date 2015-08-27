@@ -19,6 +19,7 @@ package sk.gymy.seminar.persistence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sk.gymy.seminar.common.AbstractTest;
 import sk.gymy.seminar.domain.Groups;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class SeminarImporterTest {
+public class SeminarImporterTest extends AbstractTest {
 
     private Path file;
     private Path dir;
@@ -91,7 +92,7 @@ public class SeminarImporterTest {
         br.close();
         bw.close();
         SeminarImporter seminarImporter = new SeminarImporter();
-        seminarImporter.readSolution(fileEdited.toFile()); // IllegalStateException should be thrown
+        seminarImporter.readSolution(fileEdited.toFile()); // IllegalStateException should be thrown here
     }
 
     @Test(expected = IllegalStateException.class)
@@ -111,7 +112,7 @@ public class SeminarImporterTest {
         br.close();
         bw.close();
         SeminarImporter seminarImporter = new SeminarImporter();
-        seminarImporter.readSolution(fileEdited.toFile()); // IllegalStateException should be thrown
+        seminarImporter.readSolution(fileEdited.toFile()); // IllegalStateException should be thrown here
     }
 
 }

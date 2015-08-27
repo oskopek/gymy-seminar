@@ -19,8 +19,9 @@ package sk.gymy.seminar.app;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import sk.gymy.seminar.common.AbstractTest;
 
-public class SeminarHelloWorldTest {
+public class SeminarHelloWorldTest extends AbstractTest {
 
     @Test
     public void testHelloWorldMain() {
