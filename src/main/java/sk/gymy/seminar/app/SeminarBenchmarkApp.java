@@ -27,9 +27,10 @@ public class SeminarBenchmarkApp extends CommonBenchmarkApp {
     }
 
     public SeminarBenchmarkApp() {
-//        super(new ArgOption("default", SeminarBenchmarkApp.SOLVER_BENCHMARK_CONFIG));
+        super(new ArgOption("default", SeminarBenchmarkApp.SOLVER_BENCHMARK_CONFIG));
 //        super(new ArgOption("default", "sk/gymy/seminar/benchmark/seminarBenchmarkConfigCH.xml"));
-        super(new ArgOption("template", "sk/gymy/seminar/benchmark/seminarBenchmarkConfigLS.xml.ftl", true));
+//        super(new ArgOption("template", "sk/gymy/seminar/benchmark/seminarBenchmarkConfigLS.xml.ftl", true));
+//        super(new ArgOption("template", "sk/gymy/seminar/benchmark/seminarBenchmarkConfigSA.xml.ftl", true));
     }
 
 }
