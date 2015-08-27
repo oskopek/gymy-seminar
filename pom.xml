@@ -63,6 +63,11 @@
           <format>xml</format>
           <aggregate>true</aggregate>
           <quiet>true</quiet>
+          <instrumentation>
+            <excludes>
+              <exclude>sk/gymy/seminar/swingui/**/*.class</exclude>
+            </excludes>
+          </instrumentation>
           <check>
             <branchRate>85</branchRate>
             <lineRate>85</lineRate>
