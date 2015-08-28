@@ -21,7 +21,7 @@
     </problemBenchmarks>
     <solver>
       <solutionClass>sk.gymy.seminar.domain.GroupSolution</solutionClass>
-      <entityClass>sk.gymy.seminar.domain.Seminar</entityClass>
+      <entityClass>sk.gymy.seminar.domain.SeminarAssignment</entityClass>
       <scoreDirectorFactory>
         <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
         <scoreDrl>sk/gymy/seminar/solver/seminarScoreRules.drl</scoreDrl>

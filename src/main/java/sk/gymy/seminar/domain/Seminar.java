@@ -19,14 +19,7 @@ package sk.gymy.seminar.domain;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.optaplanner.core.api.domain.entity.PlanningEntity;
-import org.optaplanner.core.api.domain.variable.PlanningVariable;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
-import sk.gymy.seminar.domain.solver.GroupStrengthWeightFactory;
-import sk.gymy.seminar.domain.solver.MovableSeminarSelectionFilter;
-import sk.gymy.seminar.domain.solver.SeminarDifficultyWeightFactory;
-
-import java.util.List;
 
 @XStreamAlias("Seminar")
 public class Seminar extends AbstractPersistable {
@@ -34,18 +27,20 @@ public class Seminar extends AbstractPersistable {
     private int index;
     private String name;
     private Teacher teacher;
+    private int minSubSeminarIndex;
+    private int maxSubSeminarIndex;
 
     public Seminar() {
         super();
     }
 
-    public Seminar(int index, String name, Teacher teacher) {
-        super();
+    public Seminar(int index, int maxSubSeminarIndex, int minSubSeminarIndex, String name, Teacher teacher) {
         this.index = index;
+        this.maxSubSeminarIndex = maxSubSeminarIndex;
+        this.minSubSeminarIndex = minSubSeminarIndex;
         this.name = name;
         this.teacher = teacher;
     }
-
 
     public int getIndex() {
         return index;
@@ -53,6 +48,22 @@ public class Seminar extends AbstractPersistable {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public int getMaxSubSeminarIndex() {
+        return maxSubSeminarIndex;
+    }
+
+    public void setMaxSubSeminarIndex(int maxSubSeminarIndex) {
+        this.maxSubSeminarIndex = maxSubSeminarIndex;
+    }
+
+    public int getMinSubSeminarIndex() {
+        return minSubSeminarIndex;
+    }
+
+    public void setMinSubSeminarIndex(int minSubSeminarIndex) {
+        this.minSubSeminarIndex = minSubSeminarIndex;
     }
 
     public String getName() {
@@ -81,21 +92,18 @@ public class Seminar extends AbstractPersistable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Seminar)) {
             return false;
         }
-
         Seminar seminar = (Seminar) o;
-
-        return new EqualsBuilder() // do not append Group!
-                .append(getIndex(), seminar.getIndex()).append(getName(), seminar.getName())
-                .append(getStudents(), seminar.getStudents()).append(getTeacher(), seminar.getTeacher())
-                .append(isLocked(), seminar.isLocked()).isEquals();
+        return new EqualsBuilder().append(index, seminar.index).append(minSubSeminarIndex, seminar.minSubSeminarIndex)
+                .append(maxSubSeminarIndex, seminar.maxSubSeminarIndex).append(name, seminar.name)
+                .append(teacher, seminar.teacher).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(index).append(name) // do not append Group!
-                .append(students).append(teacher).append(locked).toHashCode();
+        return new HashCodeBuilder(17, 37).append(index).append(name).append(teacher).append(minSubSeminarIndex)
+                .append(maxSubSeminarIndex).toHashCode();
     }
 }

@@ -7,11 +7,10 @@ import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 import sk.gymy.seminar.domain.solver.GroupStrengthWeightFactory;
-import sk.gymy.seminar.domain.solver.MovableSeminarSelectionFilter;
-import sk.gymy.seminar.domain.solver.SeminarDifficultyWeightFactory;
+import sk.gymy.seminar.domain.solver.MovableSeminarAssignmentSelectionFilter;
+import sk.gymy.seminar.domain.solver.SubSeminarIndexStrengthWeightFactory;
 
-@PlanningEntity(difficultyWeightFactoryClass = SeminarDifficultyWeightFactory.class,
-        movableEntitySelectionFilter = MovableSeminarSelectionFilter.class)
+@PlanningEntity(movableEntitySelectionFilter = MovableSeminarAssignmentSelectionFilter.class)
 @XStreamAlias("SeminarAssignment")
 public class SeminarAssignment extends AbstractPersistable{
 
@@ -32,6 +31,14 @@ public class SeminarAssignment extends AbstractPersistable{
         super();
         this.index = index;
         this.studentAssignment = studentAssignment;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @PlanningVariable(valueRangeProviderRefs = {"groupRange"},
@@ -79,14 +86,13 @@ public class SeminarAssignment extends AbstractPersistable{
             return false;
         }
         SeminarAssignment that = (SeminarAssignment) o;
-        return new EqualsBuilder().append(locked, that.locked).append(studentAssignment, that.studentAssignment)
-                .append(group, that.group).append(subSeminarIndex, that.subSeminarIndex).isEquals();
+        return new EqualsBuilder().append(index, that.index).append(locked, that.locked)
+                .append(studentAssignment, that.studentAssignment).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(studentAssignment).append(locked).append(group)
-                .append(subSeminarIndex).toHashCode();
+        return new HashCodeBuilder(17, 37).append(index).append(studentAssignment).append(locked).toHashCode();
     }
 
     @Override

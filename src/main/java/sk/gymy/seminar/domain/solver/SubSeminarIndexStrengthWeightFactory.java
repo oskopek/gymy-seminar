@@ -16,14 +16,12 @@
 
 package sk.gymy.seminar.domain.solver;
 
-import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionFilter;
-import org.optaplanner.core.impl.score.director.ScoreDirector;
-import sk.gymy.seminar.domain.Seminar;
+import org.optaplanner.core.impl.heuristic.selector.common.decorator.SelectionSorterWeightFactory;
+import sk.gymy.seminar.domain.GroupSolution;
 
-public class MovableSeminarSelectionFilter implements SelectionFilter<Seminar> {
+public class SubSeminarIndexStrengthWeightFactory implements SelectionSorterWeightFactory<GroupSolution, Integer> {
 
-    @Override
-    public boolean accept(ScoreDirector scoreDirector, Seminar seminar) {
-        return !seminar.isLocked();
+    public Comparable createSorterWeight(GroupSolution groupSolution, Integer subSeminarIndex) {
+        return subSeminarIndex;
     }
 }

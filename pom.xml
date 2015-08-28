@@ -20,8 +20,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>sk.gymy.seminar</groupId>
-  <artifactId>gymy-seminar</artifactId>
+  <groupId>sk.gymy.seminarAssignment</groupId>
+  <artifactId>gymy-seminarAssignment</artifactId>
   <version>0.2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -34,13 +34,13 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/oskopek/gymy-seminar.git</url>
-    <connection>scm:git:https://github.com/oskopek/gymy-seminar.git</connection>
-    <developerConnection>scm:git:https://github.com/oskopek/gymy-seminar.git</developerConnection>
+    <url>https://github.com/oskopek/gymy-seminarAssignment.git</url>
+    <connection>scm:git:https://github.com/oskopek/gymy-seminarAssignment.git</connection>
+    <developerConnection>scm:git:https://github.com/oskopek/gymy-seminarAssignment.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-  <url>https://www.ohloh.net/p/gymy-seminar</url>
-  <description>A seminar grouping system.</description>
+  <url>https://www.ohloh.net/p/gymy-seminarAssignment</url>
+  <description>A seminarAssignment grouping system.</description>
 
   <prerequisites>
     <maven>3.0.0</maven>
@@ -65,7 +65,7 @@
           <quiet>true</quiet>
           <instrumentation>
             <excludes>
-              <exclude>sk/gymy/seminar/swingui/**/*.class</exclude>
+              <exclude>sk/gymy/seminarAssignment/swingui/**/*.class</exclude>
             </excludes>
           </instrumentation>
           <check>
@@ -113,7 +113,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>sk.gymy.seminar.app.SeminarApp</mainClass>
+              <mainClass>sk.gymy.seminarAssignment.app.SeminarApp</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -158,7 +158,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>sk.gymy.seminar.app.SeminarApp</mainClass>
+              <mainClass>sk.gymy.seminarAssignment.app.SeminarApp</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -186,7 +186,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>sk.gymy.seminar.app.SeminarApp</mainClass>
+          <mainClass>sk.gymy.seminarAssignment.app.SeminarApp</mainClass>
         </configuration>
       </plugin>
       <plugin>

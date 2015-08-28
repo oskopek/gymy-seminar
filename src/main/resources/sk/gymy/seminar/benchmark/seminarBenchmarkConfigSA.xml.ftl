@@ -7,15 +7,15 @@
   <inheritedSolverBenchmark>
     <problemBenchmarks>
       <xStreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xStreamAnnotatedClass>
-      <!--<inputSolutionFile>data/seminar/unsolved/G3Ch2St20Tea6Sem15-seminar.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminarAssignment/unsolved/G3Ch2St20Tea6Sem15-seminarAssignment.xml</inputSolutionFile>-->
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St200Tea60Sem150-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St2000Tea600Sem1500-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch5St2000Tea60Sem125-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G5Ch3St2000Tea60Sem125-seminar.xml</inputSolutionFile>
-      <!--<inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>-->
-      <!--<inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>-->
-      <!--<inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>-->
-      <!--<inputSolutionFile>data/seminar/unsolved/unsolvable5.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminarAssignment/unsolved/gymy2014-2.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminarAssignment/unsolved/gymy2014-4.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminarAssignment/unsolved/simple5.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminarAssignment/unsolved/unsolvable5.xml</inputSolutionFile>-->
       <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
       <problemStatisticType>BEST_SCORE</problemStatisticType>
     </problemBenchmarks>

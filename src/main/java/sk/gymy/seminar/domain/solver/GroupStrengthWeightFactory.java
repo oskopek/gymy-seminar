@@ -22,8 +22,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.gymy.seminar.domain.Group;
 import sk.gymy.seminar.domain.GroupSolution;
-import sk.gymy.seminar.domain.Seminar;
+import sk.gymy.seminar.domain.SeminarAssignment;
+import sk.gymy.seminar.domain.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<GroupSolution, Group> {
@@ -31,19 +33,24 @@ public class GroupStrengthWeightFactory implements SelectionSorterWeightFactory<
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupStrengthWeightFactory.class);
 
     public Comparable createSorterWeight(GroupSolution groupSolution, Group group) {
-        int seminarCount = countSeminars(group, groupSolution.getSeminarList());
+        int seminarCount = countSeminars(group, groupSolution.getSeminarAssignmentList());
         return new GroupStrengthWeight(group, seminarCount);
     }
 
-    private static int countSeminars(Group group, List<Seminar> seminarList) {
+    private static int countSeminars(Group group, List<SeminarAssignment> seminarAssignmentList) {
         if (group == null) {
-            LOGGER.error("Group to count seminars is null, returning 0 seminar count");
+            LOGGER.debug("Group to count seminars is null, returning 0 seminar count.");
             return 0;
         }
         int counter = 0;
-        for (Seminar seminar : seminarList) {
-            if (seminar.getGroup() != null && seminar.getGroup().equals(group)) {
+        List<Student> studentsInGroupList = new ArrayList<>();
+        for (SeminarAssignment seminarAssignment : seminarAssignmentList) {
+            Group otherGroup = seminarAssignment.getGroup();
+            Student otherStudent = seminarAssignment.getStudentAssignment().getStudent();
+            if (otherGroup != null && otherGroup.equals(group)
+                    && otherStudent != null && !studentsInGroupList.contains(otherStudent)) {
                 counter++;
+                studentsInGroupList.add(otherStudent);
             }
         }
         return counter;

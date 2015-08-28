@@ -21,23 +21,30 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.core.api.domain.valuerange.CountableValueRange;
+import org.optaplanner.core.api.domain.valuerange.ValueRangeFactory;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
-import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
-import org.optaplanner.core.impl.score.buildin.hardsoft.HardSoftScoreDefinition;
+import org.optaplanner.core.api.score.buildin.hardmediumsoft.HardMediumSoftScore;
+import org.optaplanner.core.impl.score.buildin.hardmediumsoft.HardMediumSoftScoreDefinition;
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 import org.optaplanner.persistence.xstream.impl.score.XStreamScoreConverter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @PlanningSolution
 @XStreamAlias("GroupSolution")
-public class GroupSolution extends AbstractPersistable implements Solution<HardSoftScore> {
+public class GroupSolution extends AbstractPersistable implements Solution<HardMediumSoftScore> {
 
     private String name;
     private int n;
     private int chooseSeminars;
+
+    private int minSubSeminarIndex;
+    private int maxSubSeminarIndex;
 
     // Problem facts
     private List<Student> studentList;
@@ -48,8 +55,8 @@ public class GroupSolution extends AbstractPersistable implements Solution<HardS
     // Planning entities
     private List<SeminarAssignment> seminarAssignmentList;
 
-    @XStreamConverter(value = XStreamScoreConverter.class, types = {HardSoftScoreDefinition.class})
-    private HardSoftScore score;
+    @XStreamConverter(value = XStreamScoreConverter.class, types = {HardMediumSoftScoreDefinition.class})
+    private HardMediumSoftScore score;
 
     public String getName() {
         return name;
@@ -89,6 +96,18 @@ public class GroupSolution extends AbstractPersistable implements Solution<HardS
 
     public void setSeminarList(List<Seminar> seminarList) {
         this.seminarList = seminarList;
+        this.maxSubSeminarIndex = Collections.max(seminarList, new Comparator<Seminar>() {
+            @Override
+            public int compare(Seminar o1, Seminar o2) {
+                return Integer.compare(o1.getMaxSubSeminarIndex(), o2.getMaxSubSeminarIndex());
+            }
+        }).getMaxSubSeminarIndex();
+        this.minSubSeminarIndex = Collections.min(seminarList, new Comparator<Seminar>() {
+            @Override
+            public int compare(Seminar o1, Seminar o2) {
+                return Integer.compare(o1.getMinSubSeminarIndex(), o2.getMinSubSeminarIndex());
+            }
+        }).getMinSubSeminarIndex();
     }
 
     @ValueRangeProvider(id = "groupRange")
@@ -98,6 +117,11 @@ public class GroupSolution extends AbstractPersistable implements Solution<HardS
 
     public void setGroupList(List<Group> groupList) {
         this.groupList = groupList;
+    }
+
+    @ValueRangeProvider(id = "subSeminarIndexRange")
+    public CountableValueRange<Integer> getSubSeminarIndexRange() {
+        return ValueRangeFactory.createIntValueRange(minSubSeminarIndex, maxSubSeminarIndex);
     }
 
     public List<Teacher> getTeacherList() {
@@ -117,11 +141,11 @@ public class GroupSolution extends AbstractPersistable implements Solution<HardS
         this.seminarAssignmentList = seminarAssignmentList;
     }
 
-    public HardSoftScore getScore() {
+    public HardMediumSoftScore getScore() {
         return score;
     }
 
-    public void setScore(HardSoftScore score) {
+    public void setScore(HardMediumSoftScore score) {
         this.score = score;
     }
 
