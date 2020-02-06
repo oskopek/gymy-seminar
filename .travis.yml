@@ -3,9 +3,7 @@ language: java
 sudo: false
 
 jdk:
-  - openjdk7
-  - oraclejdk7
-  - oraclejdk8
+  - openjdk13
 
 env:
   global:
