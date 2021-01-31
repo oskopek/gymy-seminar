@@ -16,6 +16,7 @@
 
 package sk.gymy.seminar.persistence;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.optaplanner.examples.common.persistence.SolutionDao;
@@ -30,12 +31,18 @@ import static org.junit.Assert.assertNull;
 
 public class SeminarGeneratorTest extends AbstractTest {
 
+    private SolutionDao daoMock;
+
+    @Before
+    public void setUp() {
+        daoMock = Mockito.mock(SeminarDao.class);
+    }
+
     /**
      * Shouldn't actually write anything to the filesystem.
      */
     @Test
     public void testGenerate() {
-        SolutionDao daoMock = Mockito.mock(SeminarDao.class);
         Mockito.when(daoMock.getDataDir()).thenReturn(new File("/tmp/generateTestDir"));
         SeminarGenerator generator = new SeminarGenerator(daoMock);
         generator.generate();
