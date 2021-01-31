@@ -31,17 +31,20 @@
     <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
   </termination>
   <constructionHeuristic>
-    <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+    <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
   </constructionHeuristic>
   <localSearch>
-    <changeMoveSelector>
-      <selectionOrder>ORIGINAL</selectionOrder>
-    </changeMoveSelector>
+    <unionMoveSelector>
+      <changeMoveSelector/>
+      <swapMoveSelector/>
+      <pillarChangeMoveSelector/>
+      <pillarSwapMoveSelector/>
+    </unionMoveSelector>
     <acceptor>
-      <entityTabuSize>5</entityTabuSize>
+      <simulatedAnnealingStartingTemperature>200hard/400soft</simulatedAnnealingStartingTemperature>
     </acceptor>
     <forager>
-      <!-- Real world problems require to use of <acceptedCountLimit> -->
+      <acceptedCountLimit>8</acceptedCountLimit>
     </forager>
   </localSearch>
 </solver>

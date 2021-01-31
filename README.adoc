@@ -4,6 +4,26 @@ image:https://github.com/oskopek/gymy-seminar/workflows/Java%20CI%20with%20Maven
 
 A seminar grouping system.
 
+=== Problem statement
+
+A school provides custom curriculum for all senior students, as a means of preparation for graduation and successive studying.
+The school lists classes (called "seminars") and students select a subset, which they wish to study the next term.
+
+A Teacher teaches a specific Seminar. Students select Seminars. Seminars can be split up into Subseminars, if the demand
+is greater than the capacity (the number of Subseminars per each Seminar is set manually).
+Seminars are assigned into groups (or blocks) which are taught at the same time.
+
+The respective hard constraints that have to be met are:
+
+* Students have to pick a selected number of Seminars.
+* Teachers cannot teach two seminars in one Group.
+
+The soft constraints that should be optimized:
+
+* Students cannot attend two seminars that are planned into one Group.
+
+Goal: Assign students into Subseminars of a Seminar they chose, such that it minimizes collisions with other constraints.
+
 === Building
 * *Recommended*: `mvn clean install -DskipTests`
 * To run *unit tests*: `mvn clean install`

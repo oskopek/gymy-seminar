@@ -32,67 +32,57 @@
         <bestScoreLimit>0hard/0soft</bestScoreLimit>
         <minutesSpentLimit>1</minutesSpentLimit>
       </termination>
-      <constructionHeuristic>
-        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
-      </constructionHeuristic>
     </solver>
   </inheritedSolverBenchmark>
 
   <solverBenchmark>
-    <name>Tabu Search</name>
+    <name>FIRST_FIT</name>
     <solver>
-      <localSearch>
-        <unionMoveSelector>
-          <changeMoveSelector/>
-          <swapMoveSelector/>
-          <pillarChangeMoveSelector/>
-          <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-        <acceptor>
-          <entityTabuSize>7</entityTabuSize>
-        </acceptor>
-        <forager>
-          <acceptedCountLimit>1000</acceptedCountLimit>
-        </forager>
-      </localSearch>
+      <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+      </constructionHeuristic>
     </solver>
   </solverBenchmark>
   <solverBenchmark>
-    <name>Simulated Annealing</name>
+    <name>FIRST_FIT_DECREASING</name>
     <solver>
-      <localSearch>
-        <unionMoveSelector>
-          <changeMoveSelector/>
-          <swapMoveSelector/>
-          <pillarChangeMoveSelector/>
-          <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-        <acceptor>
-          <simulatedAnnealingStartingTemperature>200hard/400soft</simulatedAnnealingStartingTemperature>
-        </acceptor>
-        <forager>
-          <acceptedCountLimit>8</acceptedCountLimit>
-        </forager>
-      </localSearch>
+      <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+      </constructionHeuristic>
     </solver>
   </solverBenchmark>
   <solverBenchmark>
-    <name>Late Acceptance</name>
+    <name>BEST_FIT</name>
     <solver>
-      <localSearch>
-        <unionMoveSelector>
-          <changeMoveSelector/>
-          <swapMoveSelector/>
-          <pillarChangeMoveSelector/>
-          <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-        <acceptor>
-          <lateAcceptanceSize>400</lateAcceptanceSize>
-        </acceptor>
-        <forager>
-          <acceptedCountLimit>4</acceptedCountLimit>
-        </forager>
-      </localSearch>
+      <constructionHeuristic>
+        <constructionHeuristicType>WEAKEST_FIT</constructionHeuristicType>
+      </constructionHeuristic>
     </solver>
   </solverBenchmark>
+  <solverBenchmark>
+    <name>BEST_FIT_DECREASING</name>
+    <solver>
+      <constructionHeuristic>
+        <constructionHeuristicType>WEAKEST_FIT_DECREASING</constructionHeuristicType>
+      </constructionHeuristic>
+    </solver>
+  </solverBenchmark>
+  <!--<solverBenchmark>-->
+    <!--<name>Entity tabu</name>-->
+    <!--<solver>-->
+      <!--&lt;!&ndash;<constructionHeuristic>&ndash;&gt;-->
+        <!--&lt;!&ndash;<constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>&ndash;&gt;-->
+      <!--&lt;!&ndash;</constructionHeuristic>&ndash;&gt;-->
+      <!--<localSearch>-->
+        <!--<changeMoveSelector>-->
+          <!--<selectionOrder>ORIGINAL</selectionOrder>-->
+        <!--</changeMoveSelector>-->
+        <!--<acceptor>-->
+          <!--<entityTabuSize>5</entityTabuSize>-->
+        <!--</acceptor>-->
+        <!--<forager>-->
+        <!--</forager>-->
+      <!--</localSearch>-->
+    <!--</solver>-->
+  <!--</solverBenchmark>-->
 </plannerBenchmark>

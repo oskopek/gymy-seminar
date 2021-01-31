@@ -7,15 +7,15 @@
   <inheritedSolverBenchmark>
     <problemBenchmarks>
       <xStreamAnnotatedClass>sk.gymy.seminar.domain.Groups</xStreamAnnotatedClass>
-      <inputSolutionFile>data/seminar/unsolved/G3Ch2St20Tea6Sem15-seminar.xml</inputSolutionFile>
+      <!--<inputSolutionFile>data/seminar/unsolved/G3Ch2St20Tea6Sem15-seminar.xml</inputSolutionFile>-->
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St200Tea60Sem150-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch2St2000Tea600Sem1500-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G3Ch5St2000Tea60Sem125-seminar.xml</inputSolutionFile>
       <inputSolutionFile>data/seminar/unsolved/G5Ch3St2000Tea60Sem125-seminar.xml</inputSolutionFile>
-      <inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>
-      <inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>
-      <inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>
-      <inputSolutionFile>data/seminar/unsolved/unsolvable5.xml</inputSolutionFile>
+      <!--<inputSolutionFile>data/seminar/unsolved/gymy2014-2.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminar/unsolved/gymy2014-4.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminar/unsolved/simple5.xml</inputSolutionFile>-->
+      <!--<inputSolutionFile>data/seminar/unsolved/unsolvable5.xml</inputSolutionFile>-->
       <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
       <problemStatisticType>BEST_SCORE</problemStatisticType>
     </problemBenchmarks>
@@ -30,7 +30,7 @@
       <termination>
         <terminationCompositionStyle>OR</terminationCompositionStyle>
         <bestScoreLimit>0hard/0soft</bestScoreLimit>
-        <minutesSpentLimit>1</minutesSpentLimit>
+        <minutesSpentLimit>5</minutesSpentLimit>
       </termination>
       <constructionHeuristic>
         <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
@@ -38,8 +38,10 @@
     </solver>
   </inheritedSolverBenchmark>
 
+<#list [150, 200, 250] as hardTemp>
+<#list [4, 8, 12, 16] as acceptedCountLimit>
   <solverBenchmark>
-    <name>Tabu Search</name>
+    <name>SA hTemp-${hardTemp} ACL-${acceptedCountLimit}</name>
     <solver>
       <localSearch>
         <unionMoveSelector>
@@ -49,50 +51,14 @@
           <pillarSwapMoveSelector/>
         </unionMoveSelector>
         <acceptor>
-          <entityTabuSize>7</entityTabuSize>
+          <simulatedAnnealingStartingTemperature>${hardTemp}hard/400soft</simulatedAnnealingStartingTemperature>
         </acceptor>
         <forager>
-          <acceptedCountLimit>1000</acceptedCountLimit>
+          <acceptedCountLimit>${acceptedCountLimit}</acceptedCountLimit>
         </forager>
       </localSearch>
     </solver>
   </solverBenchmark>
-  <solverBenchmark>
-    <name>Simulated Annealing</name>
-    <solver>
-      <localSearch>
-        <unionMoveSelector>
-          <changeMoveSelector/>
-          <swapMoveSelector/>
-          <pillarChangeMoveSelector/>
-          <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-        <acceptor>
-          <simulatedAnnealingStartingTemperature>200hard/400soft</simulatedAnnealingStartingTemperature>
-        </acceptor>
-        <forager>
-          <acceptedCountLimit>8</acceptedCountLimit>
-        </forager>
-      </localSearch>
-    </solver>
-  </solverBenchmark>
-  <solverBenchmark>
-    <name>Late Acceptance</name>
-    <solver>
-      <localSearch>
-        <unionMoveSelector>
-          <changeMoveSelector/>
-          <swapMoveSelector/>
-          <pillarChangeMoveSelector/>
-          <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-        <acceptor>
-          <lateAcceptanceSize>400</lateAcceptanceSize>
-        </acceptor>
-        <forager>
-          <acceptedCountLimit>4</acceptedCountLimit>
-        </forager>
-      </localSearch>
-    </solver>
-  </solverBenchmark>
+</#list>
+</#list>
 </plannerBenchmark>

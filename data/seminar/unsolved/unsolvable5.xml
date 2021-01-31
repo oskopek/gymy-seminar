@@ -2,6 +2,7 @@
   <id>0</id>
   <name>Seminar-unsolvable-5</name>
   <n>3</n>
+  <chooseSeminars>2</chooseSeminars>
   <studentList id="2">
     <Student id="3">
       <id>0</id>

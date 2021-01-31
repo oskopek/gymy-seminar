@@ -56,6 +56,7 @@ public class SeminarExporter extends AbstractTxtSolutionExporter {
         public void writeSolution() throws IOException {
             bufferedWriter.write("Name: " + groups.getName() + "\n");
             bufferedWriter.write("Groups: " + groups.getN() + "\n");
+            bufferedWriter.write("ChooseSeminars: " + groups.getChooseSeminars() + "\n");
             bufferedWriter.newLine();
             for (Group group : groups.getGroupList()) {
                 bufferedWriter.write("Group " + group.getIndex() + ": ");

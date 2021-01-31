@@ -1,6 +1,8 @@
 <Groups id="1">
   <id>0</id>
+  <name>G3Ch2St20Tea6Sem15</name>
   <n>3</n>
+  <chooseSeminars>2</chooseSeminars>
   <studentList id="2">
     <Student id="3">
       <id>0</id>
@@ -157,8 +159,10 @@
       <locked>false</locked>
       <teacher reference="28"/>
       <students id="36">
-        <Student reference="6"/>
-        <Student reference="3"/>
+        <Student reference="14"/>
+        <Student reference="12"/>
+        <Student reference="17"/>
+        <Student reference="19"/>
       </students>
     </Seminar>
     <Seminar id="37">
@@ -168,8 +172,10 @@
       <locked>false</locked>
       <teacher reference="29"/>
       <students id="38">
-        <Student reference="10"/>
-        <Student reference="12"/>
+        <Student reference="20"/>
+        <Student reference="21"/>
+        <Student reference="19"/>
+        <Student reference="7"/>
       </students>
     </Seminar>
     <Seminar id="39">
@@ -180,7 +186,9 @@
       <teacher reference="30"/>
       <students id="40">
         <Student reference="10"/>
-        <Student reference="21"/>
+        <Student reference="20"/>
+        <Student reference="16"/>
+        <Student reference="3"/>
       </students>
     </Seminar>
     <Seminar id="41">
@@ -190,8 +198,10 @@
       <locked>false</locked>
       <teacher reference="31"/>
       <students id="42">
-        <Student reference="14"/>
-        <Student reference="22"/>
+        <Student reference="13"/>
+        <Student reference="8"/>
+        <Student reference="3"/>
+        <Student reference="6"/>
       </students>
     </Seminar>
     <Seminar id="43">
@@ -201,8 +211,10 @@
       <locked>false</locked>
       <teacher reference="32"/>
       <students id="44">
-        <Student reference="22"/>
-        <Student reference="22"/>
+        <Student reference="15"/>
+        <Student reference="21"/>
+        <Student reference="6"/>
+        <Student reference="17"/>
       </students>
     </Seminar>
     <Seminar id="45">
@@ -212,8 +224,10 @@
       <locked>false</locked>
       <teacher reference="33"/>
       <students id="46">
-        <Student reference="21"/>
-        <Student reference="11"/>
+        <Student reference="18"/>
+        <Student reference="8"/>
+        <Student reference="13"/>
+        <Student reference="12"/>
       </students>
     </Seminar>
     <Seminar id="47">
@@ -223,8 +237,10 @@
       <locked>false</locked>
       <teacher reference="28"/>
       <students id="48">
-        <Student reference="6"/>
-        <Student reference="11"/>
+        <Student reference="22"/>
+        <Student reference="18"/>
+        <Student reference="16"/>
+        <Student reference="9"/>
       </students>
     </Seminar>
     <Seminar id="49">
@@ -234,8 +250,10 @@
       <locked>false</locked>
       <teacher reference="29"/>
       <students id="50">
-        <Student reference="8"/>
-        <Student reference="8"/>
+        <Student reference="11"/>
+        <Student reference="10"/>
+        <Student reference="15"/>
+        <Student reference="9"/>
       </students>
     </Seminar>
     <Seminar id="51">
@@ -245,8 +263,10 @@
       <locked>false</locked>
       <teacher reference="30"/>
       <students id="52">
-        <Student reference="16"/>
-        <Student reference="5"/>
+        <Student reference="14"/>
+        <Student reference="4"/>
+        <Student reference="11"/>
+        <Student reference="22"/>
       </students>
     </Seminar>
     <Seminar id="53">
@@ -256,8 +276,9 @@
       <locked>false</locked>
       <teacher reference="31"/>
       <students id="54">
-        <Student reference="10"/>
-        <Student reference="9"/>
+        <Student reference="7"/>
+        <Student reference="5"/>
+        <Student reference="4"/>
       </students>
     </Seminar>
     <Seminar id="55">
@@ -267,8 +288,7 @@
       <locked>false</locked>
       <teacher reference="32"/>
       <students id="56">
-        <Student reference="8"/>
-        <Student reference="20"/>
+        <Student reference="5"/>
       </students>
     </Seminar>
     <Seminar id="57">
@@ -277,10 +297,7 @@
       <name>Sem11</name>
       <locked>false</locked>
       <teacher reference="33"/>
-      <students id="58">
-        <Student reference="17"/>
-        <Student reference="12"/>
-      </students>
+      <students id="58"/>
     </Seminar>
     <Seminar id="59">
       <id>12</id>
@@ -288,10 +305,7 @@
       <name>Sem12</name>
       <locked>false</locked>
       <teacher reference="28"/>
-      <students id="60">
-        <Student reference="17"/>
-        <Student reference="12"/>
-      </students>
+      <students id="60"/>
     </Seminar>
     <Seminar id="61">
       <id>13</id>
@@ -299,10 +313,7 @@
       <name>Sem13</name>
       <locked>false</locked>
       <teacher reference="29"/>
-      <students id="62">
-        <Student reference="14"/>
-        <Student reference="21"/>
-      </students>
+      <students id="62"/>
     </Seminar>
     <Seminar id="63">
       <id>14</id>
@@ -310,43 +321,7 @@
       <name>Sem14</name>
       <locked>false</locked>
       <teacher reference="30"/>
-      <students id="64">
-        <Student reference="19"/>
-        <Student reference="19"/>
-      </students>
-    </Seminar>
-    <Seminar id="65">
-      <id>15</id>
-      <index>15</index>
-      <name>Sem15</name>
-      <locked>false</locked>
-      <teacher reference="31"/>
-      <students id="66">
-        <Student reference="19"/>
-        <Student reference="18"/>
-      </students>
-    </Seminar>
-    <Seminar id="67">
-      <id>16</id>
-      <index>16</index>
-      <name>Sem16</name>
-      <locked>false</locked>
-      <teacher reference="32"/>
-      <students id="68">
-        <Student reference="5"/>
-        <Student reference="13"/>
-      </students>
-    </Seminar>
-    <Seminar id="69">
-      <id>17</id>
-      <index>17</index>
-      <name>Sem17</name>
-      <locked>false</locked>
-      <teacher reference="33"/>
-      <students id="70">
-        <Student reference="20"/>
-        <Student reference="11"/>
-      </students>
+      <students id="64"/>
     </Seminar>
   </seminarList>
 </Groups>
